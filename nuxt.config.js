@@ -25,6 +25,7 @@ export default {
       { property :'twitter:url', content:'https://dewatapartyshop.com'},
       { name :'twitter:title', content:'Captcha'},
       { name :'twitter:description', content:'Dewata Party Store sells party stuff that you guys needs to party! No worries, all is on a very good price, good quality, we got you covered!'},
+      { name : 'google-site-verification', content:'1geetabIGzOUMnv55QDVAH_LxkoYWB2w7tffMBsDdkI'}
     ],
     link: [
     {
@@ -45,47 +46,23 @@ export default {
       href: 'https://dewatapartyshop.com'
     },
   ],
-  script: [
-    { src: '/js/coreui.bundle.min.js' }, 
-    { src: 'https://app.sandbox.midtrans.com/snap/snap.js', 'data-client-key': 'SB-Mid-client-tAy-6ndC2AtC39FL' }, 
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Dewata Party Shop",
-      "image": "",
-      "@id": "",
-      "url": "https://dewatapartyshop.com",
-      "telephone": "",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Blok CC 75, Jl. Perum Dalung Permai, Kerobokan Kaja, Kuta Utara, Badung Regency",
-        "addressLocality": "Bali",
-        "postalCode": "80361",
-        "addressCountry": "ID"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -7.558887,
-        "longitude": 110.851694
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
-        ],
-        "opens": "09:00",
-        "closes": "18:00"
-      },
-      "sameAs": [
-        "https://dewatapartyshop.com"
-      ] 
-    }
-  ]
+    script: [
+      { src: '/js/coreui.bundle.min.js' }, 
+      { src: 'https://app.sandbox.midtrans.com/snap/snap.js', 'data-client-key': 'SB-Mid-client-tAy-6ndC2AtC39FL' }, 
+      
+      // {
+      //   type: 'application/ld+json',
+      //   "@context": "https://schema.org/",
+      //   "@type": "WebSite",
+      //   "name": "Dewata Party Shop",
+      //   "url": "https://dewatapartyshop.com/",
+      //   "potentialAction": {
+      //     "@type": "SearchAction",
+      //     "target": "{search_term_string}",
+      //     "query-input": "required name=search_term_string"
+      //   }
+      // }
+    ]
   },
 
   loading: {
@@ -104,6 +81,7 @@ export default {
     { src: '~/plugins/vue-star-rating.js', mode: 'client' },
     { src: '~/plugins/chart.js', mode: 'client' },
     { src: '~/plugins/mixins.js' },
+    { src: '~/plugins/jsonld' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -227,6 +205,7 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: 'http://localhost:8000',
+    // baseURL: 'https://pitchwind.dewatapartyshop.com/',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

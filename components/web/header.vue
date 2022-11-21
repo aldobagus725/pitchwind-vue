@@ -98,9 +98,107 @@
         }
       },
       mixins: [NuxtSSRScreenSize.NuxtSSRScreenSizeMixin],
+      jsonld() {
+        // const structuredJson = [
+        //   {
+        //     "@context": "https://schema.org",
+        //     "@type": "LocalBusiness",
+        //     "name": "Dewata Party Shop",
+        //     "image": "",
+        //     "@id": "",
+        //     "url": "https://dewatapartyshop.com",
+        //     "telephone": "",
+        //     "address": {
+        //       "@type": "PostalAddress",
+        //       "streetAddress": "Blok CC 75, Jl. Perum Dalung Permai, Kerobokan Kaja, Kuta Utara, Badung Regency",
+        //       "addressLocality": "Bali",
+        //       "postalCode": "80361",
+        //       "addressCountry": "ID"
+        //     },
+        //     "geo": {
+        //       "@type": "GeoCoordinates",
+        //       "latitude": -7.558887,
+        //       "longitude": 110.851694
+        //     },
+        //     "openingHoursSpecification": {
+        //       "@type": "OpeningHoursSpecification",
+        //       "dayOfWeek": [
+        //         "Monday",
+        //         "Tuesday",
+        //         "Wednesday",
+        //         "Thursday",
+        //         "Friday",
+        //         "Saturday"
+        //       ],
+        //       "opens": "09:00",
+        //       "closes": "18:00"
+        //     },
+        //     "sameAs": [
+        //       "https://dewatapartyshop.com"
+        //     ] 
+        //   }
+        // ]
+        // Returns
+        // const items = this.breadcrumbs.map((item, index) => ({
+        //   '@type': 'ListItem',
+        //   position: index + 1,
+        //   item: {
+        //     '@id': item.url,
+        //     name: item.text,
+        //   },
+        // }));
+        return {
+          // {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Dewata Party Shop",
+            "image": "",
+            "@id": "",
+            "url": "https://dewatapartyshop.com",
+            "telephone": "",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Blok CC 75, Jl. Perum Dalung Permai, Kerobokan Kaja, Kuta Utara, Badung Regency",
+              "addressLocality": "Bali",
+              "postalCode": "80361",
+              "addressCountry": "ID"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": -7.558887,
+              "longitude": 110.851694
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+              ],
+              "opens": "09:00",
+              "closes": "18:00"
+            },
+            "sameAs": [
+              "https://dewatapartyshop.com"
+            ] 
+          // }
+          // script :[
+          //   {
+          //     innerHTML: JSON.stringify(structuredJson),
+          //     type:'application/ld+json'
+          //   },
+          // ],
+          // __dangerouslyDisableSanitizers:['script']
+          // '@context': 'https://schema.org',
+          // '@type': 'BreadcrumbList',
+          // itemListElement: items,
+        };
+      },
       //computed
       computed: {
-        
         //categories
         categories() {
           return this.$store.state.web.category.categories
