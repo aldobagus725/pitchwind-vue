@@ -31,6 +31,7 @@
 .c-app {
   color: #3c4b64;
   background-color: #ebedef;
+  /* background-color: white; */
   --color: #3c4b64;
   display: -ms-flexbox;
   display: flex;

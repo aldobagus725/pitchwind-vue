@@ -2,10 +2,9 @@
     <main class="c-main">
       <div class="container-fluid">
         <div class="fade-in">
-          <div class="row">
-  
+          <div class="row" style="">
             <div class="col-6 col-lg-3">
-              <div class="card border-0 rounded shadow-sm overflow-hidden">
+              <div class="card border-0 rounded shadow overflow-hidden">
                 <div class="card-body p-0 d-flex align-items-center">
                   <div class="bg-primary py-4 px-5 mfe-3">
                     <i class="fas fa-circle-notch fa-spin fa-2x"></i>
@@ -17,9 +16,8 @@
                 </div>
               </div>
             </div>
-  
             <div class="col-6 col-lg-3">
-              <div class="card border-0 rounded shadow-sm overflow-hidden">
+              <div class="card border-0 rounded shadow overflow-hidden">
                 <div class="card-body p-0 d-flex align-items-center">
                   <div class="bg-success py-4 px-5 mfe-3">
                     <i class="fas fa-check-circle fa-2x"></i>
@@ -31,9 +29,8 @@
                 </div>
               </div>
             </div>
-  
             <div class="col-6 col-lg-3">
-              <div class="card border-0 rounded shadow-sm overflow-hidden">
+              <div class="card border-0 rounded shadow overflow-hidden">
                 <div class="card-body p-0 d-flex align-items-center">
                   <div class="bg-warning py-4 px-5 mfe-3">
                     <i class="fas fa-exclamation-triangle fa-2x"></i>
@@ -45,9 +42,8 @@
                 </div>
               </div>
             </div>
-  
             <div class="col-6 col-lg-3">
-              <div class="card border-0 rounded shadow-sm overflow-hidden">
+              <div class="card border-0 rounded shadow overflow-hidden">
                 <div class="card-body p-0 d-flex align-items-center">
                   <div class="bg-danger py-4 px-5 mfe-3">
                     <i class="fas fa-times-circle fa-2x"></i>
@@ -59,12 +55,10 @@
                 </div>
               </div>
             </div>
-  
           </div>
-  
-          <div class="row">
+          <div class="row py-4">
             <div class="col-md-12">
-              <div class="card border-0 rounded shadow-sm border-top-orange">
+              <div class="card border-0 rounded shadow border-top-orange">
                 <div class="card-header">
                   <span class="font-weight-bold"><i class="fa fa-chart-bar"></i> GRAFIK PENDAPATAN {{new Date().getFullYear()}}</span>
                 </div>
@@ -76,7 +70,6 @@
               </div>
             </div>
           </div>
-  
         </div>
       </div>
     </main>

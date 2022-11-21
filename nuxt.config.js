@@ -13,9 +13,21 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      // Facebook Meta Tags
+      { property :'og:url', content:'https://dewatapartyshop.com'},
+      { property :'og:title', content:'Captcha'},
+      { property :'og:description', content:'Dewata Party Store sells party stuff that you guys needs to party! No worries, all is on a very good price, good quality, we got you covered!'},
+      { property :'og:image', content:'https://dewatapartyshop.com'},
+      // Twitter Meta Tags
+      { name :'twitter:card', content:'summary_large_image'},
+      { property :'twitter:domain', content:'https://dewatapartyshop.com'},
+      { property :'twitter:url', content:'https://dewatapartyshop.com'},
+      { name :'twitter:title', content:'Captcha'},
+      { name :'twitter:description', content:'Dewata Party Store sells party stuff that you guys needs to party! No worries, all is on a very good price, good quality, we got you covered!'},
     ],
-    link: [{
+    link: [
+    {
       rel: 'icon',
       type: 'image/x-icon',
       href: '/images/logo.png'
@@ -28,10 +40,51 @@ export default {
       rel: 'stylesheet',
       href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'
     },
+    {
+      rel: 'canonical',
+      href: 'https://dewatapartyshop.com'
+    },
   ],
   script: [
     { src: '/js/coreui.bundle.min.js' }, 
     { src: 'https://app.sandbox.midtrans.com/snap/snap.js', 'data-client-key': 'SB-Mid-client-tAy-6ndC2AtC39FL' }, 
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Dewata Party Shop",
+      "image": "",
+      "@id": "",
+      "url": "https://dewatapartyshop.com",
+      "telephone": "",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Blok CC 75, Jl. Perum Dalung Permai, Kerobokan Kaja, Kuta Utara, Badung Regency",
+        "addressLocality": "Bali",
+        "postalCode": "80361",
+        "addressCountry": "ID"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -7.558887,
+        "longitude": 110.851694
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        "https://dewatapartyshop.com"
+      ] 
+    }
   ]
   },
 
@@ -64,7 +117,7 @@ export default {
   pwa: {
     meta: {
       title: 'DEWATA PARTY SHOP BALI - Toko perlengkapan / alat pesta, dekorasi, dll',
-      author: 'Xiaomi Indonesia'
+      author: 'Dewata Party Shop'
     },
     manifest: {
       name: 'Dewata Party Shop Bali',
@@ -88,6 +141,86 @@ export default {
     '@nuxtjs/auth-next',
     //https://github.com/avil13/vue-sweetalert2
     'vue-sweetalert2/nuxt',
+    // Robots
+    '@nuxtjs/robots'
+  ],
+  // Robots
+  robots: [
+    {
+      UserAgent: 'Googlebot',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'googlebot-image',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'googlebot-mobile',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'MSNBot',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'Slurp',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'Teoma',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'Gigabot',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'Robozilla',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'Nutch',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'ia_archiver',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'baiduspider',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'naverbot',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'yeti',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'yahoo-mmcrawler',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'psbot',
+      Disallow: '',
+    },
+    {
+      UserAgent: 'yahoo-blogs/v3.9',
+      Disallow: '',
+    },
+    {
+      UserAgent: '*',
+      Disallow: '',
+    },
+    {
+      Disallow: '/cgi-bin/',
+      Sitemap: 'https://dewatapartyshop.com/sitemap.xml'
+    },
+
+    // UserAgent: '*',
+    // Disallow: '/user',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

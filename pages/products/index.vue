@@ -52,9 +52,6 @@
                       {{ subStrTitle(product.title) }}
                     </nuxt-link> 
                   </h6> 
-                  <!-- <nuxt-link :to="{name: 'categories-slug', params: {slug: product.category.slug}}" class="text-muted" style="font-size:0.8rem;" data-abc="true">
-                    {{ product.category.name }}
-                  </nuxt-link> -->
                   <h5 class="mb-0 font-weight-bold" style="color:black;">Rp. {{ formatPrice(calculateDiscount(product)) }}</h5>
                   <h6 class="mb-0 font-weight-semibold" v-if="product.discount != 0">
                     <span class="badge badge-danger">
@@ -80,7 +77,7 @@
           </div>
         </template>
           <!-- pagination -->
-          <div class="row justify-content-center mt-4 mb-4">
+        <div class="row justify-content-center mt-4 mb-4">
             <div class="text-center">
                 <b-pagination align="center" :value="products.current_page" :total-rows="products.total"
                     :per-page="products.per_page" @change="changePage" aria-controls="my-table"></b-pagination>
@@ -126,91 +123,60 @@
       </div>
     </div>
   </template>
-  
   <script>
   export default {
-  
-      //meta
-      head() {
-        return {
-          title: 'Products - DEWATA PARTY SHOP BALI',
-          meta: [{
-              hid: 'og:title',
-              name: 'og:title',
-              content: 'DEWATA PARTY SHOP BALI'
-            },
-            {
-              hid: 'og:site_name',
-              name: 'og:site_name',
-              content: 'DEWATA PARTY SHOP BALI'
-            },
-            {
-              hid: 'og:image',
-              name: 'og:image',
-              content: '/images/logo.png'
-            },
-            {
-              hid: 'description',
-              name: 'description',
-              content: 'DEWATA PARTY SHOP BALI - Menjual Kebutuhan Acara, Pesta, Dll!'
-            },
-          ]
-        }
-      },
-  
-      //hook "asyncData"
-      async asyncData({ store }) {
-          await store.dispatch('web/product/getProductsData')
-          await store.dispatch('web/article/getRandomArticle')
-      },
-
-      // async asyncData({ store }) {
-      //   
-      // },
-  
-      //computed
-      computed: {
-          //products
-          products() {
-              return this.$store.state.web.product.products
+    //meta
+    head() {
+      return {
+        title: 'Products - DEWATA PARTY SHOP BALI',
+        meta: [{
+            hid: 'og:title',
+            name: 'og:title',
+            content: 'DEWATA PARTY SHOP BALI'
           },
-          articles() {
-            return this.$store.state.web.article.random_article
+          {
+            hid: 'og:site_name',
+            name: 'og:site_name',
+            content: 'DEWATA PARTY SHOP BALI'
           },
+          {
+            hid: 'og:image',
+            name: 'og:image',
+            content: '/images/logo.png'
+          },
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'DEWATA PARTY SHOP BALI - Menjual Kebutuhan Acara, Pesta, Dll!'
+          },
+        ]
+      }
+    },
+    //hook "asyncData"
+    async asyncData({ store }) {
+        await store.dispatch('web/product/getProductsData')
+        await store.dispatch('web/article/getRandomArticle')
+    },
+    //computed
+    computed: {
+        //products
+        products() {
+            return this.$store.state.web.product.products
+        },
+        articles() {
+          return this.$store.state.web.article.random_article
+        },
+    },
+    methods: {
+      //method "changePage"
+      changePage(page) {
+          //commit to mutation "SET_PAGE"
+          this.$store.commit('web/product/SET_PAGE', page)
+          //dispatch on action "getProductsData"
+          this.$store.dispatch('web/product/getProductsData', this.$route.query.q)
       },
-
-      methods: {
-        subStrTitle(title){
-          var title_length = title.length
-          if (title_length > 30){
-            var result = title.substr(0,30) + "..."
-            return result
-          } else {
-            return title
-          }
-        },
-        //method "changePage"
-        changePage(page) {
-            //commit to mutation "SET_PAGE"
-            this.$store.commit('web/product/SET_PAGE', page)
-            //dispatch on action "getProductsData"
-            this.$store.dispatch('web/product/getProductsData', this.$route.query.q)
-        },
-        subStrText(title){
-          var title_length = title.length
-          if (title_length > 30){
-            var result = title.substr(0,30) + "..."
-            return result
-          } else {
-            return title
-          }
-        },
-        stripHtml(text){
-            let regex = /(<([^>]+)>)/ig;
-            return text.replace(regex, "");
-        }
-      },
-  }
+    },
+    }
   </script>
   
   <style>

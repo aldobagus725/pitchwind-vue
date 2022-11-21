@@ -87,59 +87,36 @@
                 :per-page="products.per_page" @change="changePage" aria-controls="my-table"></b-pagination>
             </div>
         </div>
-        
-  
       </div>
     </div>
   </template>
   
   <script>
     export default {
-  
       //meta
       head() {
         return {
           title: `Pencarian untuk : ${this.$route.query.q} - DEWATA PARTY STORE BALI`,
         }
       },
-  
-        //watch query URL
-        watchQuery: ["q"],
-
-        //hook "asyncData"
-        async asyncData({ store, query }) {
+      //watch query URL
+      watchQuery: ["q"],
+      //hook "asyncData"
+      async asyncData({ store, query }) {
         await store.dispatch('web/product/getProductsData', query.q)
-        },
-  
+      },
       //computed
       computed: {
-  
-        //products
         products() {
           return this.$store.state.web.product.products
         },
       },
-
       methods: {
-        subStrTitle(title){
-            var title_length = title.length
-            if (title_length > 30){
-            var result = title.substr(0,30) + "..."
-            return result
-            } else {
-            return title
-            }
+        changePage(page) {
+          this.$store.commit('web/product/SET_PAGE', page)
+          this.$store.dispatch('web/product/getProductsData', this.$route.query.q)
         },
-             //method "changePage"
-      changePage(page) {
-
-      //commit to mutation "SET_PAGE"
-      this.$store.commit('web/product/SET_PAGE', page)
-
-      //dispatch on action "getProductsData"
-      this.$store.dispatch('web/product/getProductsData', this.$route.query.q)
-},
-        }
+      }
     }
   </script>
   

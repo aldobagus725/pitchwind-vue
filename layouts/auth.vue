@@ -31,6 +31,8 @@
     }
   
     .c-app {
-        background-color: #BCCAD8!important;
+        /*background-color: #BCCAD8!important;*/
+        /*background-color: white;*/
+        background-color: rgba(242, 242, 242, 0.8);
     }
   </style>

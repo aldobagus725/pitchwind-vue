@@ -4,13 +4,6 @@
       <!-- Banner -->
       <Banner />
       <div class="container mt-4 mb-5">
-        <!-- <div class="row py-2">
-          <div class="col">
-            <div class="alert alert-warning" role="alert">
-              Website masih dalam pengembangan, tetapi kalian bisa tetap transaksi kok! Hubungi kita lewat  <a href="https://wa.me/6281333267597?text=Saya%20mau%20order%20barang%20di%20Dewata%20Party%20Shop" class="alert-link">sini</a> untuk pemesanan lebih lanjut. Kalian bisa menggunakan website ini sebagai acuan katalog!
-            </div>
-          </div>
-        </div> -->
         <div class="mb-4">
           <h5 class="text-uppercase"><i class="fa fa-shopping-bag"></i> PRODUK TERBARU</h5>
           <!-- Solid divider -->
@@ -66,9 +59,6 @@
                       {{ subStrTitle(product.title) }}
                     </nuxt-link> 
                   </h6> 
-                  <!-- <nuxt-link :to="{name: 'categories-slug', params: {slug: product.category.slug}}" class="text-muted" style="font-size:0.8rem;" data-abc="true">
-                    {{ product.category.name }}
-                  </nuxt-link> -->
                   <h5 class="font-weight-bold" style="color:black;">Rp. {{ formatPrice(calculateDiscount(product)) }}</h5>
                   <h6 class="font-weight-semibold" v-if="product.discount != 0">
                     <span class="badge badge-danger">
@@ -87,18 +77,6 @@
                     </div>
                   </client-only>
                 </div>
-                <!-- <div class="card-footer border-0">
-                  <client-only>
-                    <div class="row align-items-center">
-                      <div class="col">
-                        <i class="fas fa-star text-danger"></i> <strong>{{parseFloat(product.reviews_avg_rating == null ? 0 : product.reviews_avg_rating)}}</strong>
-                        |
-                        <i class="fas fa-comment-alt text-secondary"></i> {{ product.reviews_count }}
-                        
-                      </div>
-                    </div>
-                  </client-only>
-                </div> -->
               </div>
             </div>
           </div>
@@ -149,23 +127,13 @@
     </div>
   </div>
 </template>
-
 <script>
-//import slider
 import Banner from '@/components/web/banner.vue'
-// import carousel from 'vue-owl-carousel'
-// import { VueProductSlider } from 'vue-product-slider'
-// import { Swiper, SwiperSlide } from 'swiper/vue';
-// import 'swiper/css';
 
 export default {
     //register components
     components: {
       Banner,
-      // VueProductSlider,
-      // Swiper,
-      // SwiperSlide,
-      // carousel,
     },
 
     //meta
@@ -195,13 +163,11 @@ export default {
         ]
       }
     },
-
     //hook "asyncData"
     async asyncData({ store }) {
       await store.dispatch('web/product/getProductsData')
       await store.dispatch('web/article/getRandomArticle')
     },
-
     //computed
     computed: {
     //products
@@ -212,43 +178,8 @@ export default {
             return this.$store.state.web.article.random_article
           },
     },
-
-    // setup() {
-    //   const onSwiper = (swiper) => {
-    //     console.log(swiper);
-    //   };
-    //   const onSlideChange = () => {
-    //     console.log('slide change');
-    //   };
-    //   return {
-    //     onSwiper,
-    //     onSlideChange,
-    //   };
-    // },
-
     methods: {
-      subStrTitle(title){
-        var title_length = title.length
-        if (title_length > 40){
-          var result = title.substr(0,40) + "..."
-          return result
-        } else {
-          return title
-        }
-      },
-      subStrText(title){
-          var title_length = title.length
-          if (title_length > 30){
-            var result = title.substr(0,30) + "..."
-            return result
-          } else {
-            return title
-          }
-        },
-        stripHtml(text){
-            let regex = /(<([^>]+)>)/ig;
-            return text.replace(regex, "");
-        },
+      
     },
 
   name: 'IndexPage'

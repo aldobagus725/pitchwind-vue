@@ -91,14 +91,14 @@ a:hover {
 
 .btn-warning {
     color: #fff;
-    background-color: #e64a19!important;
-    border-color: #e64a19!important;
+    background-color: rgba(62,187,255,255)!important;
+    border-color:rgba(62,187,255,255)!important;
 }
 
 .btn-warning:hover {
     color: #fff;
-    background-color: #e64a19!important;
-    border-color: #e64a19!important
+    background-color: rgba(62,187,255,255)!important;
+    border-color: rgba(62,187,255,255)!important
 }
 
 .btn-warning-2 {
@@ -118,7 +118,7 @@ a:hover {
 }
 
 .border-top-orange {
-    border-top: 3px solid #e64a19!important;
+    border-top: 3px solid #00ACFF!important;
 }
 
 .navbar-main {
@@ -380,4 +380,9 @@ hr.solid {
     height: 70px;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.card{
+    margin:0;
+    padding:0;
 }

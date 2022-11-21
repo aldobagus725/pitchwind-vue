@@ -12,7 +12,6 @@
                   <b-alert show variant="danger">{{ validation.message }}</b-alert>
                 </div>
                 <form @submit.prevent="register">
-  
                   <div class="row">
                     <div class="col-md-6">
                       <div class="input-group mb-3">
@@ -119,13 +118,10 @@
           validation: []
         }
       },
-  
       //method
       methods: {
-  
         //method "register"
         async register() {
-  
           //dispatch to action "storeRegister"
           await this.$store.dispatch('customer/customer/storeRegister', {
               name: this.user.name,
@@ -133,9 +129,7 @@
               password: this.user.password,
               password_confirmation: this.user.password_confirmation
             })
-  
             .then(() => {
-  
               //sweet alert
               this.$swal.fire({
                 title: 'REGISTER BERHASIL!',
@@ -144,23 +138,17 @@
                 showConfirmButton: false,
                 timer: 2000
               })
-  
               //redirect
               this.$router.push({
                 name: 'customer-login'
               })
-  
             })
-  
             .catch(error => {
               //assign validation
               this.validation = error.response.data
             })
-  
         }
-  
       }
-  
     }
   </script>
   

@@ -28,7 +28,7 @@
         </nuxt-link>
       </li>
   
-      <li class="c-sidebar-nav-title">ORDERS</li>
+      <li class="c-sidebar-nav-title">TRANSACTIONS</li>
       <!-- <li class="c-sidebar-nav-item"><a href="#" class="c-sidebar-nav-link">
           <svg class="c-sidebar-nav-icon">
             <use xlink:href="@/node_modules/@coreui/icons/sprites/free.svg#cil-cart"></use>
@@ -47,22 +47,22 @@
                 <use xlink:href="@/node_modules/@coreui/icons/sprites/free.svg#cil-notes"></use>
             </svg> INVOICES POS
         </nuxt-link>
-    </li>
-      <li class="c-sidebar-nav-item">
-        <nuxt-link :to="{name: 'admin-reports'}" class="c-sidebar-nav-link">
-            <svg class="c-sidebar-nav-icon">
-                <use xlink:href="@/node_modules/@coreui/icons/sprites/free.svg#cil-spreadsheet"></use>
-            </svg> REPORTS - Coming Soon
-        </nuxt-link>
       </li>
       <li class="c-sidebar-nav-item">
         <nuxt-link :to="{name: 'admin-promo'}" class="c-sidebar-nav-link">
             <svg class="c-sidebar-nav-icon">
                 <use xlink:href="@/node_modules/@coreui/icons/sprites/free.svg#cil-tag"></use>
-            </svg> PROMO - Coming Soon
+            </svg> PROMO - Soon
         </nuxt-link>
       </li>
-      <li class="c-sidebar-nav-title">OTHERS</li>
+      <li class="c-sidebar-nav-title">INFO &amp; DATA</li>
+      <li class="c-sidebar-nav-item">
+        <nuxt-link :to="{name: 'admin-reports'}" class="c-sidebar-nav-link">
+            <svg class="c-sidebar-nav-icon">
+                <use xlink:href="@/node_modules/@coreui/icons/sprites/free.svg#cil-spreadsheet"></use>
+            </svg> REPORTS - Soon
+        </nuxt-link>
+      </li>
       <li class="c-sidebar-nav-item">
         <nuxt-link :to="{name: 'admin-customers'}" class="c-sidebar-nav-link">
             <svg class="c-sidebar-nav-icon">
@@ -84,7 +84,14 @@
             </svg> ARTICLES
         </nuxt-link>
       </li>
-  
+      <li class="c-sidebar-nav-item">
+        <nuxt-link :to="{name: 'admin-inventory'}" class="c-sidebar-nav-link">
+            <svg class="c-sidebar-nav-icon">
+                <use xlink:href="@/node_modules/@coreui/icons/sprites/free.svg#cil-calculator"></use>
+            </svg> INVENTORY
+        </nuxt-link>
+      </li>
+      <li class="c-sidebar-nav-title">OTHERS</li>
       <li class="c-sidebar-nav-item">
         <nuxt-link :to="{name: 'admin-users'}" class="c-sidebar-nav-link">
           <svg class="c-sidebar-nav-icon">

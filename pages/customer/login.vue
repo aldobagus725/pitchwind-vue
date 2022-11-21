@@ -2,11 +2,11 @@
     <div class="container mt-custom mb-3">
       <div class="fade-in">
       <div class="row justify-content-center">
-        <div class="col-md-4">
-          <div class="card-group">
-            <div class="card border-top-orange border-0 shadow-sm rounded">
+        <div class="col-md-7">
+          <div class="card-group" style="margin:2rem;">
+            <div class="card border-top-orange border-0 shadow rounded">
               <div class="card-body">
-                <h3>LOGIN</h3>
+                <h3 class="text-center">CUSTOMER LOGIN</h3>
                 <hr>
                 <div v-if="validation.message" class="mt-2">
                   <b-alert show variant="danger">{{ validation.message }}</b-alert>
@@ -36,7 +36,7 @@
                   </div>
                   <div class="row">
                     <div class="col-12">
-                      <button class="btn btn-warning shadow-sm rounded-sm px-4 w-100" type="submit">LOGIN</button>
+                      <button class="btn btn-warning shadow rounded-sm px-4 w-100" type="submit"><h4>LOGIN</h4></button>
                     </div>
                   </div>
                 </form>
@@ -45,8 +45,8 @@
           </div>
         </div>
       </div>
-      <div class="text-center mt-3">
-        Belum punya akun? <nuxt-link :to="{name: 'customer-register'}" class="font-weight-bold">Daftar Sekarang</nuxt-link>
+      <div class="text-center mt-3" style="margin:2rem;">
+        <h4>Belum punya akun? <nuxt-link :to="{name: 'customer-register'}" class="font-weight-bold">Daftar Sekarang</nuxt-link></h4>
       </div>
       </div>
     </div>
