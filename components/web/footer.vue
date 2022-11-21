@@ -19,38 +19,38 @@
               <div class="col-md-4 col-4 mb-3">
                 <div class="card shadow-sm rounded">
                   <div class="card-body p-2 text-center"><img
-                      src="/images/payment/BCA.png" style="width: 100%;"></div>
+                      src="/images/payment/BCA.png" alt="dewata party shop" style="width: 100%;"></div>
                 </div>
               </div>
               <div class="col-md-4 col-4 mb-3">
                 <div class="card shadow-sm rounded">
                   <div class="card-body p-2 text-center"><img
-                      src="/images/payment/BNI.png" style="width: 100%;"></div>
+                      src="/images/payment/BNI.png" alt="dewata party shop" style="width: 100%;"></div>
                 </div>
               </div>
               <div class="col-md-4 col-4 mb-3">
                 <div class="card shadow-sm rounded">
                   <div class="card-body p-2 text-center"><img
-                      src="/images/payment/BRI.png" style="width: 100%;"></div>
+                      src="/images/payment/BRI.png" alt="dewata party shop" style="width: 100%;"></div>
                 </div>
               </div>
               <div class="col-md-4 col-4 mb-3">
                 <div class="card shadow-sm rounded">
                   <div class="card-body p-2 text-center"><img
-                      src="/images/payment/GOPAY.png" style="width: 100%;"></div>
+                      src="/images/payment/GOPAY.png" alt="dewata party shop" style="width: 100%;"></div>
                 </div>
               </div>
               <div class="col-md-4 col-4 mb-3">
                 <div class="card shadow-sm rounded">
                   <div class="card-body p-2 text-center"><img
-                      src="/images/payment/indomaret-logo.png" style="width: 100%;">
+                      src="/images/payment/indomaret-logo.png" alt="dewata party shop" style="width: 100%;">
                   </div>
                 </div>
               </div>
               <div class="col-md-4 col-4 mb-3">
                 <div class="card shadow-sm rounded">
                   <div class="card-body p-2 text-center"><img
-                      src="/images/payment/atm-bersama.jpg" style="width: 100%;"></div>
+                      src="/images/payment/atm-bersama.jpg" alt="dewata party shop" style="width: 100%;"></div>
                 </div>
               </div>
             </div>

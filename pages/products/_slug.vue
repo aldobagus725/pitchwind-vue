@@ -6,10 +6,10 @@
             <div class="card border-0 rounded shadow">
               <div class="card-body">
                 <template v-if="product.image == null || product.image == '' || product.image == 'http://localhost:8000/storage/products'  || product.image == 'https://pitchwind.dewatapartyshop.com/storage/products'">
-                    <img src="/images/product_placeholder.png" class="w-100 rounded"> 
+                    <img src="/images/product_placeholder.png" alt="dewata party shop" class="w-100 rounded"> 
                   </template>
                   <template v-else>
-                    <img :src="product.image" class="w-100 rounded"> 
+                    <img :src="product.image" alt="dewata party shop" class="w-100 rounded"> 
                   </template>
               </div>
             </div>
@@ -58,13 +58,10 @@
                   <button @click="addToCart(product.id, calculateDiscount(product), product.weight)" class="btn btn-lg btn-warning border-0 shadow-sm"><i class="fa fa-shopping-cart"></i> TAMBAH KE
                     KERANJANG</button>
                 </template>
-
               </div>
             </div>
           </div>
-  
         </div>
-  
         <div class="row mt-4">
           <div class="col-md-12">
             <div class="card border-0 rounded shadow">
@@ -113,10 +110,10 @@
                   <div class="col py-2" v-for="artic in articles" :key="artic.id">
                     <div class="card h-100 shadow">
                       <template v-if="artic.image == null || artic.image == '' || artic.image == 'http://localhost:8000/storage/articles'  || artic.image == 'https://pitchwind.dewatapartyshop.com/storage/articles'">
-                        <img src="/images/product_placeholder.png" class="card-img-top"> 
+                        <img src="/images/product_placeholder.png" alt="dewata party shop" class="card-img-top"> 
                       </template>
                       <template v-else>
-                        <img :src="artic.image" class="card-img-top"> 
+                        <img :src="artic.image" alt="dewata party shop" class="card-img-top"> 
                       </template>
                       <div class="card-body">
                         <h4 class="font-weight-semibold"> 
@@ -140,10 +137,8 @@
       </div>
     </div>
   </template>
-  
   <script>
     export default {
-  
       //meta
       head() {
         return {
@@ -171,13 +166,11 @@
           ]
         }
       },
-  
       //hook "asyncData"
       async asyncData({ store, route }) {
         await store.dispatch('web/product/getDetailProduct', route.params.slug)
         await store.dispatch('web/article/getRandomArticle')
       },
-  
       //computed
       computed: {
         //product
@@ -212,53 +205,43 @@
             let regex = /(<([^>]+)>)/ig;
             return text.replace(regex, "");
         },
+        //method "addToCart"
+        async addToCart(productId, price, weight) {
+          //check loggedIn "false"
+          if (!this.$auth.loggedIn) {
+            //redirect
+            return this.$router.push({
+              name: 'customer-login'
+            })
+          }
+          //check customer role
+          if (this.$auth.strategy.name != "customer") {
 
-//method "addToCart"
-async addToCart(productId, price, weight) {
-
-  //check loggedIn "false"
-  if (!this.$auth.loggedIn) {
-
-    //redirect
-    return this.$router.push({
-      name: 'customer-login'
-    })
-  }
-
-  //check customer role
-  if (this.$auth.strategy.name != "customer") {
-
-    //redirect
-    return this.$router.push({
-      name: 'customer-login'
-    })
-  }
-
-  //dispatch to action "storeCart" vuex
-  await this.$store.dispatch('web/cart/storeCart', {
-      product_id: productId,
-      price: price,
-      qty: 1,
-      weight: weight
-    })
-
-    //success add to cart
-    .then(() => {
-
-      //sweet alert
-      this.$swal.fire({
-        title: 'BERHASIL!',
-        text: "Product Berhasil Ditambahkan di Keranjang!",
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 3000
-      })
-
-    })
-
-}
-
-}
+            //redirect
+            return this.$router.push({
+              name: 'customer-login'
+            })
+          }
+          //dispatch to action "storeCart" vuex
+          await this.$store.dispatch('web/cart/storeCart', {
+              product_id: productId,
+              price: price,
+              qty: 1,
+              weight: weight
+            })
+            //success add to cart
+            .then(() => {
+              //sweet alert
+              this.$swal.fire({
+                title: 'BERHASIL!',
+                text: "Product Berhasil Ditambahkan di Keranjang!",
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000
+              })
+            })
+        }
+      }
     }
   </script>
   

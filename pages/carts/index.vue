@@ -14,7 +14,7 @@
                     <tr v-for="cart in carts" :key="cart.id" style="background: #edf2f7;">
                       <td class="b-none" width="25%">
                         <div class="wrapper-image-cart">
-                          <img :src="cart.product.image" style="width: 100%;border-radius: .5rem">
+                          <img :src="cart.product.image" alt="dewata party shop" style="width: 100%;border-radius: .5rem">
                         </div>
                       </td>
                       <td class="b-none" width="50%">
@@ -26,7 +26,6 @@
                             <td style="padding: .20rem"><b>{{ cart.qty }}</b></td>
                           </tr>
                         </table>
-  
                       </td>
                       <td class="b-none text-right">
                         <p class="m-0 font-weight-bold">Rp. {{ formatPrice(cart.price) }}

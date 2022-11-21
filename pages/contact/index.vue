@@ -31,7 +31,8 @@
                         <div class="col">
                             <h3 class="font-weight-bold">Hubungi Kami</h3>
                             <hr style="border-top: 3px solid rgb(226, 232, 240); border-radius: 0.5rem;">
-                            <p><br> 
+                            <p>
+                              <br> 
                                 <a href="tel:+6281333267597" class="alert-link">Telepon / SMS : +6281333267597 </a>
                                 <br> 
                                 <a href="https://wa.me/6281333267597?text=Saya%20mau%20order%20barang%20di%20Dewata%20Party%20Shop" class="alert-link">Whatsapp : +6281333267597 </a>
@@ -39,12 +40,10 @@
                                 <a href="https://www.instagram.com/dewatapartyshop_bali/" class="alert-link">Instagram : @dewatapartyshop_bali </a>
                                 <br> 
                                 <a href="https://linktr.ee/dewatapartyshop_bali" class="alert-link">LinkTree</a>
-                                <br>  
-                                </p>
+                              <br>  
+                            </p>
                         </div>
                     </div>
-                    
-                   
                 </div>
             </div>
           </div>

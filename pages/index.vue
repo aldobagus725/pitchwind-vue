@@ -23,10 +23,10 @@
             <div class="col mb-4" v-for="product in products.data" :key="product.id">
               <div class="card h-100 shadow">
                 <template v-if="product.image == null || product.image == '' || product.image == 'http://localhost:8000/storage/products'  || product.image == 'https://pitchwind.dewatapartyshop.com/storage/products'">
-                  <img src="/images/product_placeholder.png" class="card-img-top"> 
+                  <img src="/images/product_placeholder.png" alt="dewata party shop" class="card-img-top"> 
                 </template>
                 <template v-else>
-                  <img :src="product.image" class="card-img-top"> 
+                  <img :src="product.image" alt="dewata party shop" class="card-img-top"> 
                 </template>
                 <div class="card-body">
                   <div class="row py-2">
@@ -82,7 +82,7 @@
           </div>
           <div class="row justify-content-center mt-4">
             <div class="text-center">
-              <nuxt-link :to="{name: 'products'}" class="btn btn-lg btn-primary border-0 rounded shadow-sm">LIHAT LEBIH BANYAK</nuxt-link>
+              <nuxt-link :to="{name: 'products'}" class="btn btn-lg btn-primary border-0 rounded shadow"><h4>LIHAT LEBIH BANYAK</h4></nuxt-link>
             </div>
           </div>
         </template>
@@ -99,10 +99,10 @@
                   <div class="col py-2" v-for="artic in articles" :key="artic.id">
                     <div class="card h-100 shadow">
                       <template v-if="artic.image == null || artic.image == '' || artic.image == 'http://localhost:8000/storage/articles'  || artic.image == 'https://pitchwind.dewatapartyshop.com/storage/articles'">
-                        <img src="/images/product_placeholder.png" class="card-img-top"> 
+                        <img src="/images/product_placeholder.png" alt="dewata party shop" class="card-img-top"> 
                       </template>
                       <template v-else>
-                        <img :src="artic.image" class="card-img-top"> 
+                        <img :src="artic.image" alt="dewata party shop" class="card-img-top"> 
                       </template>
                       <div class="card-body">
                         <h4 class="font-weight-semibold"> 
@@ -135,7 +135,6 @@ export default {
     components: {
       Banner,
     },
-
     //meta
     head() {
       return {
@@ -176,12 +175,10 @@ export default {
         },
         articles() {
             return this.$store.state.web.article.random_article
-          },
+        },
     },
     methods: {
-      
     },
-
   name: 'IndexPage'
 }
 </script>

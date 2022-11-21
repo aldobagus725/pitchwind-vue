@@ -12,10 +12,10 @@
             <div class="col py-2" v-for="product in products.data" :key="product.id">
               <div class="card h-100 shadow">
                 <template v-if="product.image == null || product.image == '' || product.image == 'http://localhost:8000/storage/products'  || product.image == 'https://pitchwind.dewatapartyshop.com/storage/products'">
-                  <img src="/images/product_placeholder.png" class="card-img-top"> 
+                  <img src="/images/product_placeholder.png" alt="dewata party shop" class="card-img-top"> 
                 </template>
                 <template v-else>
-                  <img :src="product.image" class="card-img-top"> 
+                  <img :src="product.image" alt="dewata party shop" class="card-img-top"> 
                 </template>
                 <div class="card-body">
                   <div class="row py-2">
@@ -79,7 +79,6 @@
             <b-alert show variant="danger">DATA PRODUK TIDAK DITEMUKAN!</b-alert>
           </div>
         </div>
-
         <!--pagination -->
         <div class="row justify-content-center mt-4 mb-4">
             <div class="text-center">

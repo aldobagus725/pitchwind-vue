@@ -25,10 +25,10 @@
                     <div class="col py-2" v-for="artic in articles" :key="artic.id">
                       <div class="card h-100 shadow">
                         <template v-if="artic.image == null || artic.image == '' || artic.image == 'http://localhost:8000/storage/articles'  || artic.image == 'https://pitchwind.dewatapartyshop.com/storage/articles'">
-                          <img src="/images/product_placeholder.png" class="card-img-top"> 
+                          <img src="/images/product_placeholder.png" alt="dewata party shop" class="card-img-top"> 
                         </template>
                         <template v-else>
-                          <img :src="artic.image" class="card-img-top"> 
+                          <img :src="artic.image" alt="dewata party shop" class="card-img-top"> 
                         </template>
                         <div class="card-body">
                           <h4 class="font-weight-semibold"> 
@@ -98,28 +98,6 @@
           },
       },
       methods: {
-        subStrTitle(title){
-          var title_length = title.length
-          if (title_length > 30){
-            var result = title.substr(0,30) + "..."
-            return result
-          } else {
-            return title
-          }
-        },
-        subStrText(title){
-          var title_length = title.length
-          if (title_length > 30){
-            var result = title.substr(0,30) + "..."
-            return result
-          } else {
-            return title
-          }
-        },
-        stripHtml(text){
-            let regex = /(<([^>]+)>)/ig;
-            return text.replace(regex, "");
-        }
       },
   }
   </script>

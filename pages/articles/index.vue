@@ -20,10 +20,10 @@
                   <div class="col py-2" v-for="art in articles.data" :key="art.id">
                     <div class="card h-100 shadow">
                       <template v-if="art.image == null || art.image == '' || art.image == 'http://localhost:8000/storage/articles'  || art.image == 'https://pitchwind.dewatapartyshop.com/storage/articles'">
-                        <img src="/images/product_placeholder.png" class="card-img-top"> 
+                        <img src="/images/product_placeholder.png" alt="dewata party shop" class="card-img-top"> 
                       </template>
                       <template v-else>
-                        <img :src="art.image" class="card-img-top"> 
+                        <img :src="art.image" alt="dewata party shop" class="card-img-top"> 
                       </template>
                       <div class="card-body">
                         <h4 class="font-weight-semibold"> 
@@ -50,8 +50,6 @@
                   </div>
                 </div>
               </template>
-              
-      
           <!-- pagination -->
               <div class="row justify-content-center mt-4 mb-4">
                   <div class="text-center">
@@ -59,7 +57,6 @@
                           :per-page="articles.per_page" @change="changePage" aria-controls="my-table"></b-pagination>
                   </div>
               </div>
-              
           </div>
         </div>
       </div>
@@ -95,7 +92,7 @@
         }
       },
       //hook "asyncData"
-      async asyncData({ store, route }) {
+      async asyncData({ store }) {
           await store.dispatch('web/article/getArticlesData')
       },
       //computed
@@ -106,28 +103,6 @@
           },
       },
       methods: {
-        subStrTitle(title){
-          var title_length = title.length
-          if (title_length > 30){
-            var result = title.substr(0,30) + "..."
-            return result
-          } else {
-            return title
-          }
-        },
-        subStrText(title){
-          var title_length = title.length
-          if (title_length > 100){
-            var result = title.substr(0,100) + "..."
-            return result
-          } else {
-            return title
-          }
-        },
-        stripHtml(text){
-            let regex = /(<([^>]+)>)/ig;
-            return text.replace(regex, "");
-        }
       },
 
   }

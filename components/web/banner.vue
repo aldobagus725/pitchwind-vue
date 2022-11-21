@@ -16,7 +16,7 @@
           <template v-else>
             <div class="carousel-item shadow" v-for="(banner, id) in banners" :class="{ active: id==0 }" :key='banner.id'>
               <a :href="banner.link" target="_blank">
-                  <img :src="banner.image" class="d-block w-100 rounded shadow">
+                  <img :src="banner.image" alt="dewata party shop" class="d-block w-100 rounded shadow">
               </a> 
             </div>
           </template>

@@ -5,7 +5,7 @@
           <div class="row align-items-center">
             <div class="col-lg-3 col-sm-4 col-md-4 col-7"> 
                 <nuxt-link to="/" data-abc="true">
-                  <img src="/images/logo.png" width="35" class="rounded shadow-sm">&nbsp;
+                  <img src="/images/logo.png" alt="dewata party shop" width="35" class="rounded shadow-sm">&nbsp;
                   <template v-if="resoDetect() == 'mobile'">
                     <span class="logo">DEWATA</span>
                   </template>

@@ -12,7 +12,7 @@
                     <h4>{{article.created_at}}</h4>
                     <br />
                     <div class="py-3 text-center">
-                        <img :src="article.image" style="width:40%" />
+                        <img :src="article.image" alt="dewata party shop" style="width:40%" />
                     </div>
                     <div class="mb-3">
                         <span v-html="article.body"></span>
