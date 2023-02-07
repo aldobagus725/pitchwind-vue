@@ -1,9 +1,9 @@
 <template>
     
     <main class="c-main">
-        <div class="container-fluid">
+        <div class="container-fluid py-2">
             <div class="fade-in">
-              <div class="row">
+              <div class="row py-1">
                 <div class="col-6 col-lg-3">
                     {{statistic.aha}}
                   <div class="card border-0 rounded shadow-sm overflow-hidden">
@@ -78,10 +78,12 @@
             <div class="col-md-12">
               <div class="card border-0 rounded shadow-sm">
                 <div class="card-header">
-                  <span class="font-weight-bold"><i class="fa fa-layer-group"></i> STOCKS</span>
-                </div>
-                <div class="card-body">
-                  <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <span class="font-weight-bold"><i class="fa fa-layer-group"></i> STOCKS</span>
+                    </div>
+                    <div class="col-sm-10">
+                      <div class="form-group">
                       <div class="input-group mb-3">
                           <div class="input-group-prepend">
                             <button @click.prevent="exportStockLastStat()" disabled class="btn btn-success">
@@ -105,6 +107,11 @@
                           </div>
                       </div>
                   </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  
                   <b-table responsive striped bordered hover :items="stocks.data" :fields="fields" show-empty>
                     <template v-slot:cell(stock)="row">
                         <template v-if="row.item.stock == 0">

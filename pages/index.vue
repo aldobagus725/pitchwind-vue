@@ -5,7 +5,7 @@
       <Banner />
       <div class="container mt-4 mb-5">
         <div class="mb-4">
-          <h5 class="text-uppercase"><i class="fa fa-shopping-bag"></i> PRODUK TERBARU</h5>
+          <h5 class="text-uppercase"><i class="fa fa-shopping-bag"></i> LATEST PRODUCT</h5>
           <!-- Solid divider -->
           <hr class="solid">
         </div>
@@ -13,7 +13,7 @@
           <div class="row py-2">
             <div class="col">
               <div class="alert alert-warning" role="alert">
-                Belum Ada Produk!
+                NO AVAILABLE PRODUCT YET!
               </div>
             </div>
           </div>
@@ -29,19 +29,28 @@
                   <img :src="product.image" alt="dewata party shop" class="card-img-top"> 
                 </template>
                 <div class="card-body">
-                  <div class="row py-2">
+                  <div class="row align-items-top py-2">
+                    <template v-if="product.promo_id != '' && product.promo_id != null">
+                      <div class="col">
+                        <h6 class="mb-0 font-weight-semibold">
+                          <span class="badge badge-primary">
+                            <strong>{{product.promo.title}}</strong>
+                          </span>
+                        </h6>
+                      </div>
+                    </template>
                     <div class="col text-right">
                       <template v-if="product.stock == 0">
                         <h6 class="mb-0 font-weight-semibold">
                           <span class="badge badge-danger">
-                            <strong>Stok Habis</strong>
+                            <strong>Sold Out!</strong>
                           </span>
                         </h6>
                       </template>
                       <template v-else-if="product.stock <= product.minimum_stock_alert && product.stock != 0">
                           <h6 class="mb-0 font-weight-semibold">
                             <span class="badge badge-warning">
-                              <strong>Hampir Habis</strong>
+                              <strong>Low On Stock</strong>
                             </span>
                           </h6>
                       </template>
@@ -82,7 +91,7 @@
           </div>
           <div class="row justify-content-center mt-4">
             <div class="text-center">
-              <nuxt-link :to="{name: 'products'}" class="btn btn-lg btn-primary border-0 rounded shadow"><h4>LIHAT LEBIH BANYAK</h4></nuxt-link>
+              <nuxt-link :to="{name: 'products'}" class="btn btn-lg btn-primary border-0 rounded shadow"><h4>SEE MORE</h4></nuxt-link>
             </div>
           </div>
         </template>
@@ -110,7 +119,7 @@
                             {{ subStrTitle(artic.title) }}
                           </nuxt-link> 
                         </h4> 
-                        <h6 class="mb-0" style="color:black;">{{artic.created_at}}</h6>
+                        <h6 class="mb-0" style="color:black;">{{formatProperDate(artic.created_at)}}</h6>
                         <br />
                         <p class="mb-2" style="color:grey;">
                             <span v-html="subStrText(stripHtml(artic.body))"></span>

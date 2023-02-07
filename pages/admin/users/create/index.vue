@@ -9,10 +9,8 @@
                   <span class="font-weight-bold"><i class="fa fa-users"></i> ADD NEW USER</span>
                 </div>
                 <div class="card-body">
-  
                   <form @submit.prevent="storeUser">
-  
-                    <div class="row">
+                    <div class="row py-2">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>FULL NAME</label>
@@ -33,8 +31,28 @@
                         </div>
                       </div>
                     </div>
-  
                     <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>PHONE</label>
+                          <input type="text" v-model="user.phone"
+                            placeholder="No Telp" class="form-control">
+                            <div v-if="validation.phone" class="mt-2">
+                              <b-alert show variant="danger">{{ validation.email[0] }}</b-alert>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>ROLE</label>
+                          <select name="role" class="form-control" v-model="user.role">
+                            <option :value="'superadmin'">SUPERADMIN</option>
+                            <option :value="'admin'">ADMIN</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row py-2">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>PASSWORD</label>
@@ -49,10 +67,11 @@
                         <div class="form-group">
                           <label>PASSWORD CONFIRMATION</label>
                           <input type="password" v-model="user.password_confirmation"
-                            placeholder="Masukkan Konfirmasi Password" class="form-control">
+                            placeholder="Konfirmasi Password" class="form-control">
                         </div>
                       </div>
                     </div>
+                    
   
                     <button class="btn btn-info mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i>
                       SAVE</button>
@@ -91,6 +110,8 @@
             email: '',
             password: '',
             password_confirmation: '',
+            role:'',
+            phone:''
           },
           //state validation
           validation: []
@@ -109,6 +130,8 @@
           formData.append('email', this.user.email)
           formData.append('password', this.user.password)
           formData.append('password_confirmation', this.user.password_confirmation)
+          formData.append('role', this.user.role)
+          formData.append('phone', this.user.phone)
   
           //sending data to action "storeUser" vuex
           await this.$store.dispatch('admin/user/storeUser', formData)

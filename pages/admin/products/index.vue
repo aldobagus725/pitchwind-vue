@@ -6,48 +6,54 @@
             <div class="col-md-12">
               <div class="card border-0 rounded shadow-sm border-top-orange">
                 <div class="card-header">
-                  <span class="font-weight-bold"><i class="fa fa-layer-group"></i> PRODUCTS</span>
+                  <div class="row align-items-center">
+                    <div class="col-sm-3">
+                      <h4 class="font-weight-bold"><i class="fa fa-layer-group"></i> PRODUCTS</h4>
+                    </div>
+                    <div class="col-sm-9">
+                      <div class="form-group">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="cari berdasarkan nama product">
+                            <div class="input-group-append">
+                                <button @click="searchData" class="btn btn-dark"><i class="fa fa-search"></i>
+                                SEARCH
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="row py-2">
+                    <div class="col">
+                      <div class="btn-group">
+                        <a href="/templateProduk.xlsx" download class="btn btn-dark">
+                          <i class="fas fa-download"></i> TEMPLATE IMPORT
+                        </a>
+                        <button @click.prevent="exportAllProduct()" disabled class="btn btn-dark">
+                          <i class="fas fa-download"></i> EXPORT ALL PRODUCT
+                        </button>
+                      </div>
+                      </div>
+                      <div class="col text-right">
+                        <div class="btn-group">
+                          <nuxt-link :to="{name: 'admin-products-create'}" class="btn btn-primary">
+                            <i class="fa fa-plus-circle"></i> ADD NEW</nuxt-link>
+                            <nuxt-link :to="{name: 'admin-products-upload'}" class="btn btn-info">
+                              <i class="fas fa-upload"></i> IMPORT</nuxt-link>
+                        </div>
+                      </div>
+                    </div>
                 </div>
                 <div class="card-body">
-                  <br/>
-                  <div class="form-group">
-                    <button @click.prevent="exportAllProduct()" disabled class="btn btn-dark">
-                      <i class="fas fa-download"></i> EXPORT ALL PRODUCT
-                    </button>
-                  </div>
-                  <div class="form-group">
-                      <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                              <nuxt-link :to="{name: 'admin-products-create'}" class="btn btn-primary" style="padding-top: 10px;">
-                              <i class="fa fa-plus-circle"></i> ADD NEW</nuxt-link>
-                          </div>
-                          <div class="input-group-prepend">
-                            <nuxt-link :to="{name: 'admin-products-upload'}" class="btn btn-info btn-sm" style="padding-top: 10px;">
-                              <i class="fas fa-upload"></i> IMPORT</nuxt-link>
-                          </div>
-                          <div class="input-group-prepend">
-                            <a href="/templateProduk.xlsx" download class="btn btn-dark">
-                              <i class="fas fa-download"></i> TEMPLATE IMPORT
-                            </a>
-                        </div>
-                          <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="cari berdasarkan nama product">
-                          <div class="input-group-append">
-                              <button @click="searchData" class="btn btn-dark"><i class="fa fa-search"></i>
-                              SEARCH
-                              </button>
-                          </div>
-                      </div>
-                  </div>
-  
-                  <b-table responsive striped bordered hover :items="products.data" :fields="fields" show-empty>
+                  <b-table responsive bordered hover :items="products.data" :fields="fields" show-empty>
                     <template v-slot:cell(barcode)="row">
-                      <div id="barcodePrint" class="row" style="background-color:white;">
+                      <div :id="'barcodePrint'+row.item.barcode" class="row">
                         <div class="col text-center">
-                          <barcode :value="row.item.barcode" format="CODE39" :font-size="25" :height="85" :width="2">
+                          <barcode :value="row.item.barcode" format="CODE128" :font-size="23" :height="75" :width="3">
                             ERROR!
                           </barcode>
-                          <h4>{{row.item.title}}</h4>
-                          <h3>{{uangIndonesia(row.item.price)}}</h3>
+                          <p style="padding:0;margin:0;font-size:0.95rem;">{{subStrProductTitle(row.item.title)}}</p>
+                          <p style="padding:0;margin:0;font-size:1.25rem;">{{uangIndonesia(row.item.price)}}</p>
                         </div>
                       </div>
                     </template>
@@ -71,12 +77,6 @@
                         </template>
                     </template>
                     <template v-slot:cell(actions)="row">
-                        <!-- <b-button @click.prevent="generateAndDownloadBarcodeInPDF(row.item.barcode,row.item.price,row.item.title)" variant="primary" size="sm">
-                            <i class="fas fa-download"></i> BARCODE
-                        </b-button> -->
-                        <!-- <b-button @click.prevent="convertBarcodeToImg(row.item.barcode,row.item.price,row.item.title)" variant="info">
-                          <i class="fas fa-download"></i> BARCODE
-                        </b-button> -->
                         <b-button-group>
                           <b-button @click.prevent="barcodeDownload(row.item.barcode,row.item.title)" variant="info">
                             <i class="fas fa-download"></i> BARCODE
@@ -84,19 +84,13 @@
                           <b-button :to="{name: 'admin-products-edit-id', params: {id: row.item.id}}" variant="warning">
                               <i class="fas fa-edit"></i> EDIT
                           </b-button>
-                          <!-- <b-button variant="danger" size="sm" @click="destroyProduct(row.item.id)">DELETE</b-button> -->
                           <b-button variant="danger" @click="destroyProduct(row.item.id)"><i class="fas fa-trash-alt"></i> DELETE</b-button>
                         </b-button-group>
-                        
                     </template>
-                    
-                      
                   </b-table>
-  
                   <!-- pagination -->
                   <b-pagination align="right" :value="products.current_page" :total-rows="products.total"
                     :per-page="products.per_page" @change="changePage" aria-controls="my-table"></b-pagination>
-  
                 </div>
               </div>
             </div>
@@ -107,26 +101,20 @@
   </template>
   <script>
     import VueBarcode from 'vue-barcode';
-    // import { jsPDF } from 'jspdf';
     import JsBarcode from 'jsbarcode';
     import html2canvas from 'html2canvas';
     export default {
-  
       //layout
       layout: 'admin',
-  
       //meta
       head() {
         return {
           title: 'Products - Administrator',
         }
       },
-
       components: {
-            'barcode': VueBarcode
-        },
-  
-      //data function
+          'barcode': VueBarcode
+      },
       data() {
         return {
           //table header
@@ -186,102 +174,36 @@
               tdClass: 'text-center'
             }
           ],
-  
-          //state search
           search: ''
         }
       },
-  
-      //hook "asyncData"
       async asyncData({ store }) {
           await store.dispatch('admin/product/getProductsData')
       },
-  
-      //computed
       computed: {
-          //products
           products() {
               return this.$store.state.admin.product.products
           },
       },
-      //method
       methods: {
-        uangIndonesia(value) {
-          if (typeof value !== 'number') {
-            return value
-          }
-          var formatter = new Intl.NumberFormat('id-ID', {
-            style: 'currency',
-            currency: 'IDR',
-          })
-          return formatter.format(value)
-        },
-        // generateAndDownloadBarcodeInPDF(orderNo,price,product){
-        // let makeBase64Image = this.convertTextToBase64Barcode(orderNo,price)
-        //       this.convertBase64ToPNGImage(makeBase64Image).then((realImage) => {
-        //           const doc = new jsPDF('l', 'mm', [65,30]);
-        //           let fileName = orderNo + '-' + product
-        //           doc.addImage(realImage, 'PNG',10,10);
-        //           doc.save(fileName+'.pdf');
-        //       });
-        //   },
-        //   convertBase64ToPNGImage(url) {
-        //       return new Promise((resolve) => {
-        //           let img = new Image();
-        //           img.onload = () => resolve(img);
-        //           img.src = url;
-                  
-        //       });
-        //   },
-
-        //   convertTextToBase64Barcode(text,price){
-        //       let label = String(text + ' ' + this.uangIndonesia(price))
-        //       let canvas = document.createElement('canvas');
-        //       JsBarcode(canvas, text, { format: 'code39', width: 1, height:40, fontSize:10, text:label });
-        //       return canvas.toDataURL('image/png');
-        //   },
-        // convertBarcodeToImg(text,price,title){
-        //     console.log('start')
-        //     let canvas = document.createElement('canvas');
-        //     let harga = document.createElement('h6');
-        //     harga.innerText = String(this.uangIndonesia(price)) 
-        //     JsBarcode(canvas, text, { format: 'code39', width: 2, height:70, fontSize:28});
-        //     const barcode = document.createElement('a');
-        //     barcode.download = text + "-" + title + ".png";
-        //     barcode.href = canvas.toDataURL('image/png');
-        //     document.body.append();
-        //     barcode.click();
-        //     barcode.remove();
-        //     console.log('end')
-        // },
         barcodeDownload(barcodeNum,title){
-            // console.log('start')
-            html2canvas(document.getElementById("barcodePrint")).then(function (canvas) {                   
+            html2canvas(document.getElementById("barcodePrint"+barcodeNum)).then(function (canvas) {                   
                 var anchorTag = document.createElement("a");
                 document.body.appendChild(anchorTag);
-                // document.getElementById("previewImg").appendChild(canvas);
                 anchorTag.download = barcodeNum+"-"+title+".png";
                 anchorTag.href = canvas.toDataURL();
                 anchorTag.target = '_blank';
                 anchorTag.click();
             });
-            // console.log('end')
         },
-        //method "searchData"
         searchData() {
-            //commit to mutation "SET_PAGE"
             this.$store.commit('admin/product/SET_PAGE', 1)
-            //dispatch on action "getProductsData"
             this.$store.dispatch('admin/product/getProductsData', this.search)
         },
-        //method "changePage"
         changePage(page) {
-            //commit to mutation "SET_PAGE"
             this.$store.commit('admin/product/SET_PAGE', page)
-            //dispatch on action "getProductsData"
             this.$store.dispatch('admin/product/getProductsData', this.search)
         },
-        //method "destroyProduct"
         destroyProduct(id) {
           this.$swal.fire({
             title: 'APAKAH ANDA YAKIN ?',
@@ -294,15 +216,10 @@
             cancelButtonText: 'TIDAK',
           }).then((result) => {
             if (result.isConfirmed) {
-
-              //dispatch to action "deleteCategory" vuex
               this.$store.dispatch('admin/product/destroyProduct', id)
                 .then((response) => {
                   console.log(response)
-                  //feresh data
                   this.$nuxt.refresh()
-
-                  //alert
                   this.$swal.fire({
                     title: 'BERHASIL!',
                     text: "Data Berhasil Dihapus!",
@@ -333,7 +250,3 @@
   
   }
   </script>
-  
-  <style>
-  
-  </style>

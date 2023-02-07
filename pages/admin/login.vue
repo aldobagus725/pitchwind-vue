@@ -12,8 +12,8 @@
             <h2>Admin Login</h2>
         </div>
         <div class="card-body">
-          <div v-if="validation.message" class="mt-2">
-            <b-alert show variant="danger">{{ validation.message }}</b-alert>
+          <div v-if="validation.length != 0" class="mt-2">
+            <b-alert show variant="danger">{{ validation }}</b-alert>
           </div>
           <form @submit.prevent="login">
             <div class="input-group mb-3">

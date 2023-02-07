@@ -16,7 +16,7 @@
                 </div>
               </template>
               <template v-else>
-                <div class="row row-cols-2 row-cols-md-3 g-1">
+                <div class="row row-cols-2 row-cols-md-4 g-1">
                   <div class="col py-2" v-for="art in articles.data" :key="art.id">
                     <div class="card h-100 shadow">
                       <template v-if="art.image == null || art.image == '' || art.image == 'http://localhost:8000/storage/articles'  || art.image == 'https://pitchwind.dewatapartyshop.com/storage/articles'">
@@ -31,20 +31,11 @@
                             {{ subStrTitle(art.title) }}
                           </nuxt-link> 
                         </h4> 
-                        <!-- <nuxt-link :to="{name: 'categories-slug', params: {slug: art.category.slug}}" class="text-muted" style="font-size:0.8rem;" data-abc="true">
-                          {{ art.category.name }}
-                        </nuxt-link> -->
                         <h6 class="mb-0" style="color:black;">{{art.created_at}}</h6>
                         <br />
                         <p class="mb-2" style="color:grey;">
                             <span v-html="subStrText(stripHtml(art.body))"></span>
                         </p>
-                        <!-- <h6 class="mb-0 font-weight-semibold" v-if="art.discount != 0">
-                          <span class="badge badge-danger">
-                            <strong>{{ art.discount }} %</strong>
-                          </span>
-                          <s class="text-red">Rp {{ formatPrice(art.price) }}</s>
-                        </h6> -->
                       </div>
                     </div>
                   </div>
@@ -103,6 +94,10 @@
           },
       },
       methods: {
+        changePage(page) {
+            this.$store.commit('web/article/SET_PAGE', page)
+            this.$store.dispatch('web/article/getArticlesData', this.$route.query.q)
+        },
       },
 
   }

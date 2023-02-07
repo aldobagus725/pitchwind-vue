@@ -48,9 +48,7 @@
                       UPDATE</button>
                     <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i>
                       RESET</button>
-  
                   </form>
-  
                 </div>
               </div>
             </div>
@@ -97,10 +95,10 @@
         async updateOngkir() {
           //define formData
           let formData = new FormData();
-          formData.append('jarak_awal', this.setting.jarak_awal)
-          formData.append('jarak_akhir', this.setting.jarak_akhir)
-          formData.append('harga', this.setting.harga)
-          formData.append("_method", "PATCH")
+          formData.append('jarak_awal', this.ongkir.jarak_awal)
+          formData.append('jarak_akhir', this.ongkir.jarak_akhir)
+          formData.append('harga', this.ongkir.harga)
+          formData.append("_method", "PUT")
           //sending data to action "updateOngkir" vuex
           await this.$store.dispatch('admin/ongkir/updateOngkir', {
               productId: this.$route.params.id,
@@ -116,9 +114,8 @@
                 showConfirmButton: false,
                 timer: 2000
               })
-              //redirect route "admin-products"
               this.$router.push({
-                name: 'admin-settings'
+                name: 'admin-ongkir'
               })
             })
             //error

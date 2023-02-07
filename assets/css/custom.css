@@ -280,6 +280,10 @@ hr.solid {
     position: relative
 }
 
+.card-body{
+    padding:0.45rem 1rem 1rem 1rem;
+}
+
 /* .card-body {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;

@@ -49,19 +49,6 @@ export default {
     script: [
       { src: '/js/coreui.bundle.min.js' }, 
       { src: 'https://app.sandbox.midtrans.com/snap/snap.js', 'data-client-key': 'SB-Mid-client-tAy-6ndC2AtC39FL' }, 
-      
-      // {
-      //   type: 'application/ld+json',
-      //   "@context": "https://schema.org/",
-      //   "@type": "WebSite",
-      //   "name": "Dewata Party Shop",
-      //   "url": "https://dewatapartyshop.com/",
-      //   "potentialAction": {
-      //     "@type": "SearchAction",
-      //     "target": "{search_term_string}",
-      //     "query-input": "required name=search_term_string"
-      //   }
-      // }
     ]
   },
 
@@ -74,6 +61,7 @@ export default {
   css: [
     '@/assets/css/style.min.css',
     '@/assets/css/custom.css',
+    'leaflet/dist/leaflet.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -268,7 +256,7 @@ export default {
               method: 'post'
             },
             user: {
-              url: '/api/v1/customer/user',
+              url: '/api/v1/customer/profile',
               method: 'get',
               propertyName: 'user'
             }

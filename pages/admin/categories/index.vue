@@ -6,37 +6,43 @@
             <div class="col-md-12">
               <div class="card border-0 rounded shadow-sm border-top-orange">
                 <div class="card-header">
-                  <span class="font-weight-bold"><i class="fa fa-folder"></i> CATEGORIES</span>
+                  <div class="row align-items-center">
+                    <div class="col-sm-3">
+                      <h4 class="font-weight-bold"><i class="fa fa-folder"></i> CATEGORIES</h4>
+                    </div>
+                    <div class="col-sm-9 text-right">
+                      <div class="form-group">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="cari berdasarkan nama category">
+                            <div class="input-group-append">
+                                <button  @click="searchData" class="btn btn-warning"><i class="fa fa-search"></i>SEARCH</button>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="btn-group">
+                        <a href="/templateCategory.xlsx" download class="btn btn-dark">
+                          <i class="fas fa-download"></i> TEMPLATE IMPORT
+                        </a>
+                        <div class="input-group-append">
+                          <button @click="searchData" class="btn btn-warning"><i class="fa fa-search"></i>SEARCH</button>
+                      </div>
+                      </div>
+                    </div>
+                    <div class="col text-right">
+                      <div class="btn-group">
+                        <nuxt-link :to="{name: 'admin-categories-create'}" class="btn btn-primary" style="padding-top: 10px;">
+                          <i class="fa fa-plus-circle"></i> ADD NEW</nuxt-link>
+                          <nuxt-link :to="{name: 'admin-categories-upload'}" class="btn btn-info" style="padding-top: 10px;">
+                            <i class="fas fa-upload"></i> IMPORT</nuxt-link>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="card-body">
-  
-                  <div class="form-group">
-                      <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                              <nuxt-link :to="{name: 'admin-categories-create'}" class="btn btn-primary btn-sm" style="padding-top: 10px;">
-                              <i class="fa fa-plus-circle"></i> ADD NEW</nuxt-link>
-                          </div>
-                          <div class="input-group-prepend">
-                            <nuxt-link :to="{name: 'admin-categories-upload'}" class="btn btn-info btn-sm" style="padding-top: 10px;">
-                              <i class="fas fa-upload"></i> IMPORT</nuxt-link>
-                        </div>
-                        <!-- <div class="input-group-prepend">
-                          <button  @click="downloadTemplate()" class="btn btn-dark">
-                            <i class="fas fa-download"></i> TEMPLATE IMPORT
-                          </button>
-                        </div> -->
-                        <div class="input-group-prepend">
-                          <a href="/templateCategory.xlsx" download class="btn btn-dark">
-                            <i class="fas fa-download"></i> TEMPLATE IMPORT
-                          </a>
-                        </div>
-                          <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="cari berdasarkan nama category">
-                          <div class="input-group-append">
-                              <button  @click="searchData" class="btn btn-warning"><i class="fa fa-search"></i>SEARCH</button>
-                          </div>
-                      </div>
-                  </div>
-  
                   <b-table striped bordered hover :items="categories.data" :fields="fields" show-empty>
                     <template v-slot:cell(image)="data">
                         <img class="img-fluid" width="50" :src="data.item.image" />
@@ -48,11 +54,9 @@
                         <b-button variant="danger" size="sm" @click="destroyCategory(row.item.id)"><i class="fas fa-trash-alt"></i> DELETE</b-button>
                     </template>
                   </b-table>
-  
                   <!-- pagination -->
                   <b-pagination align="right" :value="categories.current_page" :total-rows="categories.total"
                     :per-page="categories.per_page" @change="changePage" aria-controls="my-table"></b-pagination>
-  
                 </div>
               </div>
             </div>
@@ -79,7 +83,13 @@
       data() {
         return {
           //table header
-          fields: [{
+          fields: [
+            {
+              label: 'ID',
+              key: 'id',
+              tdClass: 'text-center'
+            },
+            {
               label: 'Image',
               key: 'image',
               tdClass: 'text-center'
@@ -87,6 +97,10 @@
             {
               label: 'Category Name',
               key: 'name'
+            },
+            {
+              label: 'Entry Date',
+              key: 'created_at'
             },
             {
               label: 'Actions',

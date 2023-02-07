@@ -144,6 +144,35 @@ export const actions = {
         })
     },
 
+    //plusCart
+    plusCart({ dispatch }, payload) {
+        //set promise
+        return new Promise((resolve, reject) => {
+            this.$axios.put('/api/v1/web/carts/plus_qty', payload)
+            //success
+            .then(() => {
+                //dispatch "getCartsData"
+                dispatch('getCartsData')
+                //resolve promise
+                resolve()
+            })
+        })
+    },
+    //plusCart
+    minusCart({ dispatch }, payload) {
+        //set promise
+        return new Promise((resolve, reject) => {
+            this.$axios.put('/api/v1/web/carts/minus_qty', payload)
+            //success
+            .then(() => {
+                //dispatch "getCartsData"
+                dispatch('getCartsData')
+                //resolve promise
+                resolve()
+            })
+        })
+    },
+
     //remove cart
     removeCart({ dispatch }, payload) {
 

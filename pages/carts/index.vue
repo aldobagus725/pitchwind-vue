@@ -1,12 +1,12 @@
 <template>
-    <div class="container-fluid mt-custom">
+    <div class="container py-2 px-2 mt-4 mb-4">
       <div class="fade-in">
-      <div class="row" v-if="carts.length > 0">
+      <div class="row py-2 px-2 mt-3" v-if="carts.length > 0">
         <!-- jika data carts ada, maka tampilkan -->
         <div class="col-md-7">
-          <div class="card border-0 rounded border-top-orange shadow-sm">
+          <div class="card border-0 rounded border-top-orange shadow">
             <div class="card-body">
-              <h5>DETAIL PESANAN</h5>
+              <h4>DETAIL PESANAN</h4>
               <hr>
               <table class="table table-cart">
                 <tbody>
@@ -14,7 +14,7 @@
                     <tr v-for="cart in carts" :key="cart.id" style="background: #edf2f7;">
                       <td class="b-none" width="25%">
                         <div class="wrapper-image-cart">
-                          <img :src="cart.product.image" alt="dewata party shop" style="width: 100%;border-radius: .5rem">
+                          <img :src="cart.product.image" @error="$event.target.src = '/images/product_placeholder.png'"  alt="dewata party shop" style="width: 100%;border-radius: .5rem">
                         </div>
                       </td>
                       <td class="b-none" width="50%">
@@ -31,15 +31,22 @@
                         <p class="m-0 font-weight-bold">Rp. {{ formatPrice(cart.price) }}
                         </p>
   
-                        <p class="m-0">
+                        <!-- <p class="m-0">
                           <s style="text-decoration-color:red">Rp.
                             {{ formatPrice(cart.product.price * cart.qty) }}</s>
-                        </p>
-  
+                        </p> -->
+                            <!-- {{cart.product}} -->
+                            <!-- {{cart}} -->
                         <br>
                         <div class="text-right">
-                          <button @click.prevent="removeCart(cart.id)" class="btn btn-sm btn-danger">
+                          <button v-show="cart.qty <= 1 ? false : true" @click.prevent="minusCart(cart.id)" class="btn btn-sm btn-outline-dark">
+                            <i class="fa fa-minus"></i>
+                          </button>
+                          <button @click.prevent="removeCart(cart.id)" class="btn btn-sm btn-outline-danger">
                             <i class="fa fa-trash"></i>
+                          </button>
+                          <button v-show="cart.product.stock == cart.qty ? false : true" @click.prevent="plusCart(cart.id)" class="btn btn-sm btn-outline-primary">
+                            <i class="fa fa-plus"></i>
                           </button>
                         </div>
                       </td>
@@ -88,9 +95,9 @@
           </div>
         </div>
         <div class="col-md-5">
-          <div class="card border-0 rounded border-top-orange shadow-sm">
+          <div class="card border-0 rounded border-top-orange shadow">
             <div class="card-body">
-              <h5>DETAIL CUSTOMER</h5>
+              <h4>DETAIL CUSTOMER</h4>
               <hr>
               <div class="row">
   
@@ -116,7 +123,7 @@
                   </div>
                 </div>
   
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label class="font-weight-bold">PROVINSI</label>
                     <select class="form-control" v-model="rajaongkir.province_id" @change="getCities">
@@ -127,7 +134,7 @@
                   </div>
                 </div>
   
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label class="font-weight-bold">KOTA / KABUPATEN</label>
                     <select class="form-control" v-model="rajaongkir.city_id" @change="showCourier">
@@ -194,7 +201,7 @@
       <div class="row justify-content-center" v-else>
         <!-- data carts tidak tersedia -->
         <div class="col-md-10">
-          <div class="card border-0 rounded border-top-orange shadow-sm">
+          <div class="card border-0 rounded border-top-orange shadow">
             <div class="card-body">
               <div class="col-sm-12 empty-cart-cls text-center">
                 <img src="/images/shopping-cart.png" width="150" height="150" class="img-fluid mb-4 mr-3">
@@ -422,6 +429,17 @@
   
           //show button checkout
           this.btnCheckout = true
+        },
+
+        async plusCart(cartId){
+          await this.$store.dispatch('web/cart/plusCart', {
+            cartId: cartId,
+            })
+        },
+        async minusCart(cartId){
+          await this.$store.dispatch('web/cart/minusCart', {
+              cartId: cartId,
+            })
         },
   
         //method "checkout"

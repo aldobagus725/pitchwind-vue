@@ -29,10 +29,18 @@
                         <i class="fa fa-lock"></i>
                       </span>
                     </div>
-                    <input class="form-control" v-model="user.password" type="password" placeholder="Password">
+                    <input class="form-control" v-model="user.password" :type="type" placeholder="Password">
+                    <div class="input-group-prepend">
+                      <span @click="seePassword()" class="input-group-text">
+                          <i :class="iconType"></i>
+                      </span>
+                    </div>
                   </div>
                   <div v-if="validation.password" class="mt-2">
                     <b-alert show variant="danger">{{ validation.password[0] }}</b-alert>
+                  </div>
+                  <div v-if="validation" class="mt-2">
+                    <b-alert show variant="danger">{{ validation }}</b-alert>
                   </div>
                   <div class="row">
                     <div class="col-12">
@@ -71,6 +79,8 @@
             email: '',
             password: '',
           },
+          type:'password',
+          iconType:'fa fa-eye',
           //validation
           validation: []
         }
@@ -95,9 +105,20 @@
   
             })
             .catch(error => {
+              console.log(error)
               //assign validation
-              this.validation = error.response.data
+              console.log(error.response.data.error)
+              this.validation = !error.response.data.error ? error : error.response.data.error
             })
+        },
+        seePassword(){
+          if (this.type == 'password'){
+            this.type = 'text'
+            this.iconType = 'fa fa-eye-slash'
+          } else {
+            this.type = 'password'
+            this.iconType = 'fa fa-eye'
+          }
         }
       }
     }

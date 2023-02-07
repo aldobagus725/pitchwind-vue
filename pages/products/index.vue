@@ -125,58 +125,52 @@
   </template>
   <script>
   export default {
-    //meta
-    head() {
-      return {
-        title: 'Products - DEWATA PARTY SHOP BALI',
-        meta: [{
-            hid: 'og:title',
-            name: 'og:title',
-            content: 'DEWATA PARTY SHOP BALI'
-          },
-          {
-            hid: 'og:site_name',
-            name: 'og:site_name',
-            content: 'DEWATA PARTY SHOP BALI'
-          },
-          {
-            hid: 'og:image',
-            name: 'og:image',
-            content: '/images/logo.png'
-          },
-          {
-            hid: 'description',
-            name: 'description',
-            content: 'DEWATA PARTY SHOP BALI - Menjual Kebutuhan Acara, Pesta, Dll!'
-          },
-        ]
-      }
-    },
-    //hook "asyncData"
-    async asyncData({ store }) {
-        await store.dispatch('web/product/getProductsData')
-        await store.dispatch('web/article/getRandomArticle')
-    },
-    //computed
-    computed: {
-        //products
-        products() {
-            return this.$store.state.web.product.products
-        },
-        articles() {
-          return this.$store.state.web.article.random_article
-        },
-    },
-    methods: {
-      //method "changePage"
-      changePage(page) {
-          //commit to mutation "SET_PAGE"
-          this.$store.commit('web/product/SET_PAGE', page)
-          //dispatch on action "getProductsData"
-          this.$store.dispatch('web/product/getProductsData', this.$route.query.q)
+      //meta
+      head() {
+        return {
+          title: 'Products - DEWATA PARTY SHOP BALI',
+          meta: [{
+              hid: 'og:title',
+              name: 'og:title',
+              content: 'DEWATA PARTY SHOP BALI'
+            },
+            {
+              hid: 'og:site_name',
+              name: 'og:site_name',
+              content: 'DEWATA PARTY SHOP BALI'
+            },
+            {
+              hid: 'og:image',
+              name: 'og:image',
+              content: '/images/logo.png'
+            },
+            {
+              hid: 'description',
+              name: 'description',
+              content: 'DEWATA PARTY SHOP BALI - Menjual Kebutuhan Acara, Pesta, Dll!'
+            },
+          ]
+        }
       },
-    },
-    }
+      async asyncData({ store }) {
+          await store.dispatch('web/product/getProductsData')
+          await store.dispatch('web/article/getRandomArticle')
+      },
+      computed: {
+          products() {
+              return this.$store.state.web.product.products
+          },
+          articles() {
+            return this.$store.state.web.article.random_article
+          },
+      },
+      methods: {
+        changePage(page) {
+            this.$store.commit('web/product/SET_PAGE', page)
+            this.$store.dispatch('web/product/getProductsData', this.$route.query.q)
+        },
+      },
+  }
   </script>
   
   <style>

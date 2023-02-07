@@ -50,7 +50,7 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <div class="form-group">
                             <label>CATEGORY</label>
                             <select class="form-control" v-model="product.category_id">
@@ -62,7 +62,17 @@
                             </div>
                         </div>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label>MINIMAL STOCK</label>
+                          <input type="number" v-model="product.minimum_stock_alert" placeholder="Masukkan Minimal Stock Product"
+                            class="form-control">
+                          <div v-if="validation.minimum_stock_alert" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.minimum_stock_alert[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label>PUBLISHED</label>
                           <select class="form-control" v-model="product.published">
@@ -72,7 +82,6 @@
                           </select>
                         </div>
                       </div>
-
                     </div>
   
                     <div class="form-group">
@@ -86,16 +95,6 @@
                     </div>
   
                     <div class="row">
-                        <div class="col-md-4">
-                        <div class="form-group">
-                          <label>MINIMAL STOCK</label>
-                          <input type="number" v-model="product.minimum_stock_alert" placeholder="Masukkan Minimal Stock Product"
-                            class="form-control">
-                          <div v-if="validation.minimum_stock_alert" class="mt-2">
-                            <b-alert show variant="danger">{{ validation.minimum_stock_alert[0] }}</b-alert>
-                          </div>
-                        </div>
-                      </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label>PRICE</label>
@@ -104,6 +103,18 @@
                           <div v-if="validation.price" class="mt-2">
                             <b-alert show variant="danger">{{ validation.price[0] }}</b-alert>
                           </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                            <label>PROMO - OPTIONAL</label>
+                            <select class="form-control" v-model="product.promo_id">
+                              <option :value="null">NO PROMO</option>
+                              <option v-for="p in promos" :key="p.id" :value="p.id">{{ p.title }}</option>
+                            </select>
+                            <div v-if="validation.promo_id" class="mt-2">
+                              <b-alert show variant="danger">{{ validation.promo_id[0] }}</b-alert>
+                            </div>
                         </div>
                       </div>
                       <div class="col-md-4">
@@ -117,14 +128,11 @@
                         </div>
                       </div>
                     </div>
-  
                     <button class="btn btn-info mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i>
                       SAVE</button>
                     <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i>
                       RESET</button>
-  
                   </form>
-  
                 </div>
               </div>
             </div>
@@ -136,17 +144,14 @@
   
   <script>
     export default {
-  
       //layout
       layout: 'admin',
-  
       //meta
       head() {
         return {
           title: 'Add New Product - Administrator',
         }
       },
-  
       components: {
         'ckeditor-nuxt': () => {
           if (process.client) {
@@ -154,7 +159,6 @@
           }
         },
       },
-  
       data() {
         return {
           //state product
@@ -168,6 +172,7 @@
             price: '',
             minimum_stock_alert: '',
             discount: '',
+            promo_id:'',
             published: 1
           },
           //state validation
@@ -178,41 +183,25 @@
           }
         }
       },
-  
       //hook "asyncData"
       async asyncData({ store }) {
-  
-          //get list all categories
+          await store.dispatch('admin/promo/getListOfPromos')
           await store.dispatch('admin/category/getListAllCategories')
       },
-  
-      //computed
       computed: {
-  
-          //categories
           categories() {
-              return this.$store.state.admin.category.categories
+            return this.$store.state.admin.category.categories
           },
+          promos(){
+            return this.$store.state.admin.promo.list_promos
+          }
       },
-  
       methods: {
-  
-        //handle file upload
         handleFileChange(e) {
-  
-          //get image
           let image = this.product.image = e.target.files[0]
-  
-          //check fileType
           if (!image.type.match('image.*')) {
-  
-            //if fileType not allowed, then clear value and set null
             e.target.value = ''
-  
-            //set state "product.image" to null
             this.product.image = null
-  
-            //show sweet alert
             this.$swal.fire({
               title: 'OOPS!',
               text: "Format File Tidak Didukung!",
@@ -221,15 +210,10 @@
               timer: 2000
             })
           }
-  
         },
-  
         //method "storeProduct"
         async storeProduct() {
-  
-          //define formData
           let formData = new FormData();
-  
           formData.append('image', this.product.image)
           formData.append('title', this.product.title)
           formData.append('category_id', this.product.category_id)
@@ -240,14 +224,12 @@
           formData.append('no_sku', this.product.no_sku)
           formData.append('discount', this.product.discount)
           formData.append('published', this.product.published)
-  
-          //sending data to action "storeProduct" vuex
+          if(this.product.promo_id != null || this.product.promo_id != ''){
+            formData.append('promo_id', this.product.promo_id)
+          }
           await this.$store.dispatch('admin/product/storeProduct', formData)
-  
             //success
             .then(() => {
-  
-              //sweet alert
               this.$swal.fire({
                 title: 'BERHASIL!',
                 text: "Data Berhasil Disimpan!",
@@ -255,19 +237,25 @@
                 showConfirmButton: false,
                 timer: 2000
               })
-  
-              //redirect route "admin-products"
               this.$router.push({
                 name: 'admin-products'
               })
-  
             })
-  
-            //error
             .catch(error => {
-  
-              //assign error to state "validation"
-              this.validation = error.response.data
+              console.log(error)
+              console.log(error.response.data.error)
+              this.validation = JSON.parse(error.response.data.error)
+              var new_error = ''
+              for(let x in this.validation){
+                new_error += this.validation[x][0]+'\n'
+                // console.log(new_error)
+              }
+              this.$swal.fire({
+                title: 'GAGAL!',
+                text: new_error,
+                icon: 'error',
+                showConfirmButton: true,
+              })
             })
         }
       }

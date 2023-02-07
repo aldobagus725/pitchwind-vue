@@ -6,11 +6,12 @@
             <div class="col-md-12">
               <div class="card border-0 rounded shadow-sm border-top-orange">
                 <div class="card-header">
-                  <span class="font-weight-bold"><i class="fa fa-shopping-cart"></i> INVOICE</span>
-                </div>
-                <div class="card-body">
-  
-                  <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <span class="font-weight-bold"><i class="fa fa-shopping-cart"></i> INVOICE</span>
+                    </div>
+                    <div class="col-sm-10">
+                      <div class="form-group">
                       <div class="input-group mb-3">
                           <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="cari berdasarkan no. invoice">
                           <div class="input-group-append">
@@ -20,16 +21,22 @@
                           </div>
                       </div>
                   </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="card-body">
+                 
   
                   <b-table striped bordered hover :items="invoices.data" :fields="fields" show-empty>
                     <template v-slot:cell(grand_total)="row">
                       Rp. {{ formatPrice(row.item.grand_total) }}
                     </template>
                     <template v-slot:cell(status)="row">
-                      <button v-if="row.item.status == 'pending'" class="btn btn-sm btn-primary"><i class="fa fa-circle-notch fa-spin"></i> {{ row.item.status }}</button>
-                      <button v-if="row.item.status == 'success'" class="btn btn-sm btn-success"><i class="fa fa-check-circle"></i> {{ row.item.status }}</button>
-                      <button v-if="row.item.status == 'expired'" class="btn btn-sm btn-warning-2"><i class="fa fa-exclamation-triangle"></i> {{ row.item.status }}</button>
-                      <button v-if="row.item.status == 'failed'" class="btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> {{ row.item.status }}</button>
+                      <button v-if="row.item.status == 'pending'" class="btn text-uppercase btn-sm btn-primary"><i class="fa fa-circle-notch fa-spin"></i> {{ row.item.status }}</button>
+                      <button v-if="row.item.status == 'success'" class="btn text-uppercase btn-sm btn-success"><i class="fa fa-check-circle"></i> {{ row.item.status }}</button>
+                      <button v-if="row.item.status == 'expired'" class="btn text-uppercase btn-sm btn-warning-2"><i class="fa fa-exclamation-triangle"></i> {{ row.item.status }}</button>
+                      <button v-if="row.item.status == 'failed'" class="btn text-uppercase btn-sm btn-danger"><i class="fa fa-times-circle"></i> {{ row.item.status }}</button>
                     </template>
                     <template v-slot:cell(actions)="row">
                         <b-button-group>

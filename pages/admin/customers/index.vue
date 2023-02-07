@@ -6,28 +6,30 @@
             <div class="col-md-12">
               <div class="card border-0 rounded shadow-sm border-top-orange">
                 <div class="card-header">
-                  <span class="font-weight-bold"><i class="fa fa-user"></i> CUSTOMERS</span>
-                </div>
-                <div class="card-body">
-  
-                  <div class="form-group">
-                    <div class="input-group mb-3">
-                      <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="cari berdasarkan nama customer">
-                      <div class="input-group-append">
-                        <button @click="searchData" class="btn btn-primary"><i class="fa fa-search"></i>
-                          SEARCH
-                        </button>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <span class="font-weight-bold"><i class="fa fa-user"></i> CUSTOMERS</span>
+                    </div>
+                    <div class="col-sm-10">
+                      <div class="form-group">
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="cari berdasarkan nama customer">
+                          <div class="input-group-append">
+                            <button @click="searchData" class="btn btn-primary"><i class="fa fa-search"></i>
+                              SEARCH
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-  
+                </div>
+                <div class="card-body">
                   <b-table striped bordered hover :items="customers.data" :fields="fields" show-empty>
                   </b-table>
-  
                   <!-- pagination -->
                   <b-pagination align="right" :value="customers.current_page" :total-rows="customers.total"
                     :per-page="customers.per_page" @change="changePage" aria-controls="my-table"></b-pagination>
-  
                 </div>
               </div>
             </div>

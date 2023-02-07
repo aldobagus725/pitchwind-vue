@@ -6,13 +6,17 @@
             <div class="col-md-12">
               <div class="card border-0 rounded shadow-sm border-top-orange">
                 <div class="card-header">
-                  <span class="font-weight-bold"><i class="fa fa-laptop"></i> BANNERS</span>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <span class="font-weight-bold"><i class="fa fa-laptop"></i> BANNERS</span>
+                    </div>
+                    <div class="col-sm-9 text-right">
+                      <nuxt-link :to="{name: 'admin-banners-create'}" class="btn btn-primary btn-sm mb-3 p-2">
+                      <i class="fa fa-plus-circle"></i> ADD NEW</nuxt-link>
+                    </div>
+                  </div>
                 </div>
                 <div class="card-body">
-  
-                  <nuxt-link :to="{name: 'admin-banners-create'}" class="btn btn-primary btn-sm mb-3 p-2">
-                      <i class="fa fa-plus-circle"></i> ADD NEW</nuxt-link>
-  
                   <b-table striped bordered hover :items="banners.data" :fields="fields" show-empty>
                     <template v-slot:cell(image)="data">
                         <img class="img-fluid" width="200" :src="data.item.image" />
@@ -21,7 +25,6 @@
                         <b-button variant="danger" @click="destroyBanner(row.item.id)">DELETE</b-button>
                       </template>
                   </b-table>
-  
                   <!-- pagination -->
                   <b-pagination align="right" :value="banners.current_page" :total-rows="banners.total"
                     :per-page="banners.per_page" @change="changePage" aria-controls="my-table"></b-pagination>

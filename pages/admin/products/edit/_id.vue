@@ -9,25 +9,12 @@
                   <span class="font-weight-bold"><i class="fa fa-folder"></i> EDIT PRODUCT</span>
                 </div>
                 <div class="card-body">
-  
                   <form @submit.prevent="updateProduct">
-  
                     <div class="form-group">
                       <label>GAMBAR</label>
                       <input type="file" @change="handleFileChange" class="form-control">
                     </div>
-  
                     <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                            <label>No SKU</label>
-                            <input type="text" v-model="product.no_sku" placeholder="Masukkan SKU Product"
-                            class="form-control">
-                            <div v-if="validation.no_sku" class="mt-2">
-                            <b-alert show variant="danger">{{ validation.no_sku[0] }}</b-alert>
-                            </div>
-                        </div>
-                        </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label>NAMA PRODUCT</label>
@@ -38,6 +25,16 @@
                           </div>
                         </div>
                       </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                            <label>NO SKU</label>
+                            <input type="text" v-model="product.no_sku" placeholder="Masukkan SKU Product"
+                            class="form-control">
+                            <div v-if="validation.no_sku" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.no_sku[0] }}</b-alert>
+                            </div>
+                        </div>
+                        </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label>WEIGHT (Gram)</label>
@@ -51,7 +48,7 @@
                     </div>
   
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                               <label>CATEGORY</label>
                               <select class="form-control" v-model="product.category_id">
@@ -63,7 +60,17 @@
                               </div>
                             </div>
                           </div>
-                      <div class="col-md-6">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>MINIMAL STOCK</label>
+                              <input type="number" v-model="product.minimum_stock_alert" placeholder="Masukkan Minimal Stock Product"
+                                class="form-control">
+                              <div v-if="validation.minimum_stock_alert" class="mt-2">
+                                <b-alert show variant="danger">{{ validation.minimum_stock_alert[0] }}</b-alert>
+                              </div>
+                            </div>
+                          </div>
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label>PUBLISHED</label>
                           <select class="form-control" v-model="product.published">
@@ -85,18 +92,7 @@
                         <b-alert show variant="danger">{{ validation.description[0] }}</b-alert>
                       </div>
                     </div>
-  
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                              <label>MINIMAL STOCK</label>
-                              <input type="number" v-model="product.minimum_stock_alert" placeholder="Masukkan Minimal Stock Product"
-                                class="form-control">
-                              <div v-if="validation.minimum_stock_alert" class="mt-2">
-                                <b-alert show variant="danger">{{ validation.minimum_stock_alert[0] }}</b-alert>
-                              </div>
-                            </div>
-                          </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label>PRICE</label>
@@ -105,6 +101,18 @@
                           <div v-if="validation.price" class="mt-2">
                             <b-alert show variant="danger">{{ validation.price[0] }}</b-alert>
                           </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                            <label>PROMO - OPTIONAL</label>
+                            <select class="form-control" v-model="product.promo_id">
+                              <option :value="null">NO PROMO</option>
+                              <option v-for="p in promos" :key="p.id" :value="p.id">{{ p.title }}</option>
+                            </select>
+                            <div v-if="validation.promo_id" class="mt-2">
+                              <b-alert show variant="danger">{{ validation.promo_id[0] }}</b-alert>
+                            </div>
                         </div>
                       </div>
                       <div class="col-md-4">
@@ -137,17 +145,14 @@
   
   <script>
     export default {
-  
       //layout
       layout: 'admin',
-  
       //meta
       head() {
         return {
           title: 'Edit Product - Administrator',
         }
       },
-  
       components: {
         'ckeditor-nuxt': () => {
           if (process.client) {
@@ -155,7 +160,6 @@
           }
         },
       },
-  
       data() {
         return {
           //state product
@@ -170,35 +174,27 @@
             discount: '',
             minimum_stock_alert: '',
             published: 1,
+            promo_id:''
           },
-          //state validation
           validation: [],
-          //config CKEDITOR
           editorConfig: {
             removePlugins: ['Title'],
           }
         }
       },
-  
-      //hook "asyncData"
       async asyncData({ store, route }) {
-  
-          //get list all categories
           await store.dispatch('admin/category/getListAllCategories')
-  
-          //get detail product
           await store.dispatch('admin/product/getDetailProduct', route.params.id)
+          await store.dispatch('admin/promo/getListOfPromos')
       },
-  
-      //computed
       computed: {
-  
-          //categories
           categories() {
               return this.$store.state.admin.category.categories
           },
+          promos(){
+            return this.$store.state.admin.promo.list_promos
+          }
       },
-  
       //mounted
       mounted() {
           this.product.title       = this.$store.state.admin.product.product.title
@@ -210,26 +206,15 @@
           this.product.discount    = this.$store.state.admin.product.product.discount
           this.product.minimum_stock_alert    = this.$store.state.admin.product.product.minimum_stock_alert
           this.product.published    = this.$store.state.admin.product.product.published
+          this.product.promo_id    = this.$store.state.admin.product.product.promo_id
       },
   
       methods: {
-  
-        //handle file upload
         handleFileChange(e) {
-  
-          //get image
           let image = this.product.image = e.target.files[0]
-  
-          //check fileType
           if (!image.type.match('image.*')) {
-  
-            //if fileType not allowed, then clear value and set null
             e.target.value = ''
-  
-            //set state "product.image" to null
             this.product.image = null
-  
-            //show sweet alert
             this.$swal.fire({
               title: 'OOPS!',
               text: "Format File Tidak Didukung!",
@@ -238,15 +223,11 @@
               timer: 2000
             })
           }
-  
         },
   
         //method "updateProduct"
         async updateProduct() {
-  
-          //define formData
           let formData = new FormData();
-  
           formData.append('image', this.product.image)
           formData.append('title', this.product.title)
           formData.append('category_id', this.product.category_id)
@@ -257,18 +238,15 @@
           formData.append('discount', this.product.discount)
           formData.append('published', this.product.published)
           formData.append('minimum_stock_alert', this.product.minimum_stock_alert)
+          if(this.product.promo_id != null || this.product.promo_id != ''){
+            formData.append('promo_id', this.product.promo_id)
+          }
           formData.append("_method", "PATCH")
-  
-          //sending data to action "updateProduct" vuex
           await this.$store.dispatch('admin/product/updateProduct', {
               productId: this.$route.params.id,
               payload: formData
           })
-  
-            //success
             .then(() => {
-  
-              //sweet alert
               this.$swal.fire({
                 title: 'BERHASIL!',
                 text: "Data Berhasil Diupdate!",
@@ -276,23 +254,28 @@
                 showConfirmButton: false,
                 timer: 2000
               })
-  
-              //redirect route "admin-products"
               this.$router.push({
                 name: 'admin-products'
               })
-  
             })
-  
-            //error
             .catch(error => {
-  
-              //assign error to state "validation"
-              this.validation = error.response.data
+              console.log(error)
+              console.log(error.response.data.error)
+              this.validation = JSON.parse(error.response.data.error)
+              var new_error = ''
+              for(let x in this.validation){
+                new_error += this.validation[x][0]+'\n'
+                // console.log(new_error)
+              }
+              this.$swal.fire({
+                title: 'GAGAL!',
+                text: new_error,
+                icon: 'error',
+                showConfirmButton: true,
+              })
             })
         }
       }
-  
     }
   </script>
   
