@@ -8,9 +8,6 @@
               <div class="card-body">
                 <h3 class="text-center">CUSTOMER LOGIN</h3>
                 <hr>
-                <div v-if="validation.message" class="mt-2">
-                  <b-alert show variant="danger">{{ validation.message }}</b-alert>
-                </div>
                 <form @submit.prevent="login">
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -39,22 +36,25 @@
                   <div v-if="validation.password" class="mt-2">
                     <b-alert show variant="danger">{{ validation.password[0] }}</b-alert>
                   </div>
-                  <div v-if="validation" class="mt-2">
+                  <!-- <div v-if="validation.length != 0" class="mt-2">
                     <b-alert show variant="danger">{{ validation }}</b-alert>
-                  </div>
+                  </div> -->
                   <div class="row">
                     <div class="col-12">
-                      <button class="btn btn-warning shadow rounded-sm px-4 w-100" type="submit"><h4>LOGIN</h4></button>
+                      <button class="btn btn-warning shadow-sm rounded-sm px-4 w-100" type="submit"><h4>LOGIN</h4></button>
                     </div>
                   </div>
                 </form>
+                <div v-if="!validation.password && !validation.email && validation.length != 0" class="mt-2">
+                  <b-alert show variant="danger">{{ validation }}</b-alert>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="text-center mt-3" style="margin:2rem;">
-        <h4>Belum punya akun? <nuxt-link :to="{name: 'customer-register'}" class="font-weight-bold">Daftar Sekarang</nuxt-link></h4>
+        <h4>Not Registered yet? <nuxt-link :to="{name: 'customer-register'}" class="font-weight-bold">Sign Up Now!</nuxt-link></h4>
       </div>
       </div>
     </div>
@@ -105,10 +105,11 @@
   
             })
             .catch(error => {
-              console.log(error)
+              // console.log(error)
               //assign validation
               console.log(error.response.data.error)
               this.validation = !error.response.data.error ? error : error.response.data.error
+              console.log(this.validation)
             })
         },
         seePassword(){

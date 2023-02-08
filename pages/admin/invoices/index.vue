@@ -23,11 +23,8 @@
                   </div>
                     </div>
                   </div>
-                  
                 </div>
                 <div class="card-body">
-                 
-  
                   <b-table striped bordered hover :items="invoices.data" :fields="fields" show-empty>
                     <template v-slot:cell(grand_total)="row">
                       Rp. {{ formatPrice(row.item.grand_total) }}

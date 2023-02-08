@@ -15,7 +15,7 @@
                 <div class="row py-3">
                   <div class="col-md-12">
                     <h4>
-                      WELCOME! <strong>{{ $auth.user.name }}</strong> !
+                      WELCOME <strong>{{ $auth.user.name }}</strong> !
                     </h4>
                   </div>
                 </div>
@@ -82,6 +82,7 @@
                   </div>
                 </div>
                 <hr />
+                <!-- {{ invoices.data }} -->
                 <h5>Last Transaction</h5>
                 <b-table striped bordered hover responsive :items="invoices.data" :fields="fields" show-empty>
                   <template v-slot:cell(grand_total)="row">
@@ -97,9 +98,16 @@
                     <button v-if="row.item.status == 'failed'" class="btn text-uppercase btn-sm btn-danger"><i class="fa fa-times-circle"></i> {{ row.item.status }}</button>
                   </template>
                   <template v-slot:cell(actions)="row">
+                    <div v-if="row.item.snap_token != null">
                       <b-button :to="{name: 'customer-invoices-show-snap_token', params: {snap_token: row.item.snap_token}}" variant="info" size="sm">
                           DETAIL
                       </b-button>
+                    </div>
+                    <div v-else>
+                      <b-button :to="{name: 'customer-invoices-manual-id', params: {id: row.item.id}}" variant="primary" size="sm">
+                          DETAIL
+                      </b-button>
+                    </div>
                   </template>
                 </b-table>
               </div>

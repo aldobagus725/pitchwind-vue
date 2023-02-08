@@ -43,4 +43,16 @@ export const actions = {
             })
         })
     },
+    cancelOrder({ dispatch, commit },payload) {
+        return new Promise((resolve, reject) => {
+            this.$axios.put(`/api/v1/admin/invoices/cancel/${payload}`)
+            .then(() => {
+                dispatch('getInvoicesData')
+                resolve()
+            })
+            .catch(error => {
+                reject(error)
+            })
+        })
+    },
 }

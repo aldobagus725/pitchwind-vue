@@ -70,12 +70,15 @@
                                     <p style="font-size:0.82rem;padding:0.5rem;">*We recommend (and require you) to get your location by GPS to ensure accurate delivery location. Please refer to our ToS and Privacy Policy about your data and location</p>
                                   </div>
                                   <div class="col">
+                                    <div v-if="validation.lat" class="mt-2">
+                                      <b-alert show variant="danger">{{ "Location Required!" }}</b-alert>
+                                    </div>
                                     <template v-if="locationLoading == true">
                                       <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status"></div>
                                     </template>
                                     <template v-if="locationMessage != null || locationMessage != ''">
                                       {{ locationMessage }}
-                                      <p style="font-size:0.82rem;padding:0.5rem;">Your Coordinates : {{usersUpdate.lat}} , {{usersUpdate.long}}</p>
+                                      <!-- <p style="font-size:0.82rem;padding:0.5rem;">Your Coordinates : {{usersUpdate.lat}} , {{usersUpdate.long}}</p> -->
                                     </template>
                                   </div>
                                 </div>

@@ -52,10 +52,17 @@
                   {{formatProperDate(row.item.created_at)}}
                 </template>
                 <template v-slot:cell(actions)="row">
-                    <b-button :to="{name: 'customer-invoices-show-snap_token', params: {snap_token: row.item.snap_token}}" variant="info" size="sm">
-                        DETAIL
-                    </b-button>
-                </template>
+                    <div v-if="row.item.snap_token != null">
+                      <b-button :to="{name: 'customer-invoices-show-snap_token', params: {snap_token: row.item.snap_token}}" variant="info" size="sm">
+                          DETAIL
+                      </b-button>
+                    </div>
+                    <div v-else>
+                      <b-button :to="{name: 'customer-invoices-manual-id', params: {id: row.item.id}}" variant="primary" size="sm">
+                          DETAIL
+                      </b-button>
+                    </div>
+                  </template>
               </b-table>
   
               <!-- pagination -->

@@ -13,7 +13,7 @@
         </div>
         <div class="card-body">
           <div v-if="validation.length != 0" class="mt-2">
-            <b-alert show variant="danger">{{ validation }}</b-alert>
+            <b-alert show variant="danger">{{validation }}</b-alert>
           </div>
           <form @submit.prevent="login">
             <div class="input-group mb-3">

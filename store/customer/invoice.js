@@ -43,6 +43,15 @@ export const actions = {
             })
         })
     },
+    getDetailManualInvoice({ commit }, payload) {
+        return new Promise((resolve, reject) => {
+            this.$axios.get(`/api/v1/customer/invoices/manual/${payload}`)
+            .then(response => {
+                commit('SET_INVOICE_DATA', response.data.data)
+                resolve()
+            })
+        })
+    },
     getLastTransaction({ commit }) {
         return new Promise((resolve, reject) => {
             this.$axios.get(`/api/v1/customer/invoices_latest`)
