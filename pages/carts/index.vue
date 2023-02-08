@@ -465,8 +465,7 @@
               //success
               .then(response => {
                 var text = null
-                console.log(response)
-                if(this.payment_methods == 3){
+                if(this.customer.payment_method == 3){
                   text = 'Checkout done successfully! Please check the order detail for payment steps! Our admin will make contact to you through your phone number / Whatsapp.'
                 } else {
                   text = 'Checkout done successfully! Our admin will make contact to you through your phone number / Whatsapp. Please check the order detail for more information!'
@@ -478,7 +477,8 @@
                   icon: 'success',
                   showConfirmButton: false,
                 })
-                if (this.payment_methods == 1){
+                this.$store.dispatch('web/cart/getCartsData')
+                if (this.customer.payment_method == 1){
                   this.$router.push({
                     name: 'customer-invoices-show-snap_token',
                     params: {

@@ -101,9 +101,9 @@
                         </client-only>
                       </table>
                     </div>
-                    <div class="row py-2" v-if="invoice.payment_method == 'COD'">
-                        <div class=" text-center">
-                            <i>*For COD, you only need to prepare your cash, our admin will contact you for confirmation and other information</i>
+                    <div class="row py-2" v-if="invoice.payment_method == 'cod'">
+                        <div class="col text-right">
+                            <i>*For COD, you only need to prepare your cash according to the grand total. <br />Our admin will contact you for confirmation and other information</i>
                         </div>
                     </div>
                   </div>
@@ -199,7 +199,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="card shadow-sm" v-if="invoice.payment_no">
+                <div class="card shadow-sm" v-if="invoice.payment_method == 'trf'">
                     <div class="card-header text-center">
                         <h4>Payment Instruction for Bank {{ invoice.payment_channel }} - Direct Transfer</h4>
                     </div>
@@ -213,7 +213,7 @@
                             <li>if asked, Select between account</li>
                             <li>Enter this account number : {{ invoice.payment_no }}</li>
                             <li>Enter Amount Rp. {{ formatPrice(invoice.grand_total) }}</li>
-                            <li>The account will be under name of John Doe</li>
+                            <li>The account will be under name of {{ invoice.payment_name }}</li>
                             <li>Confirm Transaction</li>
                             <li> Keep The receipt, and please give us a copy of the receipt, by photo and send it to our WA Admin. Our Admin will confirm your tansaction, and start processing your order. </li>
                         </ol>
@@ -225,48 +225,12 @@
                             <li>if asked, Select between account</li>
                             <li>Enter this account number : {{ invoice.payment_no }}</li>
                             <li>Enter Amount Rp. {{ formatPrice(invoice.grand_total) }}</li>
-                            <li>The account will be under name of John Doe</li>
+                            <li>The account will be under name of {{ invoice.payment_name }}</li>
                             <li>Confirm Transaction</li>
                             <li>Keep The receipt, and please give us a copy of the receipt, by screenshot (or photo) and send it to our WA Admin. Our Admin will confirm your tansaction, and start processing your order. </li>
                         </ol>
                     </div>
                 </div>
-                <!-- <div class="row" v-if="instructionsDisplayed">
-                    <div class="col">
-                        <div class="card shadow-sm">
-                    <div class="card-header text-center">
-                        <h5>Payment Instruction for Bank {{ invoice.payment_channel }}</h5>
-                    </div>
-                    <div class="card-body">
-                        <h6>ATM</h6>
-                        <ol>
-                            <li>Insert Your Debit Card</li>
-                            <li>Enter Your PIN</li>
-                            <li>Select Other Transaction</li>
-                            <li>Select Transfer</li>
-                            <li>if asked, Select between account</li>
-                            <li>Enter this account number : {{ invoice.payment_no }}</li>
-                            <li>Enter Amount Rp. {{ formatPrice(invoice.grand_total) }}</li>
-                            <li>The account will be under name of John Doe</li>
-                            <li>Confirm Transaction</li>
-                            <li> Keep The receipt, and please give us a copy of the receipt, by photo and send it to our WA Admin. Our Admin will confirm your tansaction, and start processing your order. </li>
-                        </ol>
-                        <hr />
-                        <h6>Mobile Banking</h6>
-                        <ol>
-                            <li>Login to your Mobile Banking Application</li>
-                            <li>Select Transfer</li>
-                            <li>if asked, Select between account</li>
-                            <li>Enter this account number : {{ invoice.payment_no }}</li>
-                            <li>Enter Amount Rp. {{ formatPrice(invoice.grand_total) }}</li>
-                            <li>The account will be under name of John Doe</li>
-                            <li>Confirm Transaction</li>
-                            <li>Keep The receipt, and please give us a copy of the receipt, by screenshot (or photo) and send it to our WA Admin. Our Admin will confirm your tansaction, and start processing your order. </li>
-                        </ol>
-                    </div>
-                </div>
-                    </div>
-                </div> -->
               </div>
             </div>
           </div>

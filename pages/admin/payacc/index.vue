@@ -81,6 +81,12 @@
               tdClass: 'text-center'
             },
             {
+              label: 'Payment Name',
+              key: 'an',
+              thClass:'text-center',
+              tdClass: 'text-center'
+            },
+            {
               label: 'Tanggal Di Buat',
               key: 'created_at',
               thClass:'text-center',

@@ -55,4 +55,16 @@ export const actions = {
             })
         })
     },
+    succeedOrder({ dispatch, commit },payload) {
+        return new Promise((resolve, reject) => {
+            this.$axios.put(`/api/v1/admin/invoices/update_success/${payload}`)
+            .then(() => {
+                dispatch('getInvoicesData')
+                resolve()
+            })
+            .catch(error => {
+                reject(error)
+            })
+        })
+    },
 }

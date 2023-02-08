@@ -26,6 +26,9 @@
                 </div>
                 <div class="card-body">
                   <b-table striped bordered hover :items="invoices.data" :fields="fields" show-empty>
+                    <template v-slot:cell(created_at)="row">
+                      {{ formatProperDate(row.item.created_at) }}
+                    </template>
                     <template v-slot:cell(grand_total)="row">
                       Rp. {{ formatPrice(row.item.grand_total) }}
                     </template>
@@ -41,7 +44,6 @@
                                 <i class="fas fa-eye"></i> DETAIL
                             </b-button>
                         </b-button-group>
-
                     </template>
                   </b-table>
   
@@ -91,6 +93,11 @@
             {
               label: 'Status Payment',
               key: 'status',
+              tdClass: 'text-center'
+            },
+            {
+              label: 'Order Date',
+              key: 'created_at',
               tdClass: 'text-center'
             },
             {

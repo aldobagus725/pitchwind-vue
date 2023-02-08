@@ -12,6 +12,11 @@
                   <form @submit.prevent="updateProduct">
                     <div class="form-group">
                       <label>GAMBAR</label>
+                      <ul>
+                        <li>FORMAT GAMBAR YANG DITERIMA : .jpg, .jpeg, .png</li>
+                        <li>DIMENSI HARUS 700x700 (KOTAK)</li>
+                        <li>MAKS UKURAN GAMBAR 1MB</li>
+                      </ul>
                       <input type="file" @change="handleFileChange" class="form-control">
                     </div>
                     <div class="row">

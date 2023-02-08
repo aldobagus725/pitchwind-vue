@@ -23,7 +23,7 @@
                       <template v-if="product.stock == 0">
                         <h6 class="mb-0 font-weight-semibold">
                           <span class="badge badge-danger">
-                            <strong>Stok Habis</strong>
+                            <strong>Out Of Stock!</strong>
                           </span>
                         </h6>
                       </template>

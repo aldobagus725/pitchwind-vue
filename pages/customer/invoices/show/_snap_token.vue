@@ -10,7 +10,7 @@
           <div class="col-md-12 py-3">
             <div class="card border-0 rounded shadow border-top-orange">
               <div class="card-body">
-                <h5><i class="fa fa-shopping-cart"></i>DETAIL ORDER</h5>
+                <h5><i class="fa fa-shopping-cart"></i> DETAIL ORDER</h5>
                 <hr>
                 <div class="row justify-content-center">
                   <div class="col">
@@ -78,7 +78,7 @@
                             </th>
                             <td>
                               <button @click="payment(invoice.snap_token)" v-if="invoice.status == 'pending'"
-                                class="btn btn-info">BAYAR SEKARANG</button>
+                                class="btn btn-info">PAY NOW</button>
                               <button v-else-if="invoice.status == 'success'"
                                 class="btn btn-success"><i class="fa fa-check-circle"></i> {{ invoice.status }}</button>
                               <button v-else-if="invoice.status == 'expired'"

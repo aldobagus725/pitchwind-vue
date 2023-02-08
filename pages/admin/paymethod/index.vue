@@ -67,12 +67,12 @@
               thClass:'text-center',
               tdClass: 'text-center'
             },
-            // {
-            //   label: 'Status',
-            //   key: 'published',
-            //   thClass:'text-center',
-            //   tdClass: 'text-center'
-            // },
+            {
+              label: 'Code',
+              key: 'code',
+              thClass:'text-center',
+              tdClass: 'text-center'
+            },
             {
               label: 'Tanggal Di Buat',
               key: 'created_at',

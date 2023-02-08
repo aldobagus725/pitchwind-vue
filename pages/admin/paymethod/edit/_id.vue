@@ -22,13 +22,23 @@
                           </div>
                         </div>
                       </div>
+                      <div class="row py-3">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>CODE</label>
+                            <input type="text" v-model="payment_method.code" placeholder="KODED"
+                              class="form-control">
+                            <div v-if="validation.method" class="mt-2">
+                              <b-alert show variant="danger">{{ validation.code[0] }}</b-alert>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     <button class="btn btn-info mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i>
                       UPDATE</button>
                     <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i>
                       RESET</button>
-  
                   </form>
-  
                 </div>
               </div>
             </div>
@@ -51,6 +61,7 @@
         return {
           payment_method: {
             method: '',
+            code:''
           },
           validation: [],
         }
@@ -61,10 +72,12 @@
       //mounted
       mounted() {
           this.payment_method.method = this.$store.state.admin.payment_method.payment_method.method
+          this.payment_method.code = this.$store.state.admin.payment_method.payment_method.code
       },
       methods: {
         async updatePayMethod() {
           let formData = new FormData();
+          formData.append('code', this.payment_method.code)
           formData.append('method', this.payment_method.method)
           formData.append("_method", "PATCH")
           await this.$store.dispatch('admin/payment_method/updatePaymentMethod', {

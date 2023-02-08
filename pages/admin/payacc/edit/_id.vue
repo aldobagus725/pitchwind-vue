@@ -39,6 +39,18 @@
                     <div class="row py-2">
                       <div class="col">
                         <div class="form-group">
+                          <label>ATAS NAMA</label>
+                          <input type="text" v-model="payment_acc.an" placeholder="Atas Nama cth. John Doe"
+                            class="form-control">
+                          <div v-if="validation.an" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.an[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row py-2">
+                      <div class="col">
+                        <div class="form-group">
                           <label>NO ACCOUNT BANK (REKENING, DLL)</label>
                           <input type="text" v-model="payment_acc.account_number" placeholder="NO REK"
                             class="form-control">
@@ -48,6 +60,7 @@
                         </div>
                       </div>
                     </div>
+                    
                     <button class="btn btn-info mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i>
                       UPDATE</button>
                     <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i>
@@ -77,6 +90,7 @@
             id_channel: '',
             id_method: '',
             account_number: '',
+            an: '',
           },
           validation: [],
         }
@@ -99,6 +113,7 @@
           this.payment_acc.id_channel = this.$store.state.admin.payment_bank_acc.bank_acc.id_channel
           this.payment_acc.id_method = this.$store.state.admin.payment_bank_acc.bank_acc.id_method
           this.payment_acc.account_number = this.$store.state.admin.payment_bank_acc.bank_acc.account_number
+          this.payment_acc.an = this.$store.state.admin.payment_bank_acc.bank_acc.an
       },
       methods: {
         async updateBankAcc() {
@@ -106,6 +121,7 @@
           formData.append('id_channel', this.payment_acc.id_channel)
           formData.append('id_method', this.payment_acc.id_method)
           formData.append('account_number', this.payment_acc.account_number)
+          formData.append('an', this.payment_acc.an)
           formData.append("_method", "PATCH")
           await this.$store.dispatch('admin/payment_bank_acc/updatePaymentBankAcc', {
               dataId: this.$route.params.id,

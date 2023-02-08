@@ -12,6 +12,12 @@
                   <form @submit.prevent="storeProduct">
                     <div class="form-group">
                       <label>GAMBAR</label>
+                      <ul>
+                        <li>WAJIB DI ISI!</li>
+                        <li>FORMAT GAMBAR YANG DITERIMA : .jpg, .jpeg, .png</li>
+                        <li>DIMENSI HARUS 700x700 (KOTAK)</li>
+                        <li>MAKS UKURAN GAMBAR 1MB</li>
+                      </ul>
                       <input type="file" @change="handleFileChange" class="form-control">
                       <div v-if="validation.image" class="mt-2">
                         <b-alert show variant="danger">{{ validation.image[0] }}</b-alert>

@@ -81,7 +81,9 @@
                                   class="btn btn-warning-2"><i class="fa fa-exclamation-triangle"></i> {{ invoice.status }}</button>
                                 <button v-else-if="invoice.status == 'failed'"
                                   class="btn btn-danger"><i class="fa fa-times-circle"></i> {{ invoice.status }}</button>
-                                <button v-if="invoice.status == 'pending'" class="btn btn-danger" @click="cancelOrder(id_invoice)">CANCEL ORDER</button>
+                                
+                                  <button v-if="invoice.status == 'pending'" class="btn btn-danger" @click="cancelOrder(id_invoice)">CANCEL ORDER</button>
+                                  <button v-if="invoice.status == 'pending'" class="btn btn-primary" @click="succeedOrder(id_invoice)">CONFIRM</button>
                               </td>
                             </tr>
                           </client-only>
@@ -170,8 +172,38 @@
         }
       },
       methods:{
+        succeedOrder(id){
+          this.$swal.fire({
+            title: 'APAKAH ANDA YAKIN ?',
+            text: "INGIN CONFIRM PEMBAYARAN ORDER INI !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'YA!',
+            cancelButtonText: 'TIDAK',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              console.log(id)
+              this.$store.dispatch('admin/invoice/succeedOrder', id)
+                .then((response) => {
+                  console.log(response)
+                  // this.$nuxt.refresh()
+                  this.$swal.fire({
+                    title: 'BERHASIL!',
+                    text: "Order confirmed!! Silakan untuk menyiapkan barang untuk diantar ke customer",
+                    icon: 'info',
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
+                  this.$router.push({
+                    name: 'admin-invoices'
+                  })
+                })
+            }
+          })
+        },
         cancelOrder(id) {
-          console.log(id)
           this.$swal.fire({
             title: 'APAKAH ANDA YAKIN ?',
             text: "INGIN CANCEL ORDER INI !",
@@ -205,7 +237,6 @@
         },
       },
       mounted(){
-        console.log(this.$route.params.id)
         this.id_invoice = this.$route.params.id
       }
   

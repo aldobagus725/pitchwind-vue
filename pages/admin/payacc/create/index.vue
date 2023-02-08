@@ -39,6 +39,18 @@
                     <div class="row py-2">
                       <div class="col">
                         <div class="form-group">
+                          <label>ATAS NAMA</label>
+                          <input type="text" v-model="payment_acc.an" placeholder="Atas Nama cth. John Doe"
+                            class="form-control">
+                          <div v-if="validation.an" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.an[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row py-2">
+                      <div class="col">
+                        <div class="form-group">
                           <label>NO ACCOUNT BANK (REKENING, DLL)</label>
                           <input type="text" v-model="payment_acc.account_number" placeholder="NO REK"
                             class="form-control">
@@ -78,6 +90,7 @@
             id_channel: '',
             id_method: '',
             account_number: '',
+            an: '',
           },
           validation: [],
         }
@@ -100,6 +113,7 @@
           formData.append('id_channel', this.payment_acc.id_channel)
           formData.append('id_method', this.payment_acc.id_method)
           formData.append('account_number', this.payment_acc.account_number)
+          formData.append('an', this.payment_acc.an)
           await this.$store.dispatch('admin/payment_bank_acc/storePaymentBankAcc', formData)
             .then(() => {
               this.$swal.fire({
