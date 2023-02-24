@@ -68,80 +68,191 @@
                   </div>
                 </div>
               </client-only>
-              <!-- <pre>
-                {{ $auth.user }}
-              </pre>
-              <pre>
-                {{ customer }}
-              </pre> -->
-              <h5 class="font-weight-bold">CHECKOUTS</h5>
-              <hr>
+              <hr />
               <!-- Some things -->
-              <div class="row py-2">
+              <div class="row py-4">
                 <div class="col">
-                  <label class="font-weight-bold">Payment Method</label>
-                  <select class="form-control" v-model="customer.payment_method">
-                      <option value="">-- Choose --</option>
-                      <option v-for="m in payment_methods" :key="m.id" :value="m.id">
-                        {{ m.method }}</option>
+                  <label class="font-weight-bold">Decoration Cost</label>
+                  <select class="form-control" v-model="decoration_cost">
+                      <option v-for="d in decoration" :key="d.id" :value="d.cost">
+                        {{ d.decoration +  " - " + uangIndonesia(d.cost) + ' - ' + d.description}}</option>
                     </select>
                 </div>
-                <div v-if="customer.payment_method == 3" class="col">
-                  <label class="font-weight-bold">Payment Channel</label>
-                  <select class="form-control" v-model="customer.payment_channel">
-                      <option value="">-- Choose --</option>
-                      <option v-for="c in payment_channels" :key="c.id" :value="c.id">
-                        {{ c.channel }}</option>
-                  </select>
-                </div>
               </div>
-              <div class="row py-2">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="font-weight-bold">SHIPMENT <i class="fa fa-truck"></i></label>
-                    <br>
-                    <div class="form-check form-check-inline">
-                      <!-- SAMEDAY -->
-                      <input class="form-check-input select-courier" type="radio" name="courier" id="ongkos_kirim-sameday"
-                        value="sameday" v-model="courier.courier_name" @change="showService(),getServiceCost()">
-                      <label class="form-check-label font-weight-bold mr-4" for="ongkos_kirim-sameday">
-                        SAMEDAY (INSTANT) - Rp 30.000</label>
-                      <!-- JNE -->
-                      <input class="form-check-input select-courier" type="radio" name="courier" id="ongkos_kirim-jne"
-                        value="jne" v-model="courier.courier_name" @change="showService">
-                      <label class="form-check-label font-weight-bold mr-4" for="ongkos_kirim-jne">
-                        JNE</label>
-                      <!-- TIKI -->
-                      <input class="form-check-input select-courier" type="radio" name="courier" id="ongkos_kirim-tiki"
-                        value="tiki" v-model="courier.courier_name" @change="showService">
-                      <label class="form-check-label font-weight-bold mr-4" for="ongkos_kirim-jnt">TIKI</label>
-                      <!-- POS -->
-                      <input class="form-check-input select-courier" type="radio" name="courier" id="ongkos_kirim-pos"
-                        value="pos" v-model="courier.courier_name" @change="showService">
-                      <label class="form-check-label font-weight-bold" for="ongkos_kirim-jnt">POS</label>
-                    </div>
+              <br />
+              <h5 class="font-weight-bold">CHECKOUTS</h5>
+                <hr>
+                <div class="row py-2">
+                  <div class="col">
+                    <label class="font-weight-bold">Payment Method</label>
+                    <select class="form-control" v-model="customer.payment_method">
+                        <option value="">-- Choose --</option>
+                        <option v-for="m in payment_methods" :key="m.id" :value="m.id">
+                          {{ m.method }}</option>
+                      </select>
+                  </div>
+                  <div v-if="customer.payment_method == 3" class="col">
+                    <label class="font-weight-bold">Payment Channel</label>
+                    <select class="form-control" v-model="customer.payment_channel">
+                        <option value="">-- Choose --</option>
+                        <option v-for="c in payment_channels" :key="c.id" :value="c.id">
+                          {{ c.channel }}</option>
+                    </select>
                   </div>
                 </div>
-                <div class="col-md-12">
-                  <div class="form-group" v-if="courier.showService">
-                    <hr>
-                    <label class="font-weight-bold">SERVICE</label>
-                    <br>
-                    <div v-if="courier.courier_name == 'sameday'">
-                      {{'Shipping Cost : Rp ' + formatPrice(courier.courier_cost)}}
+              <template v-if="customer.payment_method == 1 || customer.payment_method == 2">
+                <div class="row py-2">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="font-weight-bold">SHIPMENT <i class="fa fa-truck"></i></label>
+                      <br>
+                      <div class="form-check form-check-inline">
+                        <!-- SAMEDAY -->
+                        <input class="form-check-input select-courier" type="radio" name="courier" id="ongkos_kirim-sameday"
+                          value="sameday" v-model="courier.courier_name" @change="showService()">
+                        <label class="form-check-label font-weight-bold mr-4" for="ongkos_kirim-sameday">
+                          SAMEDAY</label>
+                        <!-- JNE -->
+                        <input class="form-check-input select-courier" type="radio" name="courier" id="ongkos_kirim-jne"
+                          value="jne" v-model="courier.courier_name" @change="showService">
+                        <label class="form-check-label font-weight-bold mr-4" for="ongkos_kirim-jne">
+                          JNE</label>
+                        <!-- TIKI -->
+                        <input class="form-check-input select-courier" type="radio" name="courier" id="ongkos_kirim-tiki"
+                          value="tiki" v-model="courier.courier_name" @change="showService">
+                        <label class="form-check-label font-weight-bold mr-4" for="ongkos_kirim-jnt">TIKI</label>
+                        <!-- POS -->
+                        <input class="form-check-input select-courier" type="radio" name="courier" id="ongkos_kirim-pos"
+                          value="pos" v-model="courier.courier_name" @change="showService">
+                        <label class="form-check-label font-weight-bold" for="ongkos_kirim-jnt">POS</label>
+                      </div>
+                      <!-- <div class="spinner-border" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div> -->
                     </div>
-                    <div v-else>
-                      <div v-for="value in costs" :key="value.service" class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="cost" :id="value.service"
-                          :value="value.cost[0].value+'|'+value.service" v-model="courier.courier_service_cost"
-                          @change="getServiceCost">
-                        <label class="form-check-label font-weight-normal mr-5" :for="value.service">
-                          {{ value.service }} - Rp. {{ formatPrice(value.cost[0].value) }}</label>
+                  </div>
+                  <template v-if="courierLoading == true">
+                    <div class="row">
+                      <div class="col text-center">
+                        <div class="spinner-border" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </template>
+                  <template v-else>
+                    <div class="col-md-12">
+                      <div class="form-group" v-if="courier.showService">
+                        <hr>
+                        <label class="font-weight-bold">SERVICE</label>
+                        <br>
+                        <div v-if="courier.courier_name == 'sameday'">
+                          <div class="form-check form-check-inline">
+                            <template v-if="shippings_area.car_only == 0">
+                              <input class="form-check-input" type="radio" name="cost" :id="shippings_area.price_motor"
+                              :value="shippings_area.price_motor" v-model="courier.courier_cost"
+                              @change="getServiceCost">
+                              <label class="form-check-label font-weight-bold mr-5" :for="shippings_area.price_motor">
+                                MOTOR - Rp. {{ formatPrice(shippings_area.price_motor) }}</label>
+                            </template>
+                            <input class="form-check-input" type="radio" name="cost" :id="shippings_area.price_car"
+                              :value="shippings_area.price_car" v-model="courier.courier_cost"
+                              @change="getServiceCost">
+                              <label class="form-check-label font-weight-bold mr-5" :for="shippings_area.price_car">
+                                CAR - Rp. {{ formatPrice(shippings_area.price_car) }}</label>
+                          </div>
+                        </div>
+                        <div v-else>
+                          <div v-for="value in costs" :key="value.service" class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="cost" :id="value.service"
+                              :value="value.cost[0].value+'|'+value.service" v-model="courier.courier_service_cost"
+                              @change="getServiceCost">
+                              <label class="form-check-label font-weight-normal mr-5" :for="value.service">
+                              {{ value.service }} {{value.cost[0].etd}} day(s) - Rp. {{ formatPrice(value.cost[0].value) }} </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
                 </div>
-              </div>
+              </template>
+              <template v-else-if="customer.payment_method == 3 && (customer.payment_channel != '' && customer.payment_channel != null)">
+                <div class="row py-2">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="font-weight-bold">SHIPMENT <i class="fa fa-truck"></i></label>
+                      <br>
+                      <div class="form-check form-check-inline">
+                        <!-- SAMEDAY -->
+                        <input class="form-check-input select-courier" type="radio" name="courier" id="ongkos_kirim-sameday"
+                          value="sameday" v-model="courier.courier_name" @change="showService()">
+                        <label class="form-check-label font-weight-bold mr-4" for="ongkos_kirim-sameday">
+                          SAMEDAY</label>
+                        <!-- JNE -->
+                        <input class="form-check-input select-courier" type="radio" name="courier" id="ongkos_kirim-jne"
+                          value="jne" v-model="courier.courier_name" @change="showService">
+                        <label class="form-check-label font-weight-bold mr-4" for="ongkos_kirim-jne">
+                          JNE</label>
+                        <!-- TIKI -->
+                        <input class="form-check-input select-courier" type="radio" name="courier" id="ongkos_kirim-tiki"
+                          value="tiki" v-model="courier.courier_name" @change="showService">
+                        <label class="form-check-label font-weight-bold mr-4" for="ongkos_kirim-jnt">TIKI</label>
+                        <!-- POS -->
+                        <input class="form-check-input select-courier" type="radio" name="courier" id="ongkos_kirim-pos"
+                          value="pos" v-model="courier.courier_name" @change="showService">
+                        <label class="form-check-label font-weight-bold" for="ongkos_kirim-jnt">POS</label>
+                      </div>
+                      <!-- <div class="spinner-border" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div> -->
+                    </div>
+                  </div>
+                  <template v-if="courierLoading == true">
+                    <div class="row">
+                      <div class="col text-center">
+                        <div class="spinner-border" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                  <template v-else>
+                    <div class="col-md-12">
+                      <div class="form-group" v-if="courier.showService">
+                        <hr>
+                        <label class="font-weight-bold">SERVICE</label>
+                        <br>
+                        <div v-if="courier.courier_name == 'sameday'">
+                          <div class="form-check form-check-inline">
+                            <template v-if="shippings_area.car_only == 0">
+                              <input class="form-check-input" type="radio" name="cost" :id="shippings_area.price_motor"
+                              :value="shippings_area.price_motor" v-model="courier.courier_cost"
+                              @change="getServiceCost">
+                              <label class="form-check-label font-weight-bold mr-5" :for="shippings_area.price_motor">
+                                MOTOR - Rp. {{ formatPrice(shippings_area.price_motor) }}</label>
+                            </template>
+                            <input class="form-check-input" type="radio" name="cost" :id="shippings_area.price_car"
+                              :value="shippings_area.price_car" v-model="courier.courier_cost"
+                              @change="getServiceCost">
+                              <label class="form-check-label font-weight-bold mr-5" :for="shippings_area.price_car">
+                                CAR - Rp. {{ formatPrice(shippings_area.price_car) }}</label>
+                          </div>
+                        </div>
+                        <div v-else>
+                          <div v-for="value in costs" :key="value.service" class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="cost" :id="value.service"
+                              :value="value.cost[0].value+'|'+value.service" v-model="courier.courier_service_cost"
+                              @change="getServiceCost">
+                            <label class="form-check-label font-weight-normal mr-5" :for="value.service">
+                              {{ value.service }} {{value.cost[0].etd}} day(s) - Rp. {{ formatPrice(value.cost[0].value) }}</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                </div>
+              </template>
+              
             </div>
           </div>
         </div>
@@ -174,6 +285,17 @@
                     </td>
                   </tr>
                   <tr>
+                    <th class="text-left border-0">
+                      <p class="m-0">DECORATION COST</p>
+                    </th>
+                    <td class="set-td border-0 text-right">&nbsp; : Rp.</td>
+                    <td class="set-td border-0 text-right">
+                      <p class="m-0" id="ongkir-cart">
+                        {{ formatPrice(decoration_cost) }}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
                     <td class=" text-left border-0">
                       <p class="font-weight-bold m-0 h5 text-uppercase">GRAND TOTAL </p>
                     </td>
@@ -187,7 +309,11 @@
                 </tbody>
               </table>
             </div>
-            <div class="card-footer"  v-if="btnCheckout">
+            <!-- <div class="card-footer" v-if="btnCheckout">
+              <button @click.prevent="checkout" class="btn btn-warning btn-lg btn-block">CHECKOUT</button>
+            </div> -->
+            <div class="card-footer" v-if="((customer.payment_method == 1 || customer.payment_method == 2) || (customer.payment_method == 3 && (customer.payment_channel != '' && customer.payment_channel != null))) && courier
+            .courier_cost != '' ">
               <button @click.prevent="checkout" class="btn btn-warning btn-lg btn-block">CHECKOUT</button>
             </div>
           </div>
@@ -245,18 +371,17 @@
           ]
         }
       },
-  
       //hook asyncData
       async asyncData({ store }) {
         await store.dispatch('web/cart/getCartsData')
         await store.dispatch('web/rajaongkir/getProvincesData')
         await store.dispatch('web/payment/getMethods')
         await store.dispatch('web/payment/getChannels')
+        await store.dispatch('web/fetchers/getShippings')
+        await store.dispatch('web/fetchers/getDecorations')
       },
-  
       //computed
       computed: {
-  
         //cart data
         carts() {
           return this.$store.state.web.cart.carts
@@ -287,6 +412,12 @@
         payment_channels(){
           return this.$store.state.web.payment.channels
         },
+        shippings_area(){
+          return this.$store.state.web.fetchers.shippings
+        },
+        decoration(){
+          return this.$store.state.web.fetchers.decorations
+        }
         // payment_acc_number(){
         //   return this.$store.state.web.payment.channels
         // }
@@ -302,21 +433,19 @@
             address: '',
             payment_method:'',
             payment_channel:'',
+            id_area:'',
           },
-  
           //state validation
           validation: {
             name: false,
             phone: false,
             address: false
           },
-  
           //state rajaongkir
           rajaongkir: {
             province_id: '',
             city_id: ''
           },
-  
           //state courier
           courier: {
             showCourier: false,
@@ -326,21 +455,19 @@
             courier_service: '',
             courier_cost: ''
           },
-  
           //grandTotal
           grandTotal: 0,
-  
+          decoration_cost: 0,
+          shipping_areas:null,
+          courierLoading:false,
           //state button checkout
           btnCheckout: false
         }
       },
-  
       //method
       methods: {
-          
         //method "removeCart"  
         async removeCart(cartId) {
-  
           await this.$swal.fire({
             title: 'APAKAH ANDA YAKIN ?',
             text: "INGIN MENGHAPUS DATA INI !",
@@ -352,21 +479,12 @@
             cancelButtonText: 'TIDAK',
           }).then((result) => {
             if (result.isConfirmed) {
-  
-                //call action vuex "getCartsData"
                 this.$store.dispatch('web/cart/removeCart', {
                     cart_id: cartId
                  })
-  
                 .then(async () => {
-                          
-                    //dispatch action "getCartPrice"
                     await this.$store.dispatch('web/cart/getCartPrice')
-  
-                    //sum grandTotal after remove cart
                     this.grandTotal = parseInt(this.cartPrice) + parseInt(this.courier.courier_cost)
-  
-                    //alert
                     this.$swal.fire({
                         title: 'BERHASIL!',
                         text: "Product Berhasil Dihapus dari Keranjang!",
@@ -374,7 +492,6 @@
                         showConfirmButton: false,
                         timer: 2000
                     })
-  
                 })
             }
           })
@@ -389,31 +506,38 @@
         showCourier() {
           this.courier.showCourier = true
         },
-  
         //method "showService"
         async showService() {
+          this.courier.courier_cost = ''
+          this.courierLoading = true
           if (this.courier.courier_name != 'sameday'){
             //check weight product
             if (this.cartWeight == 0) {
               alert('silahkan pilih produk terlebih dahulu!')
               return
             }
-    
             await this.$store.dispatch('web/rajaongkir/getOngkirData', {
                 destination: this.rajaongkir.city_id,
                 weight: this.cartWeight,
                 courier: this.courier.courier_name
               })
-    
               .then(() => {
                 this.courier.showService = true
               })
           } else{
-            this.courier.courier_cost = 30000
+            await this.$store.dispatch('web/fetchers/getShippings',this.customer.id_area)
+              .then(() => {
+                this.courier.showService = true
+              })
+            // this.courier.courier_cost = 30000
           }
+          this.courierLoading = false
         },
-  
+        // getShippingArea(){
+        //   this.$store.dispatch('web/fetchers/getShippings',this.customer.id_area)
+        // },
         //method "getServiceCost"
+        // The Pucuk Of all methods
         getServiceCost() {
           if (this.courier.courier_name != 'sameday'){
             //split value dengan menghapus string -> | 
@@ -422,15 +546,14 @@
             this.courier.courier_cost = shipping[0]
             this.courier.courier_service = shipping[1]
             //sum grandTotal
-            this.grandTotal = parseInt(this.cartPrice) + parseInt(this.courier.courier_cost)
+            this.grandTotal = parseInt(this.cartPrice) + parseInt(this.courier.courier_cost)+ parseInt(this.decoration_cost)
             //show button checkout
           } else {
             //sum grandTotal
-            this.grandTotal = parseInt(this.cartPrice) + parseInt(this.courier.courier_cost)
+            this.grandTotal = parseInt(this.cartPrice) + parseInt(this.courier.courier_cost) + parseInt(this.decoration_cost)
           }
           this.btnCheckout = true
         },
-
         async plusCart(cartId){
           await this.$store.dispatch('web/cart/plusCart', {
             cartId: cartId,
@@ -441,12 +564,9 @@
               cartId: cartId,
             })
         },
-  
         //method "checkout"
         async checkout() {
-
           if (this.customer.name && this.customer.phone && this.customer.address && this.cartWeight && this.customer.payment_method) {
-  
             //define formData
             let formData = new FormData();
             formData.append('courier', this.courier.courier_name)
@@ -513,10 +633,10 @@
         this.customer.name = this.$auth.user.name
         this.customer.address = this.$auth.user.alamat
         this.customer.phone = this.$auth.user.phone
+        this.customer.id_area = this.$auth.user.id_area
         this.rajaongkir.province_id = this.$auth.user.id_provinsi
         this.rajaongkir.city_id = this.$auth.user.id_kabupaten
       }
-  
     }
   </script>
   

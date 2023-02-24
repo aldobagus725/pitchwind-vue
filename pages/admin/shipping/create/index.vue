@@ -6,40 +6,71 @@
             <div class="col-md-12">
               <div class="card border-0 rounded shadow-sm border-top-orange">
                 <div class="card-header">
-                  <span class="font-weight-bold"><i class="fa fa-folder"></i> ADD NEW ONGKIR</span>
+                  <span class="font-weight-bold"><i class="fa fa-folder"></i> ADD NEW SHIPPING</span>
                 </div>
                 <div class="card-body">
-                  <form @submit.prevent="storeOngkir">
-                    <div class="row">
+                  <form @submit.prevent="storeShipping">
+                    <div class="row py-2">
                       <div class="col">
                         <div class="form-group">
-                          <label>JARAK AWAL</label>
-                          <input type="text" v-model="ongkir.jarak_awal" placeholder="Masukkan JARAK AWAL (KM)"
+                          <label>AREA</label>
+                          <input type="text" v-model="shipping.area" placeholder="Nama Area"
                             class="form-control">
-                          <div v-if="validation.jarak_awal" class="mt-2">
-                            <b-alert show variant="danger">{{ validation.jarak_awal[0] }}</b-alert>
+                          <div v-if="validation.area" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.area[0] }}</b-alert>
                           </div>
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
-                          <label>JARAK AKHIR</label>
-                          <input type="text" v-model="ongkir.jarak_akhir" placeholder="Masukkan JARAK AKHIR (KM)"
+                          <label>KODE</label>
+                          <input type="text" v-model="shipping.code" placeholder="Kode Area"
                             class="form-control">
-                          <div v-if="validation.jarak_akhir" class="mt-2">
-                            <b-alert show variant="danger">{{ validation.jarak_akhir[0] }}</b-alert>
+                          <div v-if="validation.code" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.code[0] }}</b-alert>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="row py-2">
                       <div class="col">
                         <div class="form-group">
-                          <label>HARGA (RP)</label>
-                          <input type="text" v-model="ongkir.harga" placeholder="Masukkan HARGA (RP)"
+                          <label>Harga - Motor</label>
+                          <input type="number" v-model="shipping.price_motor" placeholder="Harga Ongkir - Motor"
                             class="form-control">
-                          <div v-if="validation.harga" class="mt-2">
-                            <b-alert show variant="danger">{{ validation.harga[0] }}</b-alert>
+                          <div v-if="validation.price_motor" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.price_motor[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label>Harga - Mobil</label>
+                          <input type="number" v-model="shipping.price_car" placeholder="Harga Ongkir - Mobil"
+                            class="form-control">
+                          <div v-if="validation.price_car" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.price_car[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row py-2">
+                      <div class="col">
+                        <div class="form-group">
+                          <label>CAR ONLY</label>
+                          <select class="form-control" v-model="shipping.car_only">
+                            <option :value="1">YES</option>
+                            <option :value="0">NO</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label>Keterangan</label>
+                          <input type="text" v-model="shipping.description" placeholder="Keterangan"
+                            class="form-control">
+                          <div v-if="validation.description" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.description[0] }}</b-alert>
                           </div>
                         </div>
                       </div>
@@ -64,32 +95,35 @@
       //meta
       head() {
         return {
-          title: 'Add New Ongkir - Administrator',
+          title: 'Add New Shipping - Administrator',
         }
       },
   
       data() {
         return {
-          //state ongkir
-          ongkir: {
-            jarak_awal: null,
-            jarak_akhir: null,
-            harga: null,
+          //state shipping
+          shipping: {
+            area: null,
+            code: null,
+            price_motor: null,
+            price_car: null,
+            car_only: null,
+            description: null,
           },
           //state validation
           validation: [],
         }
       },
       methods: {
-        //method "storeProduct"
-        async storeOngkir() {
-          //define formData
+        async storeShipping() {
           let formData = new FormData();
-          formData.append('jarak_awal', this.ongkir.jarak_awal)
-          formData.append('jarak_akhir', this.ongkir.jarak_akhir)
-          formData.append('harga', this.ongkir.harga)
-          //sending data to action "storeProduct" vuex
-          await this.$store.dispatch('admin/ongkir/storeOngkir', formData)
+          formData.append('area', this.shipping.area)
+          formData.append('code', this.shipping.code)
+          formData.append('price_motor', this.shipping.price_motor)
+          formData.append('price_car', this.shipping.price_car)
+          formData.append('car_only', this.shipping.car_only)
+          formData.append('description', this.shipping.description)
+          await this.$store.dispatch('admin/shipping/storeShipping', formData)
             //success
             .then(() => {
               //sweet alert
@@ -102,7 +136,7 @@
               })
               //redirect route "admin-settings"
               this.$router.push({
-                name: 'admin-ongkir'
+                name: 'admin-shipping'
               })
   
             })

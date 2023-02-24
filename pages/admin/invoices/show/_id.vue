@@ -132,8 +132,12 @@
                                   <td class="text-right">Rp. {{ formatPrice(invoice.courier_cost) }}</td>
                                 </tr>
                                 <tr>
+                                  <th colspan="4" class="text-right">Decoration Cost</th>
+                                  <td class="text-right">Rp. {{ formatPrice(invoice.decoration_cost) }}</td>
+                                </tr>
+                                <tr>
                                   <th colspan="4" class="text-right">Grand Total</th>
-                                  <td class="text-right">Rp. {{ formatPrice(invoice.grand_total) }}</td>
+                                  <td class="text-right font-weight-bold">Rp. {{ formatPrice(invoice.grand_total) }}</td>
                                 </tr>
                               </tbody>
                             </table>

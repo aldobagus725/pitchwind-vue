@@ -111,10 +111,17 @@
       </nuxt-link>
       </li>
       <li class="c-sidebar-nav-item">
-        <nuxt-link :to="{name: 'admin-ongkir'}" class="c-sidebar-nav-link">
+        <nuxt-link :to="{name: 'admin-shipping'}" class="c-sidebar-nav-link">
           <svg class="c-sidebar-nav-icon">
               <use xlink:href="@/node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
-          </svg> ONGKIR
+          </svg> SHIPPING COST
+      </nuxt-link>
+      </li>
+      <li class="c-sidebar-nav-item">
+        <nuxt-link :to="{name: 'admin-decoration'}" class="c-sidebar-nav-link">
+          <svg class="c-sidebar-nav-icon">
+              <use xlink:href="@/node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+          </svg> DECORATION COST
       </nuxt-link>
       </li>
       <li class="c-sidebar-nav-item">

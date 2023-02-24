@@ -33,7 +33,7 @@ export const actions = {
             })
         })
     },
-    getRandomArticle({ commit, state }, payload) {
+    getRandomArticle({ commit, state }) {
         return new Promise((resolve, reject) => {
             this.$axios.get(`/api/v1/web/articles/random`)
             .then((response) => {
