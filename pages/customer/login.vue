@@ -107,9 +107,9 @@
             .catch(error => {
               // console.log(error)
               //assign validation
-              console.log(error.response.data.error)
+              // console.log(error.response.data.error)
               this.validation = !error.response.data.error ? error : error.response.data.error
-              console.log(this.validation)
+              // console.log(this.validation)
             })
         },
         seePassword(){

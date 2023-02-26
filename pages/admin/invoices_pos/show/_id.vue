@@ -22,44 +22,13 @@
                                 {{ invoice.invoice }}
                               </td>
                               <th>
-                                PHONE
-                              </th>
-                              <td>
-                                : {{ invoice.phone }}
-                              </td>
-                            </tr>
-                            <tr>
-                              <th>
-                                FULL NAME
-                              </th>
-                              <td>
-                                : {{ invoice.name }}
-                              </td>
-                            </tr>
-                            <tr>
-                              <th>
-                                COURIER / SERVICE
-                              </th>
-                              <td class="text-uppercase">
-                                :
-                                {{ invoice.courier }} - {{ invoice.courier_service }}
-                              </td>
-                              <th>
-                                ADDRESS
-                              </th>
-                              <td>
-                                : {{ invoice.address }}
-                              </td>
-                            </tr>
-                            <tr>
-                            </tr>
-                            <tr>
-                              <th>
                                 GRAND TOTAL
                               </th>
                               <td>
                                : Rp. {{ formatPrice(invoice.total)  }}
                               </td>
+                            </tr>
+                            <tr>
                               <th>
                                 STATUS
                               </th>
@@ -102,7 +71,7 @@
                           </div>
                         </div>
                         <div class="border-left col-sm-4 col-4">
-                          <h4 class="m-0 font-weight-bold">SUB TOTAL : Rp. {{ formatPrice(order.price) }}</h4>
+                          <h5 class="m-0 font-weight-bold">SUB TOTAL : Rp. {{ formatPrice(order.price * order.qty) }}</h5>
                         </div>
                       </div>
                       <hr />
@@ -112,16 +81,8 @@
                             <table class="table table-borderless table-sm">
                               <tbody>
                                 <tr>
-                                  <th colspan="4" class="text-right">Sub Total</th>
-                                  <td class="text-right">Rp. {{ formatPrice(invoice.total - invoice.courier_cost) }}</td>
-                                </tr>
-                                <tr>
-                                  <th colspan="4" class="text-right">Shipping Cost</th>
-                                  <td class="text-right">Rp. {{ formatPrice(invoice.courier_cost) }}</td>
-                                </tr>
-                                <tr>
-                                  <th colspan="4" class="text-right">Grand Total</th>
-                                  <td class="text-right">Rp. {{ formatPrice(invoice.total) }}</td>
+                                  <th style="font-size:2rem;" colspan="4" class="text-right">GRAND TOTAL</th>
+                                  <td style="font-size:2rem;" class="text-right">Rp. {{ formatPrice(invoice.total) }}</td>
                                 </tr>
                               </tbody>
                             </table>

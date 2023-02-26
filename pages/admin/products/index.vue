@@ -76,6 +76,9 @@
                             <h4><span class="badge bg-success text-white">{{row.item.stock}}</span></h4>
                         </template>
                     </template>
+                    <template v-slot:cell(created_at)="row">
+                        {{ formatProperDate(row.item.created_at) }}
+                    </template>
                     <template v-slot:cell(actions)="row">
                         <b-button-group>
                           <b-button @click.prevent="barcodeDownload(row.item.barcode,row.item.title)" variant="info">
@@ -120,20 +123,14 @@
           //table header
           fields: [
             {
-              label: 'NO SKU',
-              key: 'no_sku',
+              label: 'Product Name',
+              key: 'title',
               thClass:'text-center',
               tdClass: 'text-center'
             },
             {
               label: 'Barcode',
               key: 'barcode',
-              thClass:'text-center',
-              tdClass: 'text-center'
-            },
-            {
-              label: 'Product Name',
-              key: 'title',
               thClass:'text-center',
               tdClass: 'text-center'
             },

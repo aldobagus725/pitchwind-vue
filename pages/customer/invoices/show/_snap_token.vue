@@ -165,16 +165,20 @@
                           <table class="table table-borderless table-sm">
                             <tbody>
                               <tr>
-                                <th colspan="4" class="text-right">Sub Total</th>
-                                <td class="text-right">Rp. {{ formatPrice(invoice.grand_total - invoice.courier_cost) }}</td>
+                                <th style="font-size:1.2rem;" colspan="4" class="text-right">Sub Total</th>
+                                <td style="font-size:1.2rem;" class="text-right">Rp. {{ formatPrice(invoice.grand_total - invoice.courier_cost) }}</td>
                               </tr>
                               <tr>
-                                <th colspan="4" class="text-right">Shipping Cost</th>
-                                <td class="text-right">Rp. {{ formatPrice(invoice.courier_cost) }}</td>
+                                <th style="font-size:1.2rem;" colspan="4" class="text-right">Shipping Cost</th>
+                                <td style="font-size:1.2rem;" class="text-right">Rp. {{ formatPrice(invoice.courier_cost) }}</td>
                               </tr>
                               <tr>
-                                <th colspan="4" class="text-right">Grand Total</th>
-                                <td class="text-right">Rp. {{ formatPrice(invoice.grand_total) }}</td>
+                                <th style="font-size:1.2rem;" colspan="4" class="text-right">Decoration Cost</th>
+                                <td style="font-size:1.2rem;" class="text-right">Rp. {{ formatPrice(invoice.decoration_cost) }}</td>
+                              </tr>
+                              <tr>
+                                <th style="font-size:1.5rem;" colspan="4" class="text-right">Grand Total</th>
+                                <td style="font-size:1.5rem;" class="text-right">Rp. {{ formatPrice(invoice.grand_total) }}</td>
                               </tr>
                             </tbody>
                           </table>

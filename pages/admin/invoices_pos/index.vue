@@ -26,8 +26,8 @@
                 </div>
                 <div class="card-body">
                   <b-table striped bordered hover :items="invoices.data" :fields="fields" show-empty>
-                    <template v-slot:cell(grand_total)="row">
-                      Rp. {{ formatPrice(row.item.total) }}
+                    <template v-slot:cell(total)="row">
+                     {{ uangIndonesia(row.item.total) }}
                     </template>
                     <template v-slot:cell(status)="row">
                       <button v-if="row.item.status == 'pending'" class="btn btn-sm btn-primary"><i class="fa fa-circle-notch fa-spin"></i> {{ row.item.status }}</button>
@@ -41,7 +41,9 @@
                                 <i class="fas fa-eye"></i> DETAIL
                             </b-button>
                         </b-button-group>
-
+                    </template>
+                    <template v-slot:cell(created_at)="row">
+                      {{ formatProperDate(row.item.created_at) }}
                     </template>
                   </b-table>
   
@@ -79,10 +81,6 @@
             {
               label: 'No. Invoice',
               key: 'invoice'
-            },
-            {
-              label: 'Customer',
-              key: 'name'
             },
             {
               label: 'Grand Total',

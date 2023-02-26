@@ -69,7 +69,7 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <div class="form-group">
                         <label class="font-weight-bold">PROVINCE</label>
                         <select class="form-control" v-model="user.id_provinsi" @change="getCities">
@@ -79,7 +79,7 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <div class="form-group">
                         <label class="font-weight-bold">CITY</label>
                         <select class="form-control" v-model="user.id_kabupaten">
@@ -88,7 +88,16 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label class="font-weight-bold">AREA</label>
+                        <select class="form-control" v-model="user.id_area">
+                          <option value="">-- CHOOSE AREA --</option>
+                          <option v-for="area in areas" :key="area.id" :value="area.id">{{ area.area }}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
                       <div class="row">
                         <div class="col">
                           <label class="font-weight-bold">LOCATION</label>
@@ -188,6 +197,7 @@
             password_confirmation: '',
             id_provinsi:'',
             id_kabupaten:'',
+            id_area:'',
             lat:'',
             long:'',
             alamat:'',
@@ -202,6 +212,7 @@
       //hook asyncData
       async asyncData({ store }) {
         await store.dispatch('web/rajaongkir/getProvincesData')
+        await store.dispatch('web/fetchers/getAllShippingArea')
       },
       computed:{
         //provinces
@@ -211,6 +222,10 @@
         //cities
         cities() {
           return this.$store.state.web.rajaongkir.cities
+        },
+        //areas
+        areas() {
+          return this.$store.state.web.fetchers.shippings
         },
       },
       //method
@@ -243,6 +258,7 @@
               alamat: this.user.alamat,
               id_provinsi: this.user.id_provinsi,
               id_kabupaten: this.user.id_kabupaten,
+              id_area: this.user.id_area,
               lat: this.user.lat,
               long: this.user.lat,
               phone: this.user.phone,

@@ -150,13 +150,13 @@
                           <div class="form-check form-check-inline">
                             <template v-if="shippings_area.car_only == 0">
                               <input class="form-check-input" type="radio" name="cost" :id="shippings_area.price_motor"
-                              :value="shippings_area.price_motor" v-model="courier.courier_cost"
+                              :value="shippings_area.price_motor+'|'+'MOTOR'" v-model="courier.courier_service_cost"
                               @change="getServiceCost">
                               <label class="form-check-label font-weight-bold mr-5" :for="shippings_area.price_motor">
                                 MOTOR - Rp. {{ formatPrice(shippings_area.price_motor) }}</label>
                             </template>
                             <input class="form-check-input" type="radio" name="cost" :id="shippings_area.price_car"
-                              :value="shippings_area.price_car" v-model="courier.courier_cost"
+                              :value="shippings_area.price_car+'|'+'MOBIL'" v-model="courier.courier_service_cost"
                               @change="getServiceCost">
                               <label class="form-check-label font-weight-bold mr-5" :for="shippings_area.price_car">
                                 CAR - Rp. {{ formatPrice(shippings_area.price_car) }}</label>
@@ -226,13 +226,13 @@
                           <div class="form-check form-check-inline">
                             <template v-if="shippings_area.car_only == 0">
                               <input class="form-check-input" type="radio" name="cost" :id="shippings_area.price_motor"
-                              :value="shippings_area.price_motor" v-model="courier.courier_cost"
+                              :value="shippings_area.price_motor+'|'+'MOTOR'" v-model="courier.courier_service_cost"
                               @change="getServiceCost">
                               <label class="form-check-label font-weight-bold mr-5" :for="shippings_area.price_motor">
                                 MOTOR - Rp. {{ formatPrice(shippings_area.price_motor) }}</label>
                             </template>
                             <input class="form-check-input" type="radio" name="cost" :id="shippings_area.price_car"
-                              :value="shippings_area.price_car" v-model="courier.courier_cost"
+                              :value="shippings_area.price_car+'|'+'MOBIL'" v-model="courier.courier_service_cost"
                               @change="getServiceCost">
                               <label class="form-check-label font-weight-bold mr-5" :for="shippings_area.price_car">
                                 CAR - Rp. {{ formatPrice(shippings_area.price_car) }}</label>
@@ -549,6 +549,14 @@
             this.grandTotal = parseInt(this.cartPrice) + parseInt(this.courier.courier_cost)+ parseInt(this.decoration_cost)
             //show button checkout
           } else {
+            //split value dengan menghapus string -> | 
+            let shipping = this.courier.courier_service_cost.split("|")
+            //set state cost dan service
+            this.courier.courier_cost = shipping[0]
+            this.courier.courier_service = shipping[1]
+            //sum grandTotal
+            this.grandTotal = parseInt(this.cartPrice) + parseInt(this.courier.courier_cost)+ parseInt(this.decoration_cost)
+            //show button checkout
             //sum grandTotal
             this.grandTotal = parseInt(this.cartPrice) + parseInt(this.courier.courier_cost) + parseInt(this.decoration_cost)
           }
@@ -570,7 +578,7 @@
             //define formData
             let formData = new FormData();
             formData.append('courier', this.courier.courier_name)
-            formData.append('courier_service', this.courier.courier_name == 'sameday' ? 'sameday' : this.courier.courier_service)
+            formData.append('courier_service', this.courier.courier_service)
             formData.append('courier_cost', this.courier.courier_cost)
             formData.append('weight', this.cartWeight)
             formData.append('name', this.customer.name)
@@ -579,6 +587,7 @@
             formData.append('city_id', this.rajaongkir.city_id)
             formData.append('province_id', this.rajaongkir.province_id)
             formData.append('payment_method', this.customer.payment_method)
+            formData.append('decoration_cost', this.decoration_cost)
             formData.append('payment_channel', this.customer.payment_method == 3 ? this.customer.payment_channel : this.customer.payment_method )
             formData.append('grand_total', this.grandTotal)
             await this.$store.dispatch('web/checkout/storeCheckout', formData)

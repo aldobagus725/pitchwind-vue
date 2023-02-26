@@ -54,7 +54,7 @@ const mixin = {
             return text.replace(regex, "");
         },
         formatProperDate(date){
-            return moment(date).utc().format('DD-MM-YYYY HH:mm:ss')
+            return moment(date).utc().utcOffset("+07:00").format('DD-MM-YYYY HH:mm:ss')
         },
         dataReturner(data){
             if (data == null || data.length == 0){

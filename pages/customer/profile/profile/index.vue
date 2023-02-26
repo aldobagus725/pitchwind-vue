@@ -137,20 +137,32 @@
               //sweet alert
               this.$swal.fire({
                 title: 'SUCCESS!',
-                text: "UPDATE SUCCESS!",
+                text: "UPDATE SUCCESS! PLEASE RE-LOGIN TO TAKE EFFECT ON CHANGES!",
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 2000
               })
               //redirect
-              this.$router.push({
-                name: 'customer-dashboard'
-              })
+              // this.$router.push({
+              //   name: 'customer-dashboard'
+              // })
+              this.restart()
             })
             .catch(error => {
               //assign validation
               this.validation = error.response.data
             })
+        },
+        async restart(){
+          //logout auth
+          await this.$auth.logout()
+          //set state
+          this.$store.commit('web/cart/SET_CARTS_DATA', [])
+          this.$store.commit('web/cart/SET_CART_PRICE', 0)
+          //redirect route customer login
+          this.$router.push({
+            name: 'customer-login'
+          })
         }
       },
       mounted(){

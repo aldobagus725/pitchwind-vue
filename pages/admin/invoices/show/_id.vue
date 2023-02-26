@@ -57,7 +57,14 @@
                                 ADDRESS
                               </th>
                               <td>
-                                : {{ invoice.address }}, {{ invoice.city.name }}, {{ invoice.province.name }}
+                                : {{ invoice.address }}, {{ invoice.city.name }}, {{ invoice.province.name }} <br />
+                                <button
+                                  class="btn btn-primary text-white btn-sm p-2"
+                                  style="border-radius: 0.5rem"
+                                  @click="directionMaps([invoice.customer.lat,invoice.customer.long])"
+                                >
+                                  <i class="fa fa-map"></i> DIRECTION
+                                </button>
                               </td>
                             </tr>
                             <tr>
@@ -81,9 +88,8 @@
                                   class="btn btn-warning-2"><i class="fa fa-exclamation-triangle"></i> {{ invoice.status }}</button>
                                 <button v-else-if="invoice.status == 'failed'"
                                   class="btn btn-danger"><i class="fa fa-times-circle"></i> {{ invoice.status }}</button>
-                                
-                                  <button v-if="invoice.status == 'pending'" class="btn btn-danger" @click="cancelOrder(id_invoice)">CANCEL ORDER</button>
                                   <button v-if="invoice.status == 'pending'" class="btn btn-primary" @click="succeedOrder(id_invoice)">CONFIRM</button>
+                                  <button v-if="invoice.status == 'pending'" class="btn btn-danger" @click="cancelOrder(id_invoice)">CANCEL ORDER</button>
                               </td>
                             </tr>
                           </client-only>
@@ -238,6 +244,21 @@
                 })
             }
           })
+        },
+        directionMaps(position) {
+          var ground_zero_lat = '-8.626516'
+          var ground_zero_long = '115.170122'
+          var link =
+            'https://www.google.com/maps/dir/?api=1&origin=' +
+            ground_zero_lat +
+            ',' +
+            ground_zero_long +
+            '&destination=' +
+            position[0] +
+            ',' +
+            position[1] +
+            '&travelmode=driving&dir_action=navigate'
+          window.open(link)
         },
       },
       mounted(){

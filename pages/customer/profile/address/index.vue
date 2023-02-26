@@ -17,7 +17,8 @@
                     <div class="table">
                         <table class="table table-borderless table-responisve">
                             <tr>
-                                <th>Address : </th> <td>{{dataReturner(profile.alamat)}}</td>
+                                <th>Address</th>
+                                <td> : {{dataReturner(profile.alamat)}}</td>
                             </tr>
                         </table>
                     </div>
@@ -63,13 +64,22 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <label class="font-weight-bold">AREA</label>
+                                  <select class="form-control" v-model="usersUpdate.id_area">
+                                    <option value="">-- CHOOSE AREA --</option>
+                                    <option v-for="area in areas" :key="area.id" :value="area.id">{{ area.area }}</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
                                 <div class="row">
-                                  <div class="col">
+                                  <div class="col-sm-6">
+                                    <label class="font-weight-bold">LOCATION</label>
                                     <button class="btn btn-info" @click.prevent="getLocation()">Get Location</button>
-                                    <p style="font-size:0.82rem;padding:0.5rem;">*We recommend (and require you) to get your location by GPS to ensure accurate delivery location. Please refer to our ToS and Privacy Policy about your data and location</p>
                                   </div>
-                                  <div class="col">
+                                  <div class="col-sm-6">
                                     <div v-if="validation.lat" class="mt-2">
                                       <b-alert show variant="danger">{{ "Location Required!" }}</b-alert>
                                     </div>
@@ -83,6 +93,11 @@
                                   </div>
                                 </div>
                               </div>
+                        </div>
+                        <div class="row">
+                          <div class="col text-right">
+                            <p style="font-size:0.82rem;padding:0.5rem;">*We recommend (and require you) to get your location by GPS to ensure accurate delivery location. Please refer to our ToS and Privacy Policy about your data and location</p>
+                          </div>
                         </div>
                         <div class="row">
                           <div class="col-12 text-right">
@@ -122,6 +137,7 @@
             id_kabupaten:'',
             lat:'',
             long:'',
+            id_area:'',
           },
           validation: [],
           locationLoading:false,
@@ -130,12 +146,8 @@
       },
       async asyncData({ store }) {
         await store.dispatch('customer/customer/getProfile')
-        //call action vuex "getProvincesData"
         await store.dispatch('web/rajaongkir/getProvincesData')
-        // const { LMap, LTileLayer, LMarker, LPopup } = await import("leaflet/dist/leaflet-src.esm");
-        // import { LMap, LTileLayer, LMarker, LPopup } from '@vue-leaflet/vue-leaflet'
-        // import from 'leaflet'
-        
+        await store.dispatch('web/fetchers/getAllShippingArea')        
       },
       //computed
       computed: {
@@ -147,6 +159,9 @@
         },
         cities() {
             return this.$store.state.web.rajaongkir.cities
+        },
+        areas() {
+          return this.$store.state.web.fetchers.shippings
         },
       },
       methods:{
@@ -182,35 +197,51 @@
             //   id_kelurahan: this.usersUpdate.id_kelurahan,
               lat: this.usersUpdate.lat,
               long: this.usersUpdate.long,
+              id_area: this.usersUpdate.id_area,
             })
             .then(() => {
               //sweet alert
               this.$swal.fire({
                 title: 'SUCCESS!',
-                text: "UPDATE SUCCESS!",
+                text: "UPDATE SUCCESS! PLEASE RE-LOGIN TO TAKE EFFECT ON CHANGES!",
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 2000
               })
+              this.restart()
               //redirect
-              this.$router.push({
-                name: 'customer-dashboard'
-              })
+              // this.$router.push({
+              //   name: 'customer-dashboard'
+              // })
             })
             .catch(error => {
               //assign validation
               this.validation = error.response.data
             })
+        },
+        async restart(){
+          //logout auth
+          await this.$auth.logout()
+          //set state
+          this.$store.commit('web/cart/SET_CARTS_DATA', [])
+          this.$store.commit('web/cart/SET_CART_PRICE', 0)
+          //redirect route customer login
+          this.$router.push({
+            name: 'customer-login'
+          })
         }
       },
       mounted(){
-        this.usersUpdate.address = this.profile.alamat
+        this.usersUpdate.alamat = this.profile.alamat
         this.usersUpdate.id_provinsi = this.profile.id_provinsi
         this.usersUpdate.id_kabupaten = this.profile.id_kabupaten
         // this.usersUpdate.id_kecamatan = this.profile.id_kecamatan
         // this.usersUpdate.id_kelurahan = this.profile.id_kelurahan
         this.usersUpdate.lat = this.profile.lat
         this.usersUpdate.long = this.profile.long
+        this.usersUpdate.id_area = this.profile.id_area
+        console.log(this.usersUpdate.id_kabupaten)
+        this.getCities()
       }
     }
   </script>

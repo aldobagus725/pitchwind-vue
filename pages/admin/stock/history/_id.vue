@@ -11,22 +11,13 @@
                 </div>
                 <div class="card-body">
                   <b-table responsive striped bordered hover :items="stock.data" :fields="fields" show-empty>
-                    <template v-slot:cell(stock)="row">
-                        <template v-if="row.item.stock == 0">
-                            <h4><span class="badge bg-danger text-white">{{row.item.stock}}</span></h4>
-                        </template>
-                        <template v-else-if="(row.item.stock <= row.item.minimum_stock_alert) && (row.item.stock != 0 || row.item.stock != null) ">
-                            <h4><span class="badge bg-warning text-white">{{row.item.stock}}</span></h4>
-                        </template>
-                        <template v-else>
-                            <h4><span class="badge bg-success text-white">{{row.item.stock}}</span></h4>
-                        </template>
+                    <template v-slot:cell(created_at)="row">
+                      {{ formatProperDate(row.item.created_at) }}
                     </template>
                   </b-table>
                   <!-- pagination -->
                   <b-pagination align="right" :value="stock.current_page" :total-rows="stock.total"
                     :per-page="stock.per_page" @change="changePage" aria-controls="my-table"></b-pagination>
-  
                 </div>
               </div>
             </div>
@@ -54,26 +45,50 @@
           //table header
           fields: [
             {
-              label: 'NO SKU',
-              key: 'no_sku',
-              thClass:'text-center',
-              tdClass: 'text-center'
-            },
-            {
               label: 'Product Name',
               key: 'title',
               thClass:'text-center',
               tdClass: 'text-center'
             },
             {
-              label: 'Stock',
-              key: 'stock',
+              label: 'ORDER/INV NO.',
+              key: 'order_number',
               thClass:'text-center',
               tdClass: 'text-center'
             },
             {
-              label: 'Minimal Stock',
-              key: 'minimum_stock_alert',
+              label: 'Stock Opname',
+              key: 'stock_opname',
+              thClass:'text-center',
+              tdClass: 'text-center'
+            },
+            {
+              label: 'Stock In',
+              key: 'stock_in',
+              thClass:'text-center',
+              tdClass: 'text-center'
+            },
+            {
+              label: 'Stock Out',
+              key: 'stock_out',
+              thClass:'text-center',
+              tdClass: 'text-center'
+            },
+            {
+              label: 'Final Stock',
+              key: 'stock_final',
+              thClass:'text-center',
+              tdClass: 'text-center'
+            },
+            {
+              label: 'Description',
+              key: 'description',
+              thClass:'text-center',
+              tdClass: 'text-center'
+            },
+            {
+              label: 'Stock Tx Date',
+              key: 'trans_date',
               thClass:'text-center',
               tdClass: 'text-center'
             },
@@ -84,27 +99,15 @@
               tdClass: 'text-center'
             },
           ],
-  
         }
       },
-    //hook "asyncData"
     async asyncData({ store, route }) {
-        //get detail product
         await store.dispatch('admin/stock/getHistoryStock', route.params.id)
     },
-
-    //computed
     computed: {
-        //categories
         stock() {
             return this.$store.state.admin.stock.stock_history
         },
     },
-      //hook "asyncData"
-      
   }
   </script>
-  
-  <style>
-  
-  </style>

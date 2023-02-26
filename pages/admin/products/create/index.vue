@@ -36,11 +36,11 @@
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label>NO SKU</label>
-                          <input type="text" v-model="product.no_sku" placeholder="Masukkan SKU Product"
+                          <label>BARCODE <i>(OPTIONAL, IF EMPTY WILL BE CREATED AUTOMATICALLY)</i></label>
+                          <input type="text" v-model="product.barcode" placeholder="Masukkan Barcode Produk"
                             class="form-control">
-                          <div v-if="validation.no_sku" class="mt-2">
-                            <b-alert show variant="danger">{{ validation.no_sku[0] }}</b-alert>
+                          <div v-if="validation.barcode" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.barcode[0] }}</b-alert>
                           </div>
                         </div>
                       </div>
@@ -89,7 +89,6 @@
                         </div>
                       </div>
                     </div>
-  
                     <div class="form-group">
                       <label>DESCRIPTION</label>
                       <client-only placeholder="loading...">
@@ -99,7 +98,6 @@
                         <b-alert show variant="danger">{{ validation.description[0] }}</b-alert>
                       </div>
                     </div>
-  
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
@@ -115,7 +113,7 @@
                         <div class="form-group">
                             <label>PROMO - OPTIONAL</label>
                             <select class="form-control" v-model="product.promo_id">
-                              <option :value="null">NO PROMO</option>
+                              <option :value="''">NO PROMO</option>
                               <option v-for="p in promos" :key="p.id" :value="p.id">{{ p.title }}</option>
                             </select>
                             <div v-if="validation.promo_id" class="mt-2">
@@ -125,7 +123,7 @@
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label>DISCOUNT (%)</label>
+                          <label>DISCOUNT (%) <i>(GIVE 0 IF NO DISCOUNT)</i></label>
                           <input type="number" v-model="product.discount" placeholder="Masukkan Discount Product (%)"
                             class="form-control">
                           <div v-if="validation.discount" class="mt-2">
@@ -173,7 +171,7 @@
             title: '',
             category_id: '',
             description: '',
-            no_sku: '',
+            barcode: '',
             weight: '',
             price: '',
             minimum_stock_alert: '',
@@ -227,7 +225,7 @@
           formData.append('weight', this.product.weight)
           formData.append('price', this.product.price)
           formData.append('minimum_stock_alert', this.product.minimum_stock_alert)
-          formData.append('no_sku', this.product.no_sku)
+          formData.append('barcode', this.product.barcode)
           formData.append('discount', this.product.discount)
           formData.append('published', this.product.published)
           if(this.product.promo_id != null || this.product.promo_id != ''){

@@ -32,11 +32,11 @@
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                            <label>NO SKU</label>
-                            <input type="text" v-model="product.no_sku" placeholder="Masukkan SKU Product"
+                            <label>BARCODE</label>
+                            <input type="text" v-model="product.barcode" placeholder="Masukkan Barcode Product"
                             class="form-control">
-                            <div v-if="validation.no_sku" class="mt-2">
-                            <b-alert show variant="danger">{{ validation.no_sku[0] }}</b-alert>
+                            <div v-if="validation.barcode" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.barcode[0] }}</b-alert>
                             </div>
                         </div>
                         </div>
@@ -175,7 +175,7 @@
             description: '',
             weight: '',
             price: '',
-            no_sku: '',
+            barcode: '',
             discount: '',
             minimum_stock_alert: '',
             published: 1,
@@ -205,13 +205,14 @@
           this.product.title       = this.$store.state.admin.product.product.title
           this.product.category_id = this.$store.state.admin.product.product.category_id
           this.product.weight      = this.$store.state.admin.product.product.weight
-          this.product.no_sku       = this.$store.state.admin.product.product.no_sku
+          this.product.barcode       = this.$store.state.admin.product.product.barcode
           this.product.description = this.$store.state.admin.product.product.description
           this.product.price       = this.$store.state.admin.product.product.price
           this.product.discount    = this.$store.state.admin.product.product.discount
           this.product.minimum_stock_alert    = this.$store.state.admin.product.product.minimum_stock_alert
           this.product.published    = this.$store.state.admin.product.product.published
           this.product.promo_id    = this.$store.state.admin.product.product.promo_id
+          console.log(this.product.image === '')
       },
   
       methods: {
@@ -229,21 +230,24 @@
             })
           }
         },
-  
         //method "updateProduct"
         async updateProduct() {
           let formData = new FormData();
-          formData.append('image', this.product.image)
+          if(this.product.image === null || this.product.image === ''){
+          } else {
+            formData.append('image', this.product.image)
+          }
           formData.append('title', this.product.title)
           formData.append('category_id', this.product.category_id)
           formData.append('description', this.product.description)
           formData.append('weight', this.product.weight)
           formData.append('price', this.product.price)
-          formData.append('no_sku', this.product.no_sku)
+          formData.append('barcode', this.product.barcode)
           formData.append('discount', this.product.discount)
           formData.append('published', this.product.published)
           formData.append('minimum_stock_alert', this.product.minimum_stock_alert)
-          if(this.product.promo_id != null || this.product.promo_id != ''){
+          if(this.product.promo_id == null || this.product.promo_id == ''){
+          } else {
             formData.append('promo_id', this.product.promo_id)
           }
           formData.append("_method", "PATCH")
