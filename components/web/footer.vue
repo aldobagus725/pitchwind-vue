@@ -59,7 +59,7 @@
             <h4 class="font-weight-bold">OPERATIONALS</h4>
             <hr style="border-top: 3px solid rgb(226, 232, 240); border-radius: 0.5rem;">
             <p><i class="fa fa-clock"></i> OPENS FROM : <br><br> 
-              <strong>Monday - Saturday</strong> ( 9 AM s/d 6 PM ) <br> 
+              <strong>Monday - Saturday</strong> ( 10 AM s/d 6 PM ) <br> 
               <strong>CLOSED ON SUNDAY</strong> 
             </p>
             <p><i class="fa fa-clock"></i> Hubungi Kami : <br><br> 
