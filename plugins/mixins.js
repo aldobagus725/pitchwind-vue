@@ -33,8 +33,8 @@ const mixin = {
         },
         subStrProductTitle(title){
             var title_length = title.length
-            if (title_length > 40){
-                var result = title.substr(0,40)
+            if (title_length > 37){
+                var result = title.substr(0,37)
                 return result
             } else {
                 return title

@@ -48,12 +48,23 @@
                   <b-table responsive bordered hover :items="products.data" :fields="fields" show-empty>
                     <template v-slot:cell(barcode)="row">
                       <div :id="'barcodePrint'+row.item.barcode" class="row">
-                        <div class="col text-center">
-                          <barcode :value="row.item.barcode" format="CODE128" :font-size="23" :height="75" :width="3">
-                            ERROR!
-                          </barcode>
-                          <p style="padding:0;margin:0;font-size:0.95rem;">{{subStrProductTitle(row.item.title)}}</p>
-                          <p style="padding:0;margin:0;font-size:1.25rem;">{{uangIndonesia(row.item.price)}}</p>
+                        <div class="col">
+                          <div class="row">
+                            <div class="col-sm-3 text-start" style="font-weight:bold;font-family: Arial, Helvetica, sans-serif;">
+                              {{ row.item.barcode }}
+                            </div>
+                            <div class="col-sm-9 text-right">
+                              <p style="padding:0;margin:0;font-size:0.91rem;font-weight:bold;font-family: Arial, Helvetica, sans-serif;">{{subStrProductTitle(row.item.title)}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col text-center">
+                              <barcode :value="row.item.barcode" :margin="0" :displayValue="false" format="CODE128" :font-size="20" :height="74" style="font-family: Arial, Helvetica, sans-serif" :width="5">
+                                ERROR!
+                              </barcode>
+                              <p style="padding:0;margin:0;font-weight:bold;font-size:1.15rem;font-family: Arial, Helvetica, sans-serif">{{uangIndonesia(row.item.price)}}</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </template>
