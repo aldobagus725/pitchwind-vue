@@ -63,4 +63,15 @@ export const actions = {
             })
         })
     },
+    checkEmailExist(payload) {
+        return new Promise((resolve, reject) => {
+            this.$axios.post('/api/v1/customer/password_reset/check_email_exist', payload)
+            .then(() => {
+                resolve()
+            })
+            .catch(error => {
+                reject(error)
+            })
+        })
+    },
 }
