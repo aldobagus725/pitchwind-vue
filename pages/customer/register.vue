@@ -266,7 +266,7 @@
             .then(() => {
               //sweet alert
               this.$swal.fire({
-                title: 'REGISTER BERHASIL!',
+                title: 'REGISTER SUCCESS!',
                 text: "Proses Register Berhasil!",
                 icon: 'success',
                 showConfirmButton: false,

@@ -13,7 +13,7 @@
                       </div>
                       <div>
                         <div class="text-value text-primary">{{ statistic.total_product }}</div>
-                        <div class="text-muted text-uppercase font-weight-bold small">Total Produk</div>
+                        <div class="text-muted text-uppercase font-weight-bold small">Total Product</div>
                       </div>
                     </div>
                   </div>
@@ -27,9 +27,9 @@
                       </div>
                       <div>
                         <div class="text-value text-success">{{ statistic.on_stock }}</div>
-                        <div class="text-muted text-uppercase font-weight-bold small">Produk On Stock</div>
+                        <div class="text-muted text-uppercase font-weight-bold small">Product On Stock</div>
                         <nuxt-link :to="{name: 'admin-stock-onStock'}" class="btn btn-success btn-sm">
-                          <i class="fas fa-list"></i> LIHAT
+                          <i class="fas fa-list"></i> SEE
                         </nuxt-link>
                       </div>
                     </div>
@@ -44,9 +44,9 @@
                       </div>
                       <div>
                         <div class="text-value text-warning">{{ statistic.low_stock }}</div>
-                        <div class="text-muted text-uppercase font-weight-bold small">Produk Low On Stock</div>
+                        <div class="text-muted text-uppercase font-weight-bold small">Product Low On Stock</div>
                         <nuxt-link :to="{name: 'admin-stock-lowStock'}" class="btn btn-warning btn-sm">
-                          <i class="fas fa-list"></i> LIHAT
+                          <i class="fas fa-list"></i> SEE
                         </nuxt-link>
                       </div>
                     </div>
@@ -63,7 +63,7 @@
                         <div class="text-value text-danger">{{ statistic.out_stock }}</div>
                         <div class="text-muted text-uppercase font-weight-bold small">Product Out Of Stock</div>
                         <nuxt-link :to="{name: 'admin-stock-outStock'}" class="btn btn-danger btn-sm">
-                          <i class="fas fa-list"></i> LIHAT
+                          <i class="fas fa-list"></i> SEE
                         </nuxt-link>
                       </div>
                     </div>
@@ -99,7 +99,7 @@
                               <i class="fas fa-download"></i> TEMPLATE IMPORT
                             </a>
                         </div>
-                          <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="cari berdasarkan nama product">
+                          <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="Find by product name">
                           <div class="input-group-append">
                               <button @click="searchData" class="btn btn-primary"><i class="fa fa-search"></i>
                               SEARCH
@@ -124,16 +124,19 @@
                             <h4><span class="badge bg-success text-white">{{row.item.stock}}</span></h4>
                         </template>
                     </template>
+                    <template v-slot:cell(created_at)="row">
+                        {{ formatProperDate(row.item.created_at) }}
+                    </template>
                     <template v-slot:cell(actions)="row">
                     <b-button-group>
                         <b-button :to="{name: 'admin-stock-history-id', params: {id: row.item.id}}" variant="primary">
                             <i class="fas fa-list"></i> HISTORY
                         </b-button>
                         <b-button :to="{name: 'admin-stock-minus-id', params: {id: row.item.id}}" variant="danger">
-                        <i class="fas fa-minus-square"></i> KURANGI
+                        <i class="fas fa-minus-square"></i> 
                         </b-button>
                         <b-button :to="{name: 'admin-stock-plus-id', params: {id: row.item.id}}" variant="info">
-                        <i class="fas fa-plus-square"></i> TAMBAH
+                        <i class="fas fa-plus-square"></i> 
                         </b-button>
                     </b-button-group>
                     </template>
@@ -169,12 +172,6 @@
           //table header
           fields: [
             {
-              label: 'NO SKU',
-              key: 'no_sku',
-              thClass:'text-center',
-              tdClass: 'text-center'
-            },
-            {
               label: 'Product Name',
               key: 'title',
               thClass:'text-center',
@@ -193,7 +190,7 @@
               tdClass: 'text-center'
             },
             {
-              label: 'Tanggal Di Buat',
+              label: 'Created At',
               key: 'created_at',
               thClass:'text-center',
               tdClass: 'text-center'
@@ -210,19 +207,8 @@
           search: ''
         }
       },
-      //hook "asyncData"
       async asyncData({ $axios, store }) {
-        //fetching dashboard
         const stat = await $axios.$get('/api/v1/admin/stock-stat')
-        console.log(stat)
-        //statistic
-        // const statistic = {
-        //     'total_product': 1,
-        //     'on_stock': 1,
-        //     'low_stock': 1,
-        //     'out_stock': 1,
-        //     'aha':aha,
-        // }
         const statistic = {
             'total_product': stat.data.total_product,
             'on_stock': stat.data.on_stock,
@@ -230,34 +216,22 @@
             'out_stock': stat.data.out_stock,
         }
         await store.dispatch('admin/stock/getStocksData')
-
-
         return {
             statistic,
         }
       },
-  
-      //computed
       computed: {
-          //products
           stocks() {
               return this.$store.state.admin.stock.stocks
           },
       },
-      //method
       methods: {
-        //method "searchData"
         searchData() {
-            //commit to mutation "SET_PAGE"
             this.$store.commit('admin/stock/SET_PAGE', 1)
-            //dispatch on action "getProductsData"
             this.$store.dispatch('admin/stock/getStocksData', this.search)
         },
-        //method "changePage"
         changePage(page) {
-            //commit to mutation "SET_PAGE"
             this.$store.commit('admin/stock/SET_PAGE', page)
-            //dispatch on action "getProductsData"
             this.$store.dispatch('admin/stock/getStocksData', this.search)
         },
         exportStockLastStat() {

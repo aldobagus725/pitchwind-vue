@@ -233,7 +233,7 @@
             .then(() => {
               //sweet alert
               this.$swal.fire({
-                title: 'BERHASIL!',
+                title: 'SUCCESS!',
                 text: "Product Berhasil Ditambahkan di Keranjang!",
                 icon: 'success',
                 showConfirmButton: false,

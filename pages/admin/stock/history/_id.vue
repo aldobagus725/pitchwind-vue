@@ -93,7 +93,7 @@
               tdClass: 'text-center'
             },
             {
-              label: 'Tanggal Di Buat',
+              label: 'Created At',
               key: 'created_at',
               thClass:'text-center',
               tdClass: 'text-center'

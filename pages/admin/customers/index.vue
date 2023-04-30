@@ -13,7 +13,7 @@
                     <div class="col-sm-10">
                       <div class="form-group">
                         <div class="input-group mb-3">
-                          <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="cari berdasarkan nama customer">
+                          <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="Find by customer name">
                           <div class="input-group-append">
                             <button @click="searchData" class="btn btn-primary"><i class="fa fa-search"></i>
                               SEARCH

@@ -102,7 +102,7 @@
   
               //sweet alert
               this.$swal.fire({
-                title: 'BERHASIL!',
+                title: 'SUCCESS!',
                 text: "Upload Berhasil!",
                 icon: 'success',
                 showConfirmButton: false,

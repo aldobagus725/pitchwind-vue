@@ -13,7 +13,7 @@
                     <div class="col-sm-9">
                       <div class="form-group">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="cari berdasarkan nama product">
+                            <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="Find by product name">
                             <div class="input-group-append">
                                 <button @click="searchData" class="btn btn-dark"><i class="fa fa-search"></i>
                                 SEARCH
@@ -50,19 +50,16 @@
                       <div :id="'barcodePrint'+row.item.barcode" class="row">
                         <div class="col">
                           <div class="row">
-                            <div class="col-sm-3 text-start" style="font-weight:bold;font-family: Arial, Helvetica, sans-serif;">
-                              {{ row.item.barcode }}
-                            </div>
-                            <div class="col-sm-9 text-right">
-                              <p style="padding:0;margin:0;font-size:0.91rem;font-weight:bold;font-family: Arial, Helvetica, sans-serif;">{{subStrProductTitle(row.item.title)}}</p>
+                            <div class="col-sm-12 text-center" style="font-weight:bold;font-family: Arial, Helvetica, sans-serif;">
+                              {{ row.item.barcode }} - {{subStrProductTitle(row.item.title)}}
                             </div>
                           </div>
                           <div class="row">
                             <div class="col text-center">
-                              <barcode :value="row.item.barcode" :margin="0" :displayValue="false" format="CODE128" :font-size="20" :height="74" style="font-family: Arial, Helvetica, sans-serif" :width="5">
+                              <barcode :value="row.item.barcode" :margin="0" :displayValue="false" format="CODE39" :font-size="18" :height="73" style="font-family: Arial, Helvetica, sans-serif" :width="3">
                                 ERROR!
                               </barcode>
-                              <p style="padding:0;margin:0;font-weight:bold;font-size:1.15rem;font-family: Arial, Helvetica, sans-serif">{{uangIndonesia(row.item.price)}}</p>
+                              <p style="padding:0;margin:0;font-weight:bold;font-size:1.25rem;font-family: Arial, Helvetica, sans-serif">{{uangIndonesia(row.item.price)}}</p>
                             </div>
                           </div>
                         </div>
@@ -70,10 +67,10 @@
                     </template>
                     <template v-slot:cell(published)="row">
                       <template v-if="row.item.published == 0">
-                          <h4><span class="badge bg-danger text-white">TIDAK AKTIF</span></h4>
+                          <h4><span class="badge bg-danger text-white">UNPUBLISHED</span></h4>
                       </template>
                       <template v-else>
-                          <h4><span class="badge bg-success text-white">AKTIF</span></h4>
+                          <h4><span class="badge bg-success text-white">PUBLISHED</span></h4>
                       </template>
                     </template>
                     <template v-slot:cell(stock)="row">
@@ -115,7 +112,7 @@
   </template>
   <script>
     import VueBarcode from 'vue-barcode';
-    import JsBarcode from 'jsbarcode';
+    // import JsBarcode from 'jsbarcode';
     import html2canvas from 'html2canvas';
     export default {
       //layout
@@ -170,7 +167,7 @@
               tdClass: 'text-center'
             },
             {
-              label: 'Tanggal Di Buat',
+              label: 'Created At',
               key: 'created_at',
               thClass:'text-center',
               tdClass: 'text-center'
@@ -214,14 +211,14 @@
         },
         destroyProduct(id) {
           this.$swal.fire({
-            title: 'APAKAH ANDA YAKIN ?',
-            text: "INGIN MENGHAPUS DATA INI !",
+            title: 'ARE YOU SURE ?',
+            text: "TO ERASE THIS DATA !",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
-            confirmButtonText: 'YA, HAPUS!',
-            cancelButtonText: 'TIDAK',
+            confirmButtonText: 'YES!',
+            cancelButtonText: 'NO',
           }).then((result) => {
             if (result.isConfirmed) {
               this.$store.dispatch('admin/product/destroyProduct', id)
@@ -229,8 +226,8 @@
                   console.log(response)
                   this.$nuxt.refresh()
                   this.$swal.fire({
-                    title: 'BERHASIL!',
-                    text: "Data Berhasil Dihapus!",
+                    title: 'SUCCESS!',
+                    text: "Data Erased Successfully!",
                     icon: 'success',
                     showConfirmButton: false,
                     timer: 2000

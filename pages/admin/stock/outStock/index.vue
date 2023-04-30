@@ -52,8 +52,8 @@
           //table header
           fields: [
             {
-              label: 'NO SKU',
-              key: 'no_sku',
+              label: 'BARCODE',
+              key: 'barcode',
               thClass:'text-center',
               tdClass: 'text-center'
             },

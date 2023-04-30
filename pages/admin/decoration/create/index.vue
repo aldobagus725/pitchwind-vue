@@ -87,8 +87,8 @@
           await this.$store.dispatch('admin/decoration/storeDecoration', formData)
             .then(() => {
               this.$swal.fire({
-                title: 'BERHASIL!',
-                text: "Data Berhasil Disimpan!",
+                title: 'SUCCESS!',
+                text: "Data Saved Successfully!",
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 2000

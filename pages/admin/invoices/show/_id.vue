@@ -184,14 +184,14 @@
       methods:{
         succeedOrder(id){
           this.$swal.fire({
-            title: 'APAKAH ANDA YAKIN ?',
+            title: 'ARE YOU SURE ?',
             text: "INGIN CONFIRM PEMBAYARAN ORDER INI !",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
             confirmButtonText: 'YA!',
-            cancelButtonText: 'TIDAK',
+            cancelButtonText: 'NO',
           }).then((result) => {
             if (result.isConfirmed) {
               console.log(id)
@@ -200,7 +200,7 @@
                   console.log(response)
                   // this.$nuxt.refresh()
                   this.$swal.fire({
-                    title: 'BERHASIL!',
+                    title: 'SUCCESS!',
                     text: "Order confirmed!! Silakan untuk menyiapkan barang untuk diantar ke customer",
                     icon: 'info',
                     showConfirmButton: false,
@@ -215,14 +215,14 @@
         },
         cancelOrder(id) {
           this.$swal.fire({
-            title: 'APAKAH ANDA YAKIN ?',
+            title: 'ARE YOU SURE ?',
             text: "INGIN CANCEL ORDER INI !",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
             confirmButtonText: 'YA!',
-            cancelButtonText: 'TIDAK',
+            cancelButtonText: 'NO',
           }).then((result) => {
             if (result.isConfirmed) {
               console.log(id)
@@ -231,7 +231,7 @@
                   console.log(response)
                   // this.$nuxt.refresh()
                   this.$swal.fire({
-                    title: 'BERHASIL!',
+                    title: 'SUCCESS!',
                     text: "Order canceled!",
                     icon: 'info',
                     showConfirmButton: false,

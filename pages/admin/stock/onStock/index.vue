@@ -53,8 +53,8 @@
           //table header
           fields: [
             {
-              label: 'NO SKU',
-              key: 'no_sku',
+              label: 'BARCODE',
+              key: 'barcode',
               thClass:'text-center',
               tdClass: 'text-center'
             },
@@ -77,8 +77,8 @@
               tdClass: 'text-center'
             },
             {
-              label: 'Tanggal Di Buat',
-              key: 'created_at',
+              label: 'Updated At',
+              key: 'updated_at',
               thClass:'text-center',
               tdClass: 'text-center'
             },

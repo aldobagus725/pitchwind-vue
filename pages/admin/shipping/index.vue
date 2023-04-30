@@ -158,14 +158,14 @@
         //method "destroyShipping"
         destroyShipping(id) {
           this.$swal.fire({
-            title: 'APAKAH ANDA YAKIN ?',
-            text: "INGIN MENGHAPUS DATA INI !",
+            title: 'ARE YOU SURE ?',
+            text: "TO ERASE THIS DATA !",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
-            confirmButtonText: 'YA, HAPUS!',
-            cancelButtonText: 'TIDAK',
+            confirmButtonText: 'YES!',
+            cancelButtonText: 'NO',
           }).then((result) => {
             if (result.isConfirmed) {
               //dispatch to action "deleteCategory" vuex
@@ -176,8 +176,8 @@
                   this.$nuxt.refresh()
                   //alert
                   this.$swal.fire({
-                    title: 'BERHASIL!',
-                    text: "Data Berhasil Dihapus!",
+                    title: 'SUCCESS!',
+                    text: "Data Erased Successfully!",
                     icon: 'success',
                     showConfirmButton: false,
                     timer: 2000

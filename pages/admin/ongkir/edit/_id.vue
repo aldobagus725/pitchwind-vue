@@ -108,8 +108,8 @@
             .then(() => {
               //sweet alert
               this.$swal.fire({
-                title: 'BERHASIL!',
-                text: "Data Berhasil Diupdate!",
+                title: 'SUCCESS!',
+                text: "Data Updated Successfully!",
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 2000

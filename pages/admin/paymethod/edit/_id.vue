@@ -86,8 +86,8 @@
           })
             .then(() => {
               this.$swal.fire({
-                title: 'BERHASIL!',
-                text: "Data Berhasil Diupdate!",
+                title: 'SUCCESS!',
+                text: "Data Updated Successfully!",
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 2000
@@ -107,7 +107,7 @@
                 // console.log(new_error)
               }
               this.$swal.fire({
-                title: 'GAGAL!',
+                title: 'Failed!',
                 text: new_error,
                 icon: 'error',
                 showConfirmButton: true,

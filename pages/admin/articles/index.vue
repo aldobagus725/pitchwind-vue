@@ -17,7 +17,7 @@
                                   <nuxt-link :to="{name: 'admin-articles-create'}" class="btn btn-primary" style="padding-top: 10px;">
                                   <i class="fa fa-plus-circle"></i> ADD NEW</nuxt-link>
                               </div>
-                              <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="cari berdasarkan nama product">
+                              <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="Find by product name">
                               <div class="input-group-append">
                                   <button @click="searchData" class="btn btn-dark"><i class="fa fa-search"></i>
                                   SEARCH
@@ -32,10 +32,10 @@
                   <b-table responsive striped bordered hover :items="articles.data" :fields="fields" show-empty>
                     <template v-slot:cell(published)="row">
                       <template v-if="row.item.published == 0">
-                          <h4><span class="badge bg-danger text-white">TIDAK AKTIF</span></h4>
+                          <h4><span class="badge bg-danger text-white">UNPUBLISHED</span></h4>
                       </template>
                       <template v-else>
-                          <h4><span class="badge bg-success text-white">AKTIF</span></h4>
+                          <h4><span class="badge bg-success text-white">PUBLISHED</span></h4>
                       </template>
                     </template>
                     <template v-slot:cell(actions)="row">
@@ -118,7 +118,7 @@
               tdClass: 'text-center'
             },
             {
-              label: 'Tanggal Di Buat',
+              label: 'Created At',
               key: 'created_at',
               thClass:'text-center',
               tdClass: 'text-center'
@@ -167,14 +167,14 @@
         //method "destroyArticle"
         destroyArticle(id) {
           this.$swal.fire({
-            title: 'APAKAH ANDA YAKIN ?',
-            text: "INGIN MENGHAPUS DATA INI !",
+            title: 'ARE YOU SURE ?',
+            text: "TO ERASE THIS DATA !",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
-            confirmButtonText: 'YA, HAPUS!',
-            cancelButtonText: 'TIDAK',
+            confirmButtonText: 'YES!',
+            cancelButtonText: 'NO',
           }).then((result) => {
             if (result.isConfirmed) {
 
@@ -187,8 +187,8 @@
 
                   //alert
                   this.$swal.fire({
-                    title: 'BERHASIL!',
-                    text: "Data Berhasil Dihapus!",
+                    title: 'SUCCESS!',
+                    text: "Data Erased Successfully!",
                     icon: 'success',
                     showConfirmButton: false,
                     timer: 2000

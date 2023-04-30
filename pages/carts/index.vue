@@ -469,14 +469,14 @@
         //method "removeCart"  
         async removeCart(cartId) {
           await this.$swal.fire({
-            title: 'APAKAH ANDA YAKIN ?',
-            text: "INGIN MENGHAPUS DATA INI !",
+            title: 'ARE YOU SURE ?',
+            text: "TO ERASE THIS DATA !",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
-            confirmButtonText: 'YA, HAPUS!',
-            cancelButtonText: 'TIDAK',
+            confirmButtonText: 'YES!',
+            cancelButtonText: 'NO',
           }).then((result) => {
             if (result.isConfirmed) {
                 this.$store.dispatch('web/cart/removeCart', {
@@ -486,7 +486,7 @@
                     await this.$store.dispatch('web/cart/getCartPrice')
                     this.grandTotal = parseInt(this.cartPrice) + parseInt(this.courier.courier_cost)
                     this.$swal.fire({
-                        title: 'BERHASIL!',
+                        title: 'SUCCESS!',
                         text: "Product Berhasil Dihapus dari Keranjang!",
                         icon: 'success',
                         showConfirmButton: false,

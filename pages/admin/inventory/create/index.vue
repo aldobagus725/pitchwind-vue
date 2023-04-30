@@ -6,18 +6,74 @@
             <div class="col-md-12">
               <div class="card border-0 rounded shadow-sm border-top-orange">
                 <div class="card-header">
-                  <span class="font-weight-bold"><i class="fa fa-folder"></i> ADD PAYMENT METHOD</span>
+                  <span class="font-weight-bold"><i class="fa fa-folder"></i> ADD ASSET</span>
                 </div>
                 <div class="card-body">
-                  <form @submit.prevent="storePayMethod">
+                  <form @submit.prevent="storeAsset">
                     <div class="row py-3">
                       <div class="col">
                         <div class="form-group">
-                          <label>NAMA PAYMENT METHOD</label>
-                          <input type="text" v-model="payment_method.method" placeholder="NAMA PAYMENT METHOD"
+                          <label>NAME</label>
+                          <input type="text" v-model="asset.name" placeholder="NAME"
                             class="form-control">
-                          <div v-if="validation.method" class="mt-2">
-                            <b-alert show variant="danger">{{ validation.method[0] }}</b-alert>
+                          <div v-if="validation.name" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.name[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row py-3">
+                      <div class="col">
+                        <div class="form-group">
+                          <label>DESCRIPTION</label>
+                          <input type="text" v-model="asset.description" placeholder="DESCRIPTION"
+                            class="form-control">
+                          <div v-if="validation.description" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.description[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row py-3">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>QTY</label>
+                          <input type="number" min="0" v-model="asset.qty" placeholder="QTY"
+                            class="form-control">
+                          <div v-if="validation.qty" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.qty[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>CONDITION</label>
+                          <input type="text" v-model="asset.condition" placeholder="CONDITION (i.e. second, new...)"
+                            class="form-control">
+                          <div v-if="validation.qty" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.condition[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row py-3">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>COST</label>
+                          <input type="number" min="0" v-model="asset.cost" placeholder="Cost (In RP)"
+                            class="form-control">
+                          <div v-if="validation.cost" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.cost[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>DATE OF ACQUIREMENT</label>
+                          <input type="date" v-model="asset.date_of_acquirement"
+                            class="form-control">
+                          <div v-if="validation.date_of_acquirement" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.date_of_acquirement[0] }}</b-alert>
                           </div>
                         </div>
                       </div>
@@ -43,39 +99,47 @@
       //meta
       head() {
         return {
-          title: 'Add New Payment Method - Administrator',
+          title: 'Add Asset - Administrator',
         }
       },
   
       data() {
         return {
-          payment_method: {
-            method: '',
+          asset: {
+            name: '',
+            description: '',
+            qty: '',
+            condition: '',
+            cost: '',
+            date_of_acquirement: '',
           },
           validation: [],
         }
       },
   
       methods: {
-        async storePayMethod() {
+        async storeAsset() {
           let formData = new FormData();
-          formData.append('method', this.payment_method.method)
-          await this.$store.dispatch('admin/payment_method/storePaymentMethod', formData)
+          formData.append('nama_barang', this.asset.name)
+          formData.append('description', this.asset.description)
+          formData.append('qty', this.asset.qty)
+          formData.append('kondisi', this.asset.condition)
+          formData.append('harga_beli', this.asset.cost)
+          formData.append('tanggal_beli', this.asset.date_of_acquirement)
+          await this.$store.dispatch('admin/inventory/storeInventory', formData)
             .then(() => {
               this.$swal.fire({
-                method: 'BERHASIL!',
-                text: "Data Berhasil Disimpan!",
+                method: 'SUCCESS!',
+                text: "Data Saved Successfully!",
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 2000
               })
               this.$router.push({
-                name: 'admin-paymethod'
+                name: 'admin-inventory'
               })
             })
             .catch(error => {
-              console.log(error)
-              console.log(error.response.data.error)
               this.validation = JSON.parse(error.response.data.error)
               var new_error = ''
               for(let x in this.validation){
@@ -83,7 +147,7 @@
                 // console.log(new_error)
               }
               this.$swal.fire({
-                title: 'GAGAL!',
+                title: 'Failed!',
                 text: new_error,
                 icon: 'error',
                 showConfirmButton: true,

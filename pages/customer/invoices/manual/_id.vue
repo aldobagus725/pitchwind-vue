@@ -307,7 +307,7 @@
   
             //sweet alert
             this.$swal.fire({
-              title: 'BERHASIL!',
+              title: 'SUCCESS!',
               text: "Ulasan Berhasil Disimpan!",
               icon: 'success',
               showConfirmButton: false,
@@ -323,7 +323,7 @@
                 
             //sweet alert
             this.$swal.fire({
-              title: 'GAGAL!',
+              title: 'Failed!',
               text: "Anda sudah membuat ulasan untuk produk ini!",
               icon: 'error',
               showConfirmButton: false,

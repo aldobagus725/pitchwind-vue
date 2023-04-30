@@ -57,7 +57,7 @@
           <h4>Not Registered yet? <nuxt-link :to="{name: 'customer-register'}" class="font-weight-bold">Sign Up Now!</nuxt-link></h4>
         </div>
         <div class="text-center mt-3" style="margin:2rem;">
-            <h5><nuxt-link :to="{name: 'customer-reset_pwd'}" class="font-weight-bold">Forget Password</nuxt-link></h5>
+            <h5><nuxt-link :to="{name: 'customer-reset_req'}" class="font-weight-bold">Forget Password</nuxt-link></h5>
         </div>
       </div>
     </div>

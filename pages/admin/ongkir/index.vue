@@ -15,7 +15,7 @@
                               <nuxt-link :to="{name: 'admin-ongkir-create'}" class="btn btn-primary" style="padding-top: 10px;">
                               <i class="fa fa-plus-circle"></i> ADD NEW</nuxt-link>
                           </div>
-                          <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="cari berdasarkan nama product">
+                          <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="Find by product name">
                           <div class="input-group-append">
                               <button @click="searchData" class="btn btn-dark"><i class="fa fa-search"></i>
                               SEARCH
@@ -121,14 +121,14 @@
         //method "destroyOngkir"
         destroyOngkir(id) {
           this.$swal.fire({
-            title: 'APAKAH ANDA YAKIN ?',
-            text: "INGIN MENGHAPUS DATA INI !",
+            title: 'ARE YOU SURE ?',
+            text: "TO ERASE THIS DATA !",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
-            confirmButtonText: 'YA, HAPUS!',
-            cancelButtonText: 'TIDAK',
+            confirmButtonText: 'YES!',
+            cancelButtonText: 'NO',
           }).then((result) => {
             if (result.isConfirmed) {
               //dispatch to action "deleteCategory" vuex
@@ -139,8 +139,8 @@
                   this.$nuxt.refresh()
                   //alert
                   this.$swal.fire({
-                    title: 'BERHASIL!',
-                    text: "Data Berhasil Dihapus!",
+                    title: 'SUCCESS!',
+                    text: "Data Erased Successfully!",
                     icon: 'success',
                     showConfirmButton: false,
                     timer: 2000

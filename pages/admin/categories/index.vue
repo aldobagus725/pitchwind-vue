@@ -13,7 +13,7 @@
                     <div class="col-sm-9 text-right">
                       <div class="form-group">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="cari berdasarkan nama category">
+                            <input type="text" class="form-control" v-model="search" @keypress.enter="searchData" placeholder="Find by category name">
                             <div class="input-group-append">
                                 <button  @click="searchData" class="btn btn-warning"><i class="fa fa-search"></i>SEARCH</button>
                             </div>
@@ -152,14 +152,14 @@
           //method "destroyCategory"
           destroyCategory(id) {
             this.$swal.fire({
-              title: 'APAKAH ANDA YAKIN ?',
-              text: "INGIN MENGHAPUS DATA INI !",
+              title: 'ARE YOU SURE ?',
+              text: "TO ERASE THIS DATA !",
               icon: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#d33',
               cancelButtonColor: '#3085d6',
-              confirmButtonText: 'YA, HAPUS!',
-              cancelButtonText: 'TIDAK',
+              confirmButtonText: 'YES!',
+              cancelButtonText: 'NO',
             }).then((result) => {
               if (result.isConfirmed) {
                 //dispatch to action "deleteCategory" vuex
@@ -170,8 +170,8 @@
                     this.$nuxt.refresh()
                     //alert
                     this.$swal.fire({
-                      title: 'BERHASIL!',
-                      text: "Data Berhasil Dihapus!",
+                      title: 'SUCCESS!',
+                      text: "Data Erased Successfully!",
                       icon: 'success',
                       showConfirmButton: false,
                       timer: 2000

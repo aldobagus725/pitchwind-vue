@@ -76,7 +76,7 @@
           </div>
         <div class="row justify-content-center" v-else>
           <div class="col-md-12">
-            <b-alert show variant="danger">DATA PRODUK TIDAK DITEMUKAN!</b-alert>
+            <b-alert show variant="danger">PRODUCT DATA NOT FOUND!</b-alert>
           </div>
         </div>
         <!--pagination -->
