@@ -111,7 +111,6 @@
       },
       //mounted
       mounted() {
-            // console.log(this.$store.state.admin.product.product.title)
           this.product.title       = this.$store.state.admin.stock.stock.title
           this.product.no_sku       = this.$store.state.admin.stock.stock.no_sku
           this.product.description = this.$store.state.admin.stock.stock.description

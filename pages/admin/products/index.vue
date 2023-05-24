@@ -50,16 +50,12 @@
                       <div :id="'barcodePrint'+row.item.barcode" class="row">
                         <div class="col">
                           <div class="row">
-                            <div class="col-sm-12 text-center" style="font-weight:bold;font-family: Arial, Helvetica, sans-serif;">
-                              {{ row.item.barcode }} - {{subStrProductTitle(row.item.title)}}
-                            </div>
-                          </div>
-                          <div class="row">
                             <div class="col text-center">
-                              <barcode :value="row.item.barcode" :margin="0" :displayValue="false" format="CODE39" :font-size="18" :height="73" style="font-family: Arial, Helvetica, sans-serif" :width="3">
+                              <p style="padding:0;margin:0;font-weight:bold;font-size:1.26rem;font-family: Arial, Helvetica, sans-serif">{{ row.item.barcode }} - {{subStrProductTitle(row.item.title)}}</p>
+                              <barcode :value="row.item.barcode" :margin="0" :displayValue="false" format="CODE39" :height="65" style="font-family: Arial, Helvetica, sans-serif" :width="3">
                                 ERROR!
                               </barcode>
-                              <p style="padding:0;margin:0;font-weight:bold;font-size:1.25rem;font-family: Arial, Helvetica, sans-serif">{{uangIndonesia(row.item.price)}}</p>
+                              <p style="padding:0;margin:0;font-weight:bold;font-size:1.26rem;font-family: Arial, Helvetica, sans-serif">{{uangIndonesia(row.item.price)}}</p>
                             </div>
                           </div>
                         </div>

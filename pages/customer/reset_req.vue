@@ -62,17 +62,6 @@
         }
       },
       methods: {
-        // checkEmailExist() {
-        //     this.$store.dispatch('customer/customer/checkEmailExist',this.email)
-        //     .then((response) => {
-        //       console.log(this.email)
-        //         console.log(response)
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //         this.validation = !error.response.data.error ? error : error.response.data.error
-        //     })
-        // },
         async checkEmailExist() {
           this.loading = true
           var data = {
