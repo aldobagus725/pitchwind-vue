@@ -347,16 +347,16 @@
       //meta
       head() {
         return {
-          title: 'Cart - DEWATA PARTY SHOP BALI - Toko perlengkapan / alat pesta, dekorasi, dll',
+          title: 'Cart - Bali Fun & Cheer - Toko perlengkapan / alat pesta, dekorasi, dll',
           meta: [{
               hid: 'og:title',
               name: 'og:title',
-              content: 'Cart - DEWATA PARTY SHOP BALI - Toko perlengkapan / alat pesta, dekorasi, dll'
+              content: 'Cart - Bali Fun & Cheer - Toko perlengkapan / alat pesta, dekorasi, dll'
             },
             {
               hid: 'og:site_name',
               name: 'og:site_name',
-              content: 'Cart - DEWATA PARTY SHOP BALI - Toko perlengkapan / alat pesta, dekorasi, dll'
+              content: 'Cart - Bali Fun & Cheer - Toko perlengkapan / alat pesta, dekorasi, dll'
             },
             {
               hid: 'og:image',
@@ -366,7 +366,7 @@
             {
               hid: 'description',
               name: 'description',
-              content: 'Cart - Official Toko Online DEWATA PARTY SHOP'
+              content: 'Cart - Official Toko Online Bali Fun & Cheer'
             },
           ]
         }

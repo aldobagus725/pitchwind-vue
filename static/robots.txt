@@ -33,4 +33,4 @@ Disallow:
 User-agent: *
 Disallow: 
 Disallow: /cgi-bin/
-Sitemap: https://dewatapartyshop.com/sitemap.xml
+Sitemap: https://balifunncheer.com/sitemap.xml

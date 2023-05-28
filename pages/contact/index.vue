@@ -51,16 +51,16 @@
       //meta
       head() {
         return {
-          title: 'DEWATA PARTY SHOP BALI - PARTY ? NO WORRIES, WE GOT YOU COVERED!',
+          title: 'Bali Fun & Cheer - PARTY ? NO WORRIES, WE GOT YOU COVERED!',
           meta: [{
               hid: 'og:title',
               name: 'og:title',
-              content: 'DEWATA PARTY SHOP BALI - PARTY ? NO WORRIES, WE GOT YOU COVERED!'
+              content: 'Bali Fun & Cheer - PARTY ? NO WORRIES, WE GOT YOU COVERED!'
             },
             {
               hid: 'og:site_name',
               name: 'og:site_name',
-              content: 'DEWATA PARTY SHOP BALI - PARTY ? NO WORRIES, WE GOT YOU COVERED!'
+              content: 'Bali Fun & Cheer - PARTY ? NO WORRIES, WE GOT YOU COVERED!'
             },
             {
               hid: 'og:image',

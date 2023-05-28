@@ -10,15 +10,15 @@
           <div class="row align-items-center">
             <div class="col-lg-3 col-sm-4 col-md-4 col-7"> 
                 <nuxt-link to="/" data-abc="true">
-                  <img src="/images/logo.png" alt="dewata party shop" width="35" class="rounded shadow-sm">&nbsp;
+                  <img src="/images/logo.png" alt="bali funn cheer" width="35" class="rounded shadow-sm">&nbsp;
                   <template v-if="resoDetect() == 'mobile'">
-                    <span class="logo">DEWATA</span>
+                    <span class="logo">BALI</span>
                   </template>
                   <template v-if="resoDetect() == 'tablet'">
-                    <span class="logo">DEWATA SHOP </span>
+                    <span class="logo">FUN & CHEER </span>
                   </template>
                   <template v-else>
-                    <span class="logo">DEWATA PARTY SHOP</span>
+                    <span class="logo">BALI FUN & CHEER</span>
                   </template>
                 </nuxt-link>
             </div>
@@ -102,24 +102,17 @@
   <script>
     import NuxtSSRScreenSize from 'nuxt-ssr-screen-size'
     export default {
-    //data function
     data() {
         return {
           isLoading: false,
-          //state search
           search: ''
         }
       },
-      //hook "fetch"
       async fetch() {
-        //fething sliders on Rest API
         await this.$store.dispatch('web/category/getCategoriesData')
         if(this.$auth.loggedIn && this.$auth.strategy.name == 'customer') {
-
-          //fething carts on Rest API
           await this.$store.dispatch('web/cart/getCartsData')
           await this.$store.dispatch('web/cart/getCartPrice')
-
         }
       },
       mixins: [NuxtSSRScreenSize.NuxtSSRScreenSizeMixin],
@@ -128,10 +121,10 @@
           // {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "Dewata Party Shop",
+            "name": "Bali Fun & Cheer",
             "image": "",
             "@id": "",
-            "url": "https://dewatapartyshop.com",
+            "url": "https://balifunncheer.com",
             "telephone": "",
             "address": {
               "@type": "PostalAddress",
@@ -159,29 +152,21 @@
               "closes": "18:00"
             },
             "sameAs": [
-              "https://dewatapartyshop.com"
+              "https://balifunncheer.com"
             ] 
         };
       },
-      //computed
       computed: {
-        //categories
         categories() {
           return this.$store.state.web.category.categories
         },
-              //cartPrice
         cartPrice() {
           return this.$store.state.web.cart.cartPrice
         },
-
-        //cartTotal
         cartTotal() {
           return this.$store.state.web.cart.carts.length
         },
       },
-
-
-      //method
       methods: {
         searchData() {
           this.$router.push({
@@ -199,16 +184,13 @@
           } else {
             return 'pc'
           }
-        },        //method "logout"
+        },
         async logout() {
           this.isLoading = true
-          //logout auth
           await this.$auth.logout()
-          //set state
           this.$store.commit('web/cart/SET_CARTS_DATA', [])
           this.$store.commit('web/cart/SET_CART_PRICE', 0)
           this.isLoading = false
-          //redirect route customer login
           this.$router.push({
             name: 'customer-login'
           })

@@ -12,7 +12,7 @@
                     <h4>{{article.created_at}}</h4>
                     <br />
                     <div class="py-3 text-center">
-                        <img :src="article.image" alt="dewata party shop" style="width:40%" />
+                        <img :src="article.image" alt="bali funn cheer" style="width:40%" />
                     </div>
                     <div class="mb-3">
                         <span v-html="article.body"></span>
@@ -29,16 +29,16 @@
       //meta
       head() {
         return {
-          title: `BLOG - ${this.article.title} - DEWATA PARTY SHOP BALI - PARTY ? NO WORRIES, WE GOT YOU COVERED!`,
+          title: `BLOG - ${this.article.title} - Bali Fun & Cheer - PARTY ? NO WORRIES, WE GOT YOU COVERED!`,
           meta: [{
               hid: 'og:title',
               name: 'og:title',
-              content: `BLOG - ${this.article.title} - DEWATA PARTY SHOP BALI - PARTY ? NO WORRIES, WE GOT YOU COVERED!`
+              content: `BLOG - ${this.article.title} - Bali Fun & Cheer - PARTY ? NO WORRIES, WE GOT YOU COVERED!`
             },
             {
               hid: 'og:site_name',
               name: 'og:site_name',
-              content: `BLOG - ${this.article.title} - DEWATA PARTY SHOP BALI - PARTY ? NO WORRIES, WE GOT YOU COVERED!`
+              content: `BLOG - ${this.article.title} - Bali Fun & Cheer - PARTY ? NO WORRIES, WE GOT YOU COVERED!`
             },
             {
               hid: 'og:image',
@@ -48,7 +48,7 @@
             {
               hid: 'description',
               name: 'description',
-              content: `BLOG - ${this.article.title} - DEWATA PARTY SHOP BALI - PARTY ? NO WORRIES, WE GOT YOU COVERED!`
+              content: `BLOG - ${this.article.title} - Bali Fun & Cheer - PARTY ? NO WORRIES, WE GOT YOU COVERED!`
             },
           ]
         }

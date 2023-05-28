@@ -1,4 +1,4 @@
-# Dashboard For Dewata Party Shop
+# Dashboard For Bali Fun & Cheer
 
 ## Build Setup
 

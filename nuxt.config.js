@@ -5,7 +5,7 @@ export default {
   ssr: true,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'DEWATA PARTY SHOP',
+    title: 'Bali Fun & Cheer',
     htmlAttrs: {
       lang: 'en'
     },
@@ -15,16 +15,16 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
       // Facebook Meta Tags
-      { property :'og:url', content:'https://dewatapartyshop.com'},
+      { property :'og:url', content:'https://balifunncheer.com'},
       { property :'og:title', content:'Captcha'},
-      { property :'og:description', content:'Dewata Party Store sells party stuff that you guys needs to party! No worries, all is on a very good price, good quality, we got you covered!'},
-      { property :'og:image', content:'https://dewatapartyshop.com'},
+      { property :'og:description', content:'Bali Fun & Cheer sells party stuff that you guys needs to party! No worries, all is on a very good price, good quality, we got you covered!'},
+      { property :'og:image', content:'https://balifunncheer.com'},
       // Twitter Meta Tags
       { name :'twitter:card', content:'summary_large_image'},
-      { property :'twitter:domain', content:'https://dewatapartyshop.com'},
-      { property :'twitter:url', content:'https://dewatapartyshop.com'},
+      { property :'twitter:domain', content:'https://balifunncheer.com'},
+      { property :'twitter:url', content:'https://balifunncheer.com'},
       { name :'twitter:title', content:'Captcha'},
-      { name :'twitter:description', content:'Dewata Party Store sells party stuff that you guys needs to party! No worries, all is on a very good price, good quality, we got you covered!'},
+      { name :'twitter:description', content:'Bali Fun & Cheer sells party stuff that you guys needs to party! No worries, all is on a very good price, good quality, we got you covered!'},
       { name : 'google-site-verification', content:'1geetabIGzOUMnv55QDVAH_LxkoYWB2w7tffMBsDdkI'}
     ],
     link: [
@@ -43,7 +43,7 @@ export default {
     },
     {
       rel: 'canonical',
-      href: 'https://dewatapartyshop.com'
+      href: 'https://balifunncheer.com'
     },
   ],
     script: [
@@ -82,13 +82,13 @@ export default {
 
   pwa: {
     meta: {
-      title: 'DEWATA PARTY SHOP BALI - Toko perlengkapan / alat pesta, dekorasi, dll',
-      author: 'Dewata Party Shop'
+      title: 'Bali Fun & Cheer - Toko perlengkapan / alat pesta, dekorasi, dll',
+      author: 'Bali Fun & Cheer'
     },
     manifest: {
-      name: 'Dewata Party Shop Bali',
-      short_name: 'dewata party shop',
-      description: 'Official Toko Online DEWATA PARTY SHOP',
+      name: 'Bali Fun & Cheer Bali',
+      short_name: 'Bali Fun & Cheer',
+      description: 'Official Toko Online Bali Fun & Cheer',
       lang: 'en'
     },
     icon: {
@@ -182,7 +182,7 @@ export default {
     },
     {
       Disallow: '/cgi-bin/',
-      Sitemap: 'https://dewatapartyshop.com/sitemap.xml'
+      Sitemap: 'https://balifunncheer.com/sitemap.xml'
     },
 
     // UserAgent: '*',

@@ -25,10 +25,10 @@
                     <div class="col py-2" v-for="artic in articles" :key="artic.id">
                       <div class="card h-100 shadow">
                         <template v-if="artic.image == null || artic.image == '' || artic.image == 'http://localhost:8000/storage/articles'  || artic.image == 'https://pitchwind.dewatapartyshop.com/storage/articles'">
-                          <img src="/images/product_placeholder.png" alt="dewata party shop" class="card-img-top"> 
+                          <img src="/images/product_placeholder.png" alt="bali funn cheer" class="card-img-top"> 
                         </template>
                         <template v-else>
-                          <img :src="artic.image" alt="dewata party shop" class="card-img-top"> 
+                          <img :src="artic.image" alt="bali funn cheer" class="card-img-top"> 
                         </template>
                         <div class="card-body">
                           <h4 class="font-weight-semibold"> 
@@ -58,16 +58,16 @@
       //meta
       head() {
         return {
-          title: 'DEWATA PARTY SHOP BALI - PARTY ? NO WORRIES, WE GOT YOU COVERED!',
+          title: 'Bali Fun & Cheer - PARTY ? NO WORRIES, WE GOT YOU COVERED!',
           meta: [{
               hid: 'og:title',
               name: 'og:title',
-              content: 'DEWATA PARTY SHOP BALI - PARTY ? NO WORRIES, WE GOT YOU COVERED!'
+              content: 'Bali Fun & Cheer - PARTY ? NO WORRIES, WE GOT YOU COVERED!'
             },
             {
               hid: 'og:site_name',
               name: 'og:site_name',
-              content: 'DEWATA PARTY SHOP BALI - PARTY ? NO WORRIES, WE GOT YOU COVERED!'
+              content: 'Bali Fun & Cheer - PARTY ? NO WORRIES, WE GOT YOU COVERED!'
             },
             {
               hid: 'og:image',
@@ -77,7 +77,7 @@
             {
               hid: 'description',
               name: 'description',
-              content: 'DEWATA PARTY SHOP BALI - PARTY ? NO WORRIES, WE GOT YOU COVERED!'
+              content: 'Bali Fun & Cheer - PARTY ? NO WORRIES, WE GOT YOU COVERED!'
             },
           ]
         }

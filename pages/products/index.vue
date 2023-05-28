@@ -16,10 +16,10 @@
             <div class="col py-2" v-for="product in products.data" :key="product.id">
               <div class="card h-100 shadow">
                 <template v-if="product.image == null || product.image == '' || product.image == 'http://localhost:8000/storage/products'  || product.image == 'https://pitchwind.dewatapartyshop.com/storage/products'">
-                  <img src="/images/product_placeholder.png" alt="dewata party shop" class="card-img-top"> 
+                  <img src="/images/product_placeholder.png" alt="bali funn cheer" class="card-img-top"> 
                 </template>
                 <template v-else>
-                  <img :src="product.image" alt="dewata party shop" class="card-img-top"> 
+                  <img :src="product.image" alt="bali funn cheer" class="card-img-top"> 
                 </template>
                 <div class="card-body">
                   <div class="row py-2">
@@ -96,10 +96,10 @@
                   <div class="col py-2" v-for="artic in articles" :key="artic.id">
                     <div class="card h-100 shadow">
                       <template v-if="artic.image == null || artic.image == '' || artic.image == 'http://localhost:8000/storage/articles'  || artic.image == 'https://pitchwind.dewatapartyshop.com/storage/articles'">
-                        <img src="/images/product_placeholder.png" alt="dewata party shop" class="card-img-top"> 
+                        <img src="/images/product_placeholder.png" alt="bali funn cheer" class="card-img-top"> 
                       </template>
                       <template v-else>
-                        <img :src="artic.image" alt="dewata party shop" class="card-img-top"> 
+                        <img :src="artic.image" alt="bali funn cheer" class="card-img-top"> 
                       </template>
                       <div class="card-body">
                         <h4 class="font-weight-semibold"> 
@@ -128,16 +128,16 @@
       //meta
       head() {
         return {
-          title: 'Products - DEWATA PARTY SHOP BALI',
+          title: 'Products - Bali Fun & Cheer',
           meta: [{
               hid: 'og:title',
               name: 'og:title',
-              content: 'DEWATA PARTY SHOP BALI'
+              content: 'Bali Fun & Cheer'
             },
             {
               hid: 'og:site_name',
               name: 'og:site_name',
-              content: 'DEWATA PARTY SHOP BALI'
+              content: 'Bali Fun & Cheer'
             },
             {
               hid: 'og:image',
@@ -147,7 +147,7 @@
             {
               hid: 'description',
               name: 'description',
-              content: 'DEWATA PARTY SHOP BALI - Menjual Kebutuhan Acara, Pesta, Dll!'
+              content: 'Bali Fun & Cheer - Menjual Kebutuhan Acara, Pesta, Dll!'
             },
           ]
         }

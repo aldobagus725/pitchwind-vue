@@ -7,10 +7,10 @@
                     <div class="card-body text-center">
                         <nuxt-link :to="{name: 'categories-slug', params: {slug: category.slug}}">
                             <template v-if="category.image == null || category.image == '' || category.image == 'http://localhost:8000/storage/products'  || category.image == 'https://pitchwind.dewatapartyshop.com/storage/products'">
-                            <img src="/images/product_placeholder.png" alt="dewata party shop" width="100"> 
+                            <img src="/images/product_placeholder.png" alt="bali funn cheer" width="100"> 
                         </template>
                         <template v-else>
-                            <img :src="category.image" alt="dewata party shop" width="100"> 
+                            <img :src="category.image" alt="bali funn cheer" width="100"> 
                         </template>
                           <!-- <img :src="category.image" > -->
                           <hr>
@@ -33,10 +33,10 @@
                   <div class="col py-2" v-for="artic in articles" :key="artic.id">
                     <div class="card h-100 shadow">
                       <template v-if="artic.image == null || artic.image == '' || artic.image == 'http://localhost:8000/storage/articles'  || artic.image == 'https://pitchwind.dewatapartyshop.com/storage/articles'">
-                        <img src="/images/product_placeholder.png" alt="dewata party shop" class="card-img-top"> 
+                        <img src="/images/product_placeholder.png" alt="bali funn cheer" class="card-img-top"> 
                       </template>
                       <template v-else>
-                        <img :src="artic.image" alt="dewata party shop" class="card-img-top"> 
+                        <img :src="artic.image" alt="bali funn cheer" class="card-img-top"> 
                       </template>
                       <div class="card-body">
                         <h4 class="font-weight-semibold"> 
@@ -68,16 +68,16 @@
       //meta
       head() {
         return {
-          title: 'Semua Kategori - DEWATA PARTY SHOP BALI',
+          title: 'Semua Kategori - Bali Fun & Cheer',
           meta: [{
               hid: 'og:title',
               name: 'og:title',
-              content: 'Semua Kategori - DEWATA PARTY SHOP BALI'
+              content: 'Semua Kategori - Bali Fun & Cheer'
             },
             {
               hid: 'og:site_name',
               name: 'og:site_name',
-              content: 'Semua Kategori - DEWATA PARTY SHOP BALI'
+              content: 'Semua Kategori - Bali Fun & Cheer'
             },
             {
               hid: 'og:image',
@@ -87,7 +87,7 @@
             {
               hid: 'description',
               name: 'description',
-              content: 'Semua Kategori dari Produk DEWATA PARTY SHOP BALI'
+              content: 'Semua Kategori dari Produk Bali Fun & Cheer'
             },
           ]
         }
