@@ -20,7 +20,7 @@
                       <input type="file" @change="handleFileChange" class="form-control">
                     </div>
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <div class="form-group">
                           <label>NAMA PRODUCT</label>
                           <input type="text" v-model="product.title" placeholder="Masukkan Nama Product"
@@ -30,17 +30,27 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <div class="form-group">
-                            <label>BARCODE</label>
-                            <input type="text" v-model="product.barcode" placeholder="Masukkan Barcode Product"
+                          <label>PRODUCT SHORT NAME</label>
+                          <input type="text" v-model="product.title_short" placeholder="Masukkan Nama Product (PENDEK)"
                             class="form-control">
-                            <div v-if="validation.barcode" class="mt-2">
+                          <div v-if="validation.title_short" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.title_short[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>BARCODE <i>(OPTIONAL, IF EMPTY WILL BE CREATED AUTOMATICALLY)</i></label>
+                          <input type="text" v-model="product.barcode" placeholder="Masukkan Barcode Produk"
+                            class="form-control">
+                          <div v-if="validation.barcode" class="mt-2">
                             <b-alert show variant="danger">{{ validation.barcode[0] }}</b-alert>
-                            </div>
+                          </div>
                         </div>
-                        </div>
-                      <div class="col-md-4">
+                      </div>
+                      <div class="col-md-3">
                         <div class="form-group">
                           <label>WEIGHT (Gram)</label>
                           <input type="number" v-model="product.weight" placeholder="Masukkan Berat Product (Gram)"
@@ -171,6 +181,7 @@
           product: {
             image: '',
             title: '',
+            title_short: '',
             category_id: '',
             description: '',
             weight: '',
@@ -203,6 +214,7 @@
       //mounted
       mounted() {
           this.product.title       = this.$store.state.admin.product.product.title
+          this.product.title_short       = this.$store.state.admin.product.product.title_short
           this.product.category_id = this.$store.state.admin.product.product.category_id
           this.product.weight      = this.$store.state.admin.product.product.weight
           this.product.barcode       = this.$store.state.admin.product.product.barcode
@@ -238,6 +250,7 @@
             formData.append('image', this.product.image)
           }
           formData.append('title', this.product.title)
+          formData.append('title_short', this.product.title_short)
           formData.append('category_id', this.product.category_id)
           formData.append('description', this.product.description)
           formData.append('weight', this.product.weight)

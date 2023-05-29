@@ -51,11 +51,11 @@
                         <div class="col">
                           <div class="row">
                             <div class="col text-center">
-                              <p style="padding:0;margin:0;font-weight:bold;font-size:1.26rem;font-family: Arial, Helvetica, sans-serif">{{ row.item.barcode }} - {{subStrProductTitle(row.item.title)}}</p>
-                              <barcode :value="row.item.barcode" :margin="0" :displayValue="false" format="CODE39" :height="65" style="font-family: Arial, Helvetica, sans-serif" :width="3">
+                              <p style="padding:0;margin:0;font-weight:bold;font-size:1.25rem;font-family: Arial, Helvetica, sans-serif">{{ row.item.barcode }} - {{subStrProductTitle(row.item.title_short)}}</p>
+                              <barcode :value="row.item.barcode" :margin="0" :displayValue="false" format="CODE39" :height="63" style="font-family: Arial, Helvetica, sans-serif" :width="3">
                                 ERROR!
                               </barcode>
-                              <p style="padding:0;margin:0;font-weight:bold;font-size:1.26rem;font-family: Arial, Helvetica, sans-serif">{{uangIndonesia(row.item.price)}}</p>
+                              <p style="padding:0;margin:0;font-weight:bold;font-size:1.25rem;font-family: Arial, Helvetica, sans-serif">{{uangIndonesia(row.item.price)}}</p>
                             </div>
                           </div>
                         </div>

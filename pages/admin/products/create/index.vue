@@ -24,7 +24,7 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <div class="form-group">
                           <label>NAMA PRODUCT</label>
                           <input type="text" v-model="product.title" placeholder="Masukkan Nama Product"
@@ -34,7 +34,17 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>PRODUCT SHORT NAME</label>
+                          <input type="text" v-model="product.title_short" placeholder="Masukkan Nama Product (PENDEK)"
+                            class="form-control">
+                          <div v-if="validation.title_short" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.title_short[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
                         <div class="form-group">
                           <label>BARCODE <i>(OPTIONAL, IF EMPTY WILL BE CREATED AUTOMATICALLY)</i></label>
                           <input type="text" v-model="product.barcode" placeholder="Masukkan Barcode Produk"
@@ -44,7 +54,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <div class="form-group">
                           <label>WEIGHT (Gram)</label>
                           <input type="number" v-model="product.weight" placeholder="Masukkan Berat Product (Gram)"
@@ -169,6 +179,7 @@
           product: {
             image: '',
             title: '',
+            title_short: '',
             category_id: '',
             description: '',
             barcode: '',
@@ -220,6 +231,7 @@
           let formData = new FormData();
           formData.append('image', this.product.image)
           formData.append('title', this.product.title)
+          formData.append('title_short', this.product.title_short)
           formData.append('category_id', this.product.category_id)
           formData.append('description', this.product.description)
           formData.append('weight', this.product.weight)
@@ -247,7 +259,7 @@
             })
             .catch(error => {
               console.log(error)
-              console.log(error.response.data.error)
+              // console.log(error.response.data.error)
               this.validation = JSON.parse(error.response.data.error)
               var new_error = ''
               for(let x in this.validation){
