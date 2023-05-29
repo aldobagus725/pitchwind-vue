@@ -1,5 +1,6 @@
 <template>
-    <footer class="pt-5" style="background: rgb(255, 255, 255); border-top: 4px solid rgba(255,143,160,255);">
+    <!-- <footer class="pt-5" style="background: rgb(255, 255, 255); border-top: 4px solid rgba(255,143,160,255);"> -->
+    <footer class="pt-5" style="background: rgb(255, 255, 255); border-top: 4px solid #9100dc;">
       <div class="container">
         <div class="row">
           <div class="col-md-5 mb-4">

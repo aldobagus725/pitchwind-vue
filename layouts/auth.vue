@@ -1,8 +1,8 @@
 <template>
-    <div class="c-app flex-row align-items-center">
+    <div class="c-app flex-row align-items-center" style="background-color: #9100dc;">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-4">
+          <div class="col-md-6">
   
               <Nuxt />
   

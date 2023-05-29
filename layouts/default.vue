@@ -5,7 +5,7 @@
       <!-- end header -->
   
       <!-- content -->
-      <Nuxt />
+      <Nuxt/>
       <!-- end content -->
   
       <!-- footer -->

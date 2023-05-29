@@ -2,8 +2,9 @@
   <div class="fade-in">
     <div class="text-center mb-3">
       <nuxt-link to="/" class="text-black">
-        <img src="/images/logo.png" alt="bali funn cheer" width="250" style="margin:1rem" class="shadow rounded-circle">
-        <h3 class="mt-1 font-weight-bold">Bali Fun & Cheer</h3>
+        <!-- <img src="/images/logo.png" alt="bali funn cheer" width="250" style="margin:1rem" class="shadow rounded-circle"> -->
+        <img src="/images/logo.png" alt="bali funn cheer" width="250" style="margin:1rem" class="shadow rounded">
+        <h3 class="mt-1 font-weight-bold text-white">Bali Fun & Cheer</h3>
       </nuxt-link>
     </div>
     <div class="card-group shadow">

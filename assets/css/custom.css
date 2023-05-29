@@ -9,7 +9,8 @@ a {
 }
 
 a:hover {
-    color: rgba(62,187,255,255);
+    /* color: rgba(62,187,255,255); */
+    color: #9100dc;
 }
 
 .header-main {
@@ -18,7 +19,8 @@ a:hover {
     padding-bottom: 7px;
     /* background-color: #e64a19 */
     /* background-color: white; */
-    background-color: rgba(62,187,255,255);
+    /* background-color: rgba(62,187,255,255); */
+    background-color: #9100dc;
     border-color: transparent;
     /* color:black; */
 }
@@ -77,28 +79,30 @@ a:hover {
 
 .search-button {
     /* color: #e64a19; */
-    color: rgba(62,187,255,255);
+    /* color: rgba(62,187,255,255); */
+    color: #9100dc;
     background-color: #ffffff;
     border-color: #ffffff
 }
 
 .search-button:hover {
     /* color: #e64a19; */
-    color: rgba(62,187,255,255);
+    /* color: rgba(62,187,255,255); */
+    color: #9100dc;
     background-color: #ffffff;
     border-color: #ffffff
 }
 
 .btn-warning {
     color: #fff;
-    background-color: rgba(62,187,255,255)!important;
-    border-color:rgba(62,187,255,255)!important;
+    background-color: #9100dc!important;
+    border-color:#9100dc!important;
 }
 
 .btn-warning:hover {
     color: #fff;
-    background-color: rgba(62,187,255,255)!important;
-    border-color: rgba(62,187,255,255)!important
+    background-color: #9100dc!important;
+    border-color: #9100dc!important
 }
 
 .btn-warning-2 {
@@ -117,8 +121,11 @@ a:hover {
     color: #fff!important;
 }
 
-.border-top-orange {
+/* .border-top-orange {
     border-top: 3px solid #00ACFF!important;
+} */
+.border-top-orange {
+    border-top: 3px solid #9100dc!important;
 }
 
 .navbar-main {
@@ -248,14 +255,16 @@ hr.solid {
 .dropdown-item.active, .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #e64a19;
+    background-color: #9100dc;
+    /* background-color: #e64a19; */
     border-radius: .5rem;
 }
 
 .dropdown-item:focus, .dropdown-item:hover {
     color: #fff;
     text-decoration: none;
-    background-color: #e64a19;
+    background-color: #9100dc;
+    /* background-color: #e64a19; */
     border-radius: .5rem;
 }
 
@@ -299,7 +308,8 @@ hr.solid {
 }
 
 .bg-cart {
-    background-color: #e64a19;
+    /* background-color: #e64a19; */
+    background-color: #9100dc;
     color: #fff
 }
 
