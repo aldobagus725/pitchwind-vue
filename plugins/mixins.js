@@ -36,7 +36,7 @@ const mixin = {
             if (title_length >= 10){
                 const noVowels = title.replace(/[aeiou]/gi, '');
                 // console.log(noVowels)
-                var result = noVowels.substr(0,25)
+                var result = noVowels.substr(0,20)
                 return result
             } else {
                 return title
