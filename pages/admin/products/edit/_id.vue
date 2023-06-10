@@ -20,7 +20,7 @@
                       <input type="file" @change="handleFileChange" class="form-control">
                     </div>
                     <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label>NAMA PRODUCT</label>
                           <input type="text" v-model="product.title" placeholder="Masukkan Nama Product"
@@ -30,7 +30,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-3">
+                      <!-- <div class="col-md-4">
                         <div class="form-group">
                           <label>PRODUCT SHORT NAME</label>
                           <input type="text" v-model="product.title_short" placeholder="Masukkan Nama Product (PENDEK)"
@@ -39,8 +39,19 @@
                             <b-alert show variant="danger">{{ validation.title_short[0] }}</b-alert>
                           </div>
                         </div>
+                      </div> -->
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label>PRODUCT SHORT NAME <i>(IF EMPTY WILL BE CREATED AUTOMATICALLY)</i></label>
+                          <input type="text" v-model="product.title_short" placeholder="Masukkan Nama Product (PENDEK)"
+                            class="form-control">
+                          <div v-if="validation.title_short" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.title_short[0] }}</b-alert>
+                          </div>
+                          <p>Recommended : {{ subStrProductTitle(product.title) }}</p>
+                        </div>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label>BARCODE <i>(OPTIONAL, IF EMPTY WILL BE CREATED AUTOMATICALLY)</i></label>
                           <input type="text" v-model="product.barcode" placeholder="Masukkan Barcode Produk"
@@ -48,6 +59,40 @@
                           <div v-if="validation.barcode" class="mt-2">
                             <b-alert show variant="danger">{{ validation.barcode[0] }}</b-alert>
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>CATEGORY</label>
+                          <select class="form-control" v-model="product.category_id">
+                            <option value="">-- select category --</option>
+                            <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
+                          </select>
+                          <div v-if="validation.category_id" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.category_id[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>MINIMAL STOCK</label>
+                          <input type="number" v-model="product.minimum_stock_alert" placeholder="Masukkan Minimal Stock Product"
+                            class="form-control">
+                          <div v-if="validation.minimum_stock_alert" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.minimum_stock_alert[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>PUBLISHED</label>
+                          <select class="form-control" v-model="product.published">
+                            <!-- <option value="">-- PILIH CATEGORY --</option> -->
+                            <option :value="1">YES</option>
+                            <option :value="0">NO</option>
+                          </select>
                         </div>
                       </div>
                       <div class="col-md-3">
@@ -60,52 +105,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
-  
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                              <label>CATEGORY</label>
-                              <select class="form-control" v-model="product.category_id">
-                                <option value="">-- select category --</option>
-                                <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
-                              </select>
-                              <div v-if="validation.category_id" class="mt-2">
-                                <b-alert show variant="danger">{{ validation.category_id[0] }}</b-alert>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                              <label>MINIMAL STOCK</label>
-                              <input type="number" v-model="product.minimum_stock_alert" placeholder="Masukkan Minimal Stock Product"
-                                class="form-control">
-                              <div v-if="validation.minimum_stock_alert" class="mt-2">
-                                <b-alert show variant="danger">{{ validation.minimum_stock_alert[0] }}</b-alert>
-                              </div>
-                            </div>
-                          </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label>PUBLISHED</label>
-                          <select class="form-control" v-model="product.published">
-                            <!-- <option value="">-- PILIH CATEGORY --</option> -->
-                            <option :value="1">YES</option>
-                            <option :value="0">NO</option>
-                          </select>
-                        </div>
-                      </div>
 
-                    </div>
-  
-                    <div class="form-group">
-                      <label>DESCRIPTION</label>
-                      <client-only placeholder="loading...">
-                        <ckeditor-nuxt v-model="product.description" :config="editorConfig" />
-                      </client-only>
-                      <div v-if="validation.description" class="mt-2">
-                        <b-alert show variant="danger">{{ validation.description[0] }}</b-alert>
-                      </div>
                     </div>
                     <div class="row">
                       <div class="col-md-4">
@@ -141,7 +141,19 @@
                         </div>
                       </div>
                     </div>
-  
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <label>DESCRIPTION</label>
+                          <client-only placeholder="loading...">
+                            <ckeditor-nuxt v-model="product.description" :config="editorConfig" />
+                          </client-only>
+                          <div v-if="validation.description" class="mt-2">
+                            <b-alert show variant="danger">{{ validation.description[0] }}</b-alert>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <button class="btn btn-info mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i>
                       UPDATE</button>
                     <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i>
@@ -250,7 +262,8 @@
             formData.append('image', this.product.image)
           }
           formData.append('title', this.product.title)
-          formData.append('title_short', this.product.title_short)
+          // formData.append('title_short', this.product.title_short)
+          formData.append('title_short', !this.product.title_short ? this.subStrProductTitle(this.product.title) : this.product.title_short)
           formData.append('category_id', this.product.category_id)
           formData.append('description', this.product.description)
           formData.append('weight', this.product.weight)

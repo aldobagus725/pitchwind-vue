@@ -6,12 +6,10 @@
             <div class="col-md-12">
               <div class="card border-0 rounded shadow-sm border-top-orange">
                 <div class="card-header">
-                  <span class="font-weight-bold"><i class="fa fa-folder"></i> ADD NEW PRODUK</span>
+                  <span class="font-weight-bold"><i class="fa fa-folder"></i> ADD NEW PRODUCT</span>
                 </div>
                 <div class="card-body">
-  
                   <form @submit.prevent="uploadProduct">
-  
                     <div class="form-group">
                       <label>FILE IMPORT (HARUS XLS, XLSX, CSV!)</label>
                       <input type="file" @change="handleFileChange" class="form-control">
@@ -21,9 +19,7 @@
                     </div>
                     <button class="btn btn-info mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i>
                       UPLOAD</button>
-  
                   </form>
-                  
                 </div>
               </div>
             </div>
@@ -32,49 +28,28 @@
       </div>
     </main>
   </template>
-  
   <script>
     export default {
-  
-      //layout
       layout: 'admin',
-  
-      //meta
       head() {
         return {
-          title: 'Upload New Produk - Administrator',
+          title: 'Upload New Product - Administrator',
         }
       },
-  
       data() {
         return {
-          //state category
-          category: {
+          import: {
             file: '',
           },
-          //state validation
           validation: []
         }
       },
-  
       methods: {
-  
-        //handle file upload
         handleFileChange(e) {
-  
-          //get image
-          let file = this.category.file = e.target.files[0]
-  
-          //check fileType
+          let file = this.import.file = e.target.files[0]
           if (!file.type.match('application.*')) {
-  
-            //if fileType not allowed, then clear value and set null
             e.target.value = ''
-  
-            //set state "category.image" to null
-            this.category.file = null
-  
-            //show sweet alert
+            this.import.file = null
             this.$swal.fire({
               title: 'OOPS!',
               text: "Format File Tidak Didukung! (Harus XLSX, XLS, ATAU CSV)",
@@ -83,24 +58,12 @@
               timer: 2000
             })
           }
-  
         },
-  
-        //method "storeCategory"
         async uploadProduct() {
-  
-          //define formData
           let formData = new FormData();
-  
-          formData.append('file', this.category.file)
-  
-          //sending data to action "storeCategory" vuex
+          formData.append('file', this.import.file)
           await this.$store.dispatch('admin/product/uploadProduct', formData)
-            
-            //success
             .then(() => {
-  
-              //sweet alert
               this.$swal.fire({
                 title: 'SUCCESS!',
                 text: "Upload Berhasil!",
@@ -108,26 +71,14 @@
                 showConfirmButton: false,
                 timer: 2000
               })
-  
-              //redirect route "admin-categories"
               this.$router.push({
                 name: 'admin-products'
               })
-  
             })
-  
-            //error
             .catch(error => {
-  
-              //assign error to state "validation"
               this.validation = error.response.data
             })
         }
       }
-  
     }
   </script>
-  
-  <style>
-  
-  </style>

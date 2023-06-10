@@ -38,8 +38,13 @@
                         <div class="btn-group">
                           <nuxt-link :to="{name: 'admin-products-create'}" class="btn btn-primary">
                             <i class="fa fa-plus-circle"></i> ADD NEW</nuxt-link>
-                            <nuxt-link :to="{name: 'admin-products-upload'}" class="btn btn-info">
-                              <i class="fas fa-upload"></i> IMPORT</nuxt-link>
+                          <!-- <nuxt-link :to="{name: 'admin-products-upload'}" class="btn btn-info">
+                            <i class="fas fa-upload"></i> IMPORT</nuxt-link> -->
+                          <!-- <nuxt-link :to="{name: 'admin-products-upload'}" class="btn btn-info">
+                            <i class="fas fa-upload"></i> IMPORT</nuxt-link> -->
+                          <button class="btn btn-info" data-toggle="modal" data-target="#importModal">
+                            <i class="fas fa-upload"></i> IMPORT
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -100,6 +105,54 @@
                     :per-page="products.per_page" @change="changePage" aria-controls="my-table"></b-pagination>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade shadow" data-backdrop="false" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="importModalLabel">IMPORT PRODUCT</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <nuxt-link :to="{name: 'admin-products-upload_new'}">
+                <div class="card mb-3 choice-import" style="cursor: pointer">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-sm-4">
+                        <img src="/300x300_import_update_trans.png" style="width: 75%" class="rounded-0" />
+                      </div>
+                      <div class="col-sm-8">
+                        <h4>Add New Product</h4>
+                        <h6>Add New Items to your products list. Does not effect other
+                          items</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nuxt-link>
+              <nuxt-link :to="{name: 'admin-products-upload_edit'}">
+                <div class="card mb-3 choice-import" style="cursor: pointer">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-sm-4">
+                        <img src="/300x300_import_new_trans.png" style="width: 75%" class="rounded-0" />
+                      </div>
+                      <div class="col-sm-8">
+                        <h4>Update Product</h4>
+                        <h6>Update items to in products list.</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nuxt-link>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
             </div>
           </div>
         </div>
@@ -251,3 +304,13 @@
   
   }
   </script>
+  <style>
+  .choice-import:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+    text-decoration: none;
+  }
+  .choice-import {
+    transition: box-shadow 0.3s;
+    text-decoration: none;
+  }
+  </style>

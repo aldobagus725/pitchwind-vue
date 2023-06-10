@@ -12,7 +12,7 @@
         <!-- header -->
         <Header />
         <!-- end header -->
-        <div class="c-body py-3">
+        <div class="c-body">
           <!-- content -->
           <Nuxt />
           <!-- end content -->

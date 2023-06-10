@@ -81,7 +81,19 @@ export const actions = {
     },
     uploadProduct({ dispatch, commit }, payload) {
         return new Promise((resolve, reject) => {
-            this.$axios.post('/api/v1/admin/import-product', payload)
+            this.$axios.post('/api/v1/admin/import-product-new', payload)
+            .then(() => {
+                dispatch('getProductsData')
+                resolve()
+            })
+            .catch(error => {
+                reject(error)
+            })
+        })
+    },
+    uploadProductUpdate({ dispatch, commit }, payload) {
+        return new Promise((resolve, reject) => {
+            this.$axios.post('/api/v1/admin/import-product-update', payload)
             .then(() => {
                 dispatch('getProductsData')
                 resolve()

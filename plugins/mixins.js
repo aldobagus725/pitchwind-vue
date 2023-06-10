@@ -33,10 +33,10 @@ const mixin = {
         },
         subStrProductTitle(title){
             var title_length = title.length
-            if (title_length >= 30){
-                // const noVowels = title.replace(/[aeiou]/gi, '');
+            if (title_length >= 10){
+                const noVowels = title.replace(/[aeiou]/gi, '');
                 // console.log(noVowels)
-                var result = title.substr(0,30)
+                var result = noVowels.substr(0,25)
                 return result
             } else {
                 return title
