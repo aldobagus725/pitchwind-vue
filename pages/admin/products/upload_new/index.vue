@@ -76,12 +76,15 @@
               })
             })
             .catch(error => {
-              this.$swal.fire({
-                title: 'ERROR!',
-                text: error.response.data.error,
-                icon: 'error',
-                showConfirmButton: false,
-              })
+              var mamang = error.response.data.error
+              // var mamangdua = mamang.substring(0, 150)
+                this.$swal.fire({
+                  title: 'ERROR!',
+                  text: mamang,
+                  // html: true,
+                  icon: 'error',
+                  showConfirmButton: true,
+                })
               // this.validation = error.response.data
             })
         }
