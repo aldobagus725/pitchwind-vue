@@ -56,11 +56,11 @@
                         <div class="col">
                           <div class="row">
                             <div class="col">
-                              <p style="color:black;padding:0;margin:0;font-weight:bold;font-size:1.27rem;font-family: Arial, Helvetica, sans-serif" class="text-center">{{subStrProductTitle(row.item.title_short)}}</p>
-                              <barcode :value="row.item.barcode" :margin="0" :displayValue="false" format="CODE39" :height="58" style="font-family: Arial, Helvetica, sans-serif" :width="3">
+                              <p style="color:black;padding:0;margin:0;font-weight:700;font-size:1.27rem;font-family: Arial, Helvetica, sans-serif" class="text-center">{{subStrProductTitle(row.item.title_short)}}</p>
+                              <barcode :value="row.item.barcode" :margin="0" :displayValue="false" format="CODE39" :height="57" style="font-family: Arial, Helvetica, sans-serif" :width="3">
                                 ERROR!
                               </barcode>
-                              <p style="color:black;padding:0;margin:0;font-weight:bold;font-size:1.27rem;font-family: Arial, Helvetica, sans-serif" class="text-center">{{ row.item.barcode }} - {{uangIndonesia(row.item.price)}}</p>
+                              <p style="color:black;padding:0;margin:0;font-weight:900;font-size:1.28rem;font-family: Arial, Helvetica, sans-serif" class="text-center">{{ row.item.barcode }} - {{uangIndonesia(row.item.price)}}</p>
                             </div>
                           </div>
                         </div>

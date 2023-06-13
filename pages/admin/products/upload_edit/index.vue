@@ -76,8 +76,15 @@
             })
           })
           .catch(error => {
-            this.validation = error.response.data
-          })
+              this.$swal.fire({
+                title: 'ERROR!',
+                text: error.response.data.error,
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2000
+              })
+              // this.validation = error.response.data
+            })
       }
     }
   }
