@@ -8,9 +8,9 @@
             <hr style="border-top: 3px solid rgb(226, 232, 240); border-radius: 0.5rem;">
             <p> Bali Fun & Cheer sells party stuff that you guys needs to party! No worries, all is on a very good price, good quality, we got you covered! </p>
             <hr style="border-top: 2px solid rgb(226, 232, 240); border-radius: 0.5rem;">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d986.1702625840271!2d115.16950568811943!3d-8.626586899610627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd239276abcb9c7%3A0x46ab523f28add558!2sRumah%20Ina!5e0!3m2!1sen!2sid!4v1665896017097!5m2!1sen!2sid" width="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15777.99595946485!2d115.1535944!3d-8.644!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23915e1f88967%3A0x8cd39696d5e3bd08!2sBali%20Fun%20%26%20Cheer!5e0!3m2!1sid!2sid!4v1686973946905!5m2!1sid!2sid" width="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <p>
-              Alamat : Blok CC 75, Jl. Perum Dalung Permai, Kerobokan Kaja, Kuta Utara, Badung Regency, Bali 80361
+              Alamat : Jl. Pantai Berawa No.22, Tibubeneng, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
             </p>
           </div>
           <div class="col-md-3 mb-4">
@@ -60,17 +60,17 @@
             <h4 class="font-weight-bold">OPERATIONALS</h4>
             <hr style="border-top: 3px solid rgb(226, 232, 240); border-radius: 0.5rem;">
             <p><i class="fa fa-clock"></i> OPENS FROM : <br><br> 
-              <strong>Monday - Saturday</strong> ( 10 AM s/d 6 PM ) <br> 
+              <strong>Monday - Saturday</strong> ( 10 AM s/d 7 PM ) <br> 
               <strong>CLOSED ON SUNDAY</strong> 
             </p>
-            <p><i class="fa fa-clock"></i> Hubungi Kami : <br><br> 
+            <p><i class="fa fa-clock"></i> Contact Us : <br><br> 
               <a href="tel:+6281333267597" class="alert-link">PHONE / SMS : +6281333267597 </a>
               <br> 
-              <a href="https://wa.me/6281333267597?text=Saya%20mau%20order%20barang%20di%20Dewata%20Party%20Shop" class="alert-link">Whatsapp : +6281333267597 </a>
+              <a href="https://wa.me/6281333267597?text=Saya%20mau%20order%20barang%20di%20Bali%20Fun%20n%20Cheer" class="alert-link">Whatsapp : +6281333267597 </a>
               <br>
-              <a href="https://www.instagram.com/dewatapartyshop_bali/" class="alert-link">Instagram : @dewatapartyshop_bali </a>
+              <!-- <a href="https://www.instagram.com/dewatapartyshop_bali/" class="alert-link">Instagram : @dewatapartyshop_bali </a> -->
               <br> 
-              <a href="https://linktr.ee/dewatapartyshop_bali" class="alert-link">LinkTree</a>
+              <!-- <a href="https://linktr.ee/dewatapartyshop_bali" class="alert-link">LinkTree</a> -->
               <br>  
             </p>
           </div>
