@@ -2,7 +2,7 @@
     <main class="c-main">
       <div class="container-fluid">
         <div class="fade-in">
-          <div class="row" style="">
+          <div class="row">
             <div class="col-6 col-lg-3">
               <div class="card border-0 rounded shadow overflow-hidden">
                 <div class="card-body p-0 d-flex align-items-center">

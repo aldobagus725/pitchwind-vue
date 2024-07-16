@@ -25,18 +25,18 @@
             <div class="col-lg-4 col-xl-5 col-sm-8 col-md-4 d-none d-md-block">
               <div class="search-wrap">
                 <div class="input-group w-100"> 
-                  <input type="text" @keypress.enter="searchData()" class="form-control search-form" style="width:55%;" placeholder="What do you want to buy?">
+                  <input type="text" @keypress.enter="searchData()" v-model="search" class="form-control search-form" style="width:55%;" placeholder="Search Product....">
                   <div class="input-group-append"> 
                     <button @click="searchData()" class="btn btn-info search-button"> <i class="fa fa-search"></i> </button>  
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-5 col-xl-4 col-sm-8 col-md-4 col-5">
+            <!-- <div class="col-lg-5 col-xl-4 col-sm-8 col-md-4 col-5">
               <div class="d-flex justify-content-end">
                 <nuxt-link :to="{name: 'carts'}" class="btn search-button btn-md d-md-block ml-4"><i class="fa fa-shopping-cart"></i> <span class="ml-2">{{ cartTotal }}</span> | Rp. {{ formatPrice(cartPrice) }}</nuxt-link>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </section>
@@ -67,38 +67,37 @@
                 </div>
               </li>
               <li class="nav-item"> <nuxt-link :to="{name: 'products'}" class="nav-link" data-abc="true"><i class="fa fa-shopping-bag"></i> PRODUCTS</nuxt-link> </li>
-              <li class="nav-item"> <nuxt-link :to="{name: 'about'}" class="nav-link" data-abc="true"> <i class="fa fa-info-circle"></i> ABOUT </nuxt-link></li>
-              <li class="nav-item"> <nuxt-link :to="{name: 'contact'}" class="nav-link" data-abc="true"> <i class="fa fa-comments"></i> CONTACTS </nuxt-link> </li>
-              <li class="nav-item"> <nuxt-link :to="{name: 'articles'}" class="nav-link" data-abc="true"> <i class="fa fa-bars "></i> BLOG </nuxt-link> </li>
-              <li class="nav-item"> <nuxt-link :to="{name: 'privacy'}" class="nav-link" data-abc="true"> <i class="fa fa-user-secret "></i> PRIVACY </nuxt-link> </li>
-              <li class="nav-item"> <nuxt-link :to="{name: 'tos'}" class="nav-link" data-abc="true"> <i class="fa fa-file-alt "></i> ToS </nuxt-link> </li>
+              <!-- <li class="nav-item"> <nuxt-link :to="{name: 'about'}" class="nav-link" data-abc="true"> <i class="fa fa-info-circle"></i> ABOUT </nuxt-link></li> -->
+              <!-- <li class="nav-item"> <nuxt-link :to="{name: 'contact'}" class="nav-link" data-abc="true"> <i class="fa fa-comments"></i> CONTACTS </nuxt-link> </li> -->
+              <!-- <li class="nav-item"> <nuxt-link :to="{name: 'articles'}" class="nav-link" data-abc="true"> <i class="fa fa-bars "></i> BLOG </nuxt-link> </li> -->
+              <!-- <li class="nav-item"> <nuxt-link :to="{name: 'privacy'}" class="nav-link" data-abc="true"> <i class="fa fa-user-secret "></i> PRIVACY </nuxt-link> </li> -->
+              <!-- <li class="nav-item"> <nuxt-link :to="{name: 'tos'}" class="nav-link" data-abc="true"> <i class="fa fa-file-alt "></i> ToS </nuxt-link> </li> -->
             </ul>
-            <ul class="navbar-nav ml-auto">
+            <!-- <ul class="navbar-nav ml-auto">
               <li class="nav-item dropdown" v-if="!$auth.loggedIn">
                 <nuxt-link :to="{name: 'customer-login'}" class="nav-link" href="#" role="button" aria-expanded="false"> <i class="fa fa-sign-in-alt"></i>
                   LOGIN</nuxt-link>
               </li>
               <li v-if="$auth.loggedIn" class="nav-item dropdown text-light"> <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                 data-abc="true" aria-expanded="false"> <i class="fa fa-user-circle"></i> {{$auth.user.name}} </a>
-              <div class="dropdown-menu">
-                <nuxt-link :to="{name: 'customer-dashboard'}" class="nav-link" role="button" aria-expanded="false"> <i class="fa fa-tachometer-alt"></i>
-                  DASHBOARD</nuxt-link>
-                <nuxt-link :to="{name: 'customer-invoices'}" class="nav-link" role="button" aria-expanded="false">
-                  <i class="fa fa-shopping-cart"></i> ORDERS
-                </nuxt-link>
-                <a @click="logout" class="nav-link" role="button" style="cursor: pointer;"> <i class="fa fa-sign-out-alt"></i> LOGOUT <div v-show="isLoading" class="spinner-border text-secondary" role="status">
-                  
+                <div class="dropdown-menu">
+                  <nuxt-link :to="{name: 'customer-dashboard'}" class="nav-link" role="button" aria-expanded="false"> <i class="fa fa-tachometer-alt"></i>
+                    DASHBOARD</nuxt-link>
+                  <nuxt-link :to="{name: 'customer-invoices'}" class="nav-link" role="button" aria-expanded="false">
+                    <i class="fa fa-shopping-cart"></i> ORDERS
+                  </nuxt-link>
+                  <a @click="logout" class="nav-link" role="button" style="cursor: pointer;"> <i class="fa fa-sign-out-alt"></i> LOGOUT <div v-show="isLoading" class="spinner-border text-secondary" role="status">
+                    
+                  </div>
+                  </a>
                 </div>
-                </a>
-              </div>
-            </li>
-            </ul>
+              </li>
+            </ul> -->
           </div>
         </div>
       </nav>
     </header>
   </template>
-  
   <script>
     import NuxtSSRScreenSize from 'nuxt-ssr-screen-size'
     export default {

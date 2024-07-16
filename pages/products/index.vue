@@ -14,7 +14,7 @@
         <template v-else>
           <div class="row row-cols-2 row-cols-md-5 g-1">
             <div class="col py-2" v-for="product in products.data" :key="product.id">
-              <div class="card h-100 shadow">
+              <div class="card h-100 shadow-sm">
                 <template v-if="product.image == null || product.image == '' || product.image == 'http://localhost:8000/storage/products'  || product.image == 'https://pitchwind.dewatapartyshop.com/storage/products'">
                   <img src="/images/product_placeholder.png" alt="bali funn cheer" class="card-img-top"> 
                 </template>
@@ -22,7 +22,7 @@
                   <img :src="product.image" alt="bali funn cheer" class="card-img-top"> 
                 </template>
                 <div class="card-body">
-                  <div class="row py-2">
+                  <!-- <div class="row py-2">
                     <div class="col text-right">
                       <template v-if="product.stock == 0">
                         <h6 class="mb-0 font-weight-semibold">
@@ -46,7 +46,7 @@
                           </h6>
                       </template>
                     </div>
-                  </div>
+                  </div> -->
                   <h6 class="font-weight-semibold"> 
                     <nuxt-link :to="{name: 'products-slug', params: {slug: product.slug}}" data-abc="true">
                       {{ subStrTitle(product.title) }}
@@ -59,66 +59,18 @@
                     </span>
                     <s class="text-red">Rp {{ formatPrice(product.price) }}</s>
                   </h6>
-                  <client-only>
-                    <div class="row py-2 align-items-center">
-                      <div class="col">
-                        <i class="fas fa-star text-danger"></i> <strong>{{parseFloat(product.reviews_avg_rating == null ? 0 : product.reviews_avg_rating)}}</strong>
-                        &nbsp;
-                        |
-                        &nbsp;
-                        <i class="fas fa-comment-alt text-secondary"></i> {{ product.reviews_count }}
-                        <!-- <vue-star-rating :rating="parseFloat(product.reviews_avg_rating)" :increment="0.5" :star-size="14" :read-only="true" :show-rating="true" :inline="true"></vue-star-rating>  -->
-                      </div>
-                    </div>
-                  </client-only>
+                  <a :href="askOnWhatsApp(product.title)" target="_blank" class="btn btn-success text-white fw-bold"><i class="fab fa-whatsapp"></i>&nbsp;ASK </a>
                 </div>
               </div>
             </div>
           </div>
         </template>
-          <!-- pagination -->
+        <!-- pagination -->
         <div class="row justify-content-center mt-4 mb-4">
             <div class="text-center">
                 <b-pagination align="center" :value="products.current_page" :total-rows="products.total"
                 :per-page="products.per_page" @change="changePage" aria-controls="my-table"></b-pagination>
             </div>
-        </div>
-        <div class="container-fluid py-3">
-          <div class="row">
-            <div class="col">
-              <h5 class="text-uppercase">BLOG</h5>
-              <!-- Solid divider -->
-              <hr class="solid">
-              <template v-if="articles.length == 0 || articles == null">
-              </template>
-              <template v-else>
-                <div class="row row-cols-2 row-cols-md-4 g-1">
-                  <div class="col py-2" v-for="artic in articles" :key="artic.id">
-                    <div class="card h-100 shadow">
-                      <template v-if="artic.image == null || artic.image == '' || artic.image == 'http://localhost:8000/storage/articles'  || artic.image == 'https://pitchwind.dewatapartyshop.com/storage/articles'">
-                        <img src="/images/product_placeholder.png" alt="bali funn cheer" class="card-img-top"> 
-                      </template>
-                      <template v-else>
-                        <img :src="artic.image" alt="bali funn cheer" class="card-img-top"> 
-                      </template>
-                      <div class="card-body">
-                        <h4 class="font-weight-semibold"> 
-                          <nuxt-link :to="{name: 'articles-slug', params: {slug: artic.slug}}" data-abc="true">
-                            {{ subStrTitle(artic.title) }}
-                          </nuxt-link> 
-                        </h4> 
-                        <h6 class="mb-0" style="color:black;">{{artic.created_at}}</h6>
-                        <br />
-                        <p class="mb-2" style="color:grey;">
-                            <span v-html="subStrText(stripHtml(artic.body))"></span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </template>
-            </div>
-          </div>
         </div>
       </div>
     </div>

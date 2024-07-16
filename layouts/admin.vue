@@ -16,7 +16,6 @@
           <!-- content -->
           <Nuxt />
           <!-- end content -->
-          
         </div>
         <div class="row c-footer">
           <div class="col text-right">

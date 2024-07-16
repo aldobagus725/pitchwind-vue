@@ -47,6 +47,9 @@
                     <template v-slot:cell(image)="data">
                         <img class="img-fluid" width="50" :src="data.item.image" />
                     </template>
+                    <template v-slot:cell(created_at)="row">
+                      {{ formatProperDate(row.item.created_at) }}
+                    </template>
                     <template v-slot:cell(actions)="row">
                         <b-button :to="{name: 'admin-categories-edit-id', params: {id: row.item.id}}" variant="warning" size="sm">
                             <i class="fas fa-edit"></i> EDIT
@@ -65,30 +68,26 @@
       </div>
     </main>
   </template>
-  
   <script>
     export default {
-  
       //layout
       layout: 'admin',
-  
       //meta
       head() {
         return {
           title: 'Categories - Administrator',
         }
       },
-  
       //data function
       data() {
         return {
           //table header
           fields: [
-            {
-              label: 'ID',
-              key: 'id',
-              tdClass: 'text-center'
-            },
+            // {
+            //   label: 'ID',
+            //   key: 'id',
+            //   tdClass: 'text-center'
+            // },
             {
               label: 'Image',
               key: 'image',

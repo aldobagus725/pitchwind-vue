@@ -1,6 +1,7 @@
 export default {
   // Target Deployment
-  target: 'server',
+  // target: 'server',
+  target: 'static',
   //rendering mode SSR	
   ssr: true,
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -192,9 +193,9 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    // baseURL: 'http://localhost:8000',
+    baseURL: 'http://localhost:8000',
     // baseURL: 'https://pitchwind.dewatapartyshop.com/',
-    baseURL: 'https://pitchwind.balifunncheer.com/',
+    // baseURL: 'https://pitchwind.balifunncheer.com/',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -263,7 +264,6 @@ export default {
             }
           },
         },
-  
     },
   },
 }

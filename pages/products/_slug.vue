@@ -3,7 +3,7 @@
       <div class="fade-in">
         <div class="row">
           <div class="col-md-4 mb-4">
-            <div class="card border-0 rounded shadow">
+            <div class="card border-0 rounded shadow-sm">
               <div class="card-body">
                 <template v-if="product.image == null || product.image == '' || product.image == 'http://localhost:8000/storage/products'  || product.image == 'https://pitchwind.dewatapartyshop.com/storage/products'">
                     <img src="/images/product_placeholder.png" alt="bali funn cheer" class="w-100 rounded"> 
@@ -15,13 +15,13 @@
             </div>
           </div>
           <div class="col-md-8">
-            <div class="card border-0 rounded shadow">
+            <div class="card border-0 rounded shadow-sm">
               <div class="card-body">
                 <h3>{{ product.title }}</h3>
                 <hr>
                 <h5 class="mb-0 font-weight-semibold" v-if="product.discount != 0">
                     <span class="badge badge-danger">
-                    <strong>{{ product.discount }} %</strong>
+                      <strong>{{ product.discount }} %</strong>
                     </span>
                     <s class="text-red">Rp {{ formatPrice(product.price) }}</s>
                 </h5>
@@ -50,19 +50,20 @@
                   </table>
                 </div>
                 <hr>
-                <template v-if="product.stock == 0 || product.stock == null">
+                <a :href="askOnWhatsApp(product.title)" target="_blank" class="btn btn-success text-white fw-bold"><i class="fab fa-whatsapp"></i>&nbsp;ASK ON WHATSAPP</a>
+                <!-- <template v-if="product.stock == 0 || product.stock == null">
                     <button disabled class="btn btn-lg btn-warning border-0 shadow-sm"><i class="fa fa-shopping-cart"></i> TAMBAH KE
                         KERANJANG</button>
                 </template>
                 <template v-else>
                   <button @click="addToCart(product.id, calculateDiscount(product), product.weight)" class="btn btn-lg btn-warning border-0 shadow-sm"><i class="fa fa-shopping-cart"></i> TAMBAH KE
                     KERANJANG</button>
-                </template>
+                </template> -->
               </div>
             </div>
           </div>
         </div>
-        <div class="row mt-4">
+        <!-- <div class="row mt-4">
           <div class="col-md-12">
             <div class="card border-0 rounded shadow">
               <div class="card-body">
@@ -96,44 +97,7 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="container-fluid py-3">
-          <div class="row">
-            <div class="col">
-              <h5 class="text-uppercase">BLOG</h5>
-              <!-- Solid divider -->
-              <hr class="solid">
-              <template v-if="articles.length == 0 || articles == null">
-              </template>
-              <template v-else>
-                <div class="row row-cols-2 row-cols-md-4 g-1">
-                  <div class="col py-2" v-for="artic in articles" :key="artic.id">
-                    <div class="card h-100 shadow">
-                      <template v-if="artic.image == null || artic.image == '' || artic.image == 'http://localhost:8000/storage/articles'  || artic.image == 'https://pitchwind.dewatapartyshop.com/storage/articles'">
-                        <img src="/images/product_placeholder.png" alt="bali funn cheer" class="card-img-top"> 
-                      </template>
-                      <template v-else>
-                        <img :src="artic.image" alt="bali funn cheer" class="card-img-top"> 
-                      </template>
-                      <div class="card-body">
-                        <h4 class="font-weight-semibold"> 
-                          <nuxt-link :to="{name: 'articles-slug', params: {slug: artic.slug}}" data-abc="true">
-                            {{ subStrTitle(artic.title) }}
-                          </nuxt-link> 
-                        </h4> 
-                        <h6 class="mb-0" style="color:black;">{{artic.created_at}}</h6>
-                        <br />
-                        <p class="mb-2" style="color:grey;">
-                            <span v-html="subStrText(stripHtml(artic.body))"></span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </template>
-            </div>
-          </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </template>
@@ -201,6 +165,12 @@
             return title
           }
         },
+        // askOnWhatsApp(productName = ""){
+        //   let url = "https://web.whatsapp.com/send?phone=6281333267597&text=Hello%2C%20I%20want%20more%20info%20about%20"
+        //   let productNameProcessed = productName.replace(" ","\%20")
+        //   let urlProcessed = url+productNameProcessed
+        //   return urlProcessed
+        // },
         stripHtml(text){
             let regex = /(<([^>]+)>)/ig;
             return text.replace(regex, "");
@@ -216,7 +186,6 @@
           }
           //check customer role
           if (this.$auth.strategy.name != "customer") {
-
             //redirect
             return this.$router.push({
               name: 'customer-login'

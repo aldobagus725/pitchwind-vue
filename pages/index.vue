@@ -21,7 +21,7 @@
         <template v-else>
           <div class="row row-cols-2 row-cols-md-5">
             <div class="col mb-4" v-for="product in products.data" :key="product.id">
-              <div class="card h-100 shadow">
+              <div class="card h-100 shadow-sm">
                 <template v-if="product.image == null || product.image == '' || product.image == 'http://localhost:8000/storage/products'  || product.image == 'https://pitchwind.dewatapartyshop.com/storage/products'">
                   <img src="/images/product_placeholder.png" alt="bali funn cheer" class="card-img-top"> 
                 </template>
@@ -39,7 +39,7 @@
                         </h6>
                       </div>
                     </template>
-                    <div class="col text-right">
+                    <!-- <div class="col text-right">
                       <template v-if="product.stock == 0">
                         <h6 class="mb-0 font-weight-semibold">
                           <span class="badge badge-danger">
@@ -61,7 +61,7 @@
                             </span>
                           </h6>
                       </template>
-                    </div>
+                    </div> -->
                   </div>
                   <h6 style="font-size:0.8rem;" class="font-weight-semibold"> 
                     <nuxt-link :to="{name: 'products-slug', params: {slug: product.slug}}" data-abc="true">
@@ -75,16 +75,11 @@
                     </span>
                     <s class="text-red">Rp {{ formatPrice(product.price) }}</s>
                   </h6>
-                  <client-only>
-                    <div class="row align-items-center">
-                      <div class="col">
-                        <i class="fas fa-star text-danger"></i> <strong>{{parseFloat(product.reviews_avg_rating == null ? 0 : product.reviews_avg_rating)}}</strong>
-                        |
-                        <i class="fas fa-comment-alt text-secondary"></i> {{ product.reviews_count }}
-                        <!-- <vue-star-rating :rating="parseFloat(product.reviews_avg_rating)" :increment="0.5" :star-size="14" :read-only="true" :show-rating="true" :inline="true"></vue-star-rating>  -->
-                      </div>
+                  <div class="row">
+                    <div class="col text-right">
+                      <a :href="askOnWhatsApp(product.title)" target="_blank" class="btn btn-sm btn-success text-white fw-bold"><i class="fab fa-whatsapp"></i>&nbsp;ASK </a>
                     </div>
-                  </client-only>
+                  </div>
                 </div>
               </div>
             </div>
@@ -95,11 +90,10 @@
             </div>
           </div>
         </template>
-        <div class="container-fluid py-3">
+        <!-- <div class="container-fluid py-3">
           <div class="row">
             <div class="col">
               <h5 class="text-uppercase">BLOG</h5>
-              <!-- Solid divider -->
               <hr class="solid">
               <template v-if="articles.length == 0 || articles == null">
               </template>
@@ -131,7 +125,7 @@
               </template>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

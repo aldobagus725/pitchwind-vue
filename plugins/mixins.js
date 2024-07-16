@@ -64,7 +64,13 @@ const mixin = {
             } else {
                 return data
             }
-        }
+        },
+        askOnWhatsApp(productName = ""){
+            let url = "https://web.whatsapp.com/send?phone=6281333267597&text=Hello%2C%20I%20want%20more%20info%20about%20"
+            let productNameProcessed = productName.replace(" ","\%20")
+            let urlProcessed = url+productNameProcessed
+            return urlProcessed
+        },
     },
 }
 Vue.mixin(mixin)
