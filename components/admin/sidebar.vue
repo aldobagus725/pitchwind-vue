@@ -17,13 +17,13 @@
               </svg> PRODUCTS
           </nuxt-link>
       </li>
-      <li class="c-sidebar-nav-item">
+      <!-- <li class="c-sidebar-nav-item">
         <nuxt-link :to="{name: 'admin-stock'}" class="c-sidebar-nav-link">
             <svg class="c-sidebar-nav-icon">
                 <use xlink:href="@/node_modules/@coreui/icons/sprites/free.svg#cil-grid"></use>
             </svg> STOCK
         </nuxt-link>
-      </li>
+      </li> -->
       <li class="c-sidebar-nav-title">PAYMENTS</li>
       <li class="c-sidebar-nav-item"><nuxt-link :to="{name: 'admin-paymethod'}" class="c-sidebar-nav-link">
         <svg class="c-sidebar-nav-icon">
@@ -95,13 +95,13 @@
             </svg> ARTICLES
         </nuxt-link>
       </li>
-      <li class="c-sidebar-nav-item">
+      <!-- <li class="c-sidebar-nav-item">
         <nuxt-link :to="{name: 'admin-inventory'}" class="c-sidebar-nav-link">
             <svg class="c-sidebar-nav-icon">
                 <use xlink:href="@/node_modules/@coreui/icons/sprites/free.svg#cil-calculator"></use>
             </svg> INVENTORY
         </nuxt-link>
-      </li>
+      </li> -->
       <li class="c-sidebar-nav-title">OTHERS</li>
       <li class="c-sidebar-nav-item">
         <nuxt-link :to="{name: 'admin-users'}" class="c-sidebar-nav-link">

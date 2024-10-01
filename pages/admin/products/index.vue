@@ -74,7 +74,7 @@
                           <h4><span class="badge bg-success text-white">PUBLISHED</span></h4>
                       </template>
                     </template>
-                    <template v-slot:cell(stock)="row">
+                    <!-- <template v-slot:cell(stock)="row">
                         <template v-if="row.item.stock == 0">
                             <h4><span class="badge bg-danger text-white">{{row.item.stock}}</span></h4>
                         </template>
@@ -84,7 +84,7 @@
                         <template v-else>
                             <h4><span class="badge bg-success text-white">{{row.item.stock}}</span></h4>
                         </template>
-                    </template>
+                    </template> -->
                     <template v-slot:cell(created_at)="row">
                         {{ formatProperDate(row.item.created_at) }}
                     </template>
@@ -197,18 +197,18 @@
               thClass:'text-center',
               tdClass: 'text-center'
             },
-            {
-              label: 'Stock',
-              key: 'stock',
-              thClass:'text-center',
-              tdClass: 'text-center'
-            },
-            {
-              label: 'Minimal Stock',
-              key: 'minimum_stock_alert',
-              thClass:'text-center',
-              tdClass: 'text-center'
-            },
+            // {
+            //   label: 'Stock',
+            //   key: 'stock',
+            //   thClass:'text-center',
+            //   tdClass: 'text-center'
+            // },
+            // {
+            //   label: 'Minimal Stock',
+            //   key: 'minimum_stock_alert',
+            //   thClass:'text-center',
+            //   tdClass: 'text-center'
+            // },
             {
               label: 'Status Produk',
               key: 'published',
