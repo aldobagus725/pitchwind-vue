@@ -1,6 +1,6 @@
 {
   "name": "pitchwind-vue-frontend",
-  "version": "2.4.1",
+  "version": "2.4.1a",
   "private": true,
   "scripts": {
     "dev": "nuxt",

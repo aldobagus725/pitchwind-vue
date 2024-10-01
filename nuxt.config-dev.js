@@ -1,9 +1,9 @@
 export default {
   // Target Deployment
   // target: 'server',
-  target: 'server',
+  target: 'static',
   //rendering mode SSR	
-  ssr: false,
+  ssr: true,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Bali Fun & Cheer',
@@ -32,7 +32,7 @@ export default {
     {
       rel: 'icon',
       type: 'image/x-icon',
-      href: '/favicon.ico'
+      href: '/images/logo.png'
     },
     {
       rel: 'stylesheet',
@@ -49,7 +49,7 @@ export default {
   ],
     script: [
       { src: '/js/coreui.bundle.min.js' }, 
-      { src: 'https://app.midtrans.com/snap/snap.js', 'data-client-key': 'Mid-client-P80ytfUdTbuOlKVb' },  
+      { src: 'https://app.sandbox.midtrans.com/snap/snap.js', 'data-client-key': 'SB-Mid-client-tAy-6ndC2AtC39FL' }, 
     ]
   },
 
@@ -193,8 +193,9 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    // baseURL: 'http://localhost:8000',
-    baseURL: 'https://pitchwind.balifunncheer.com/',
+    baseURL: 'http://localhost:8000',
+    // baseURL: 'https://pitchwind.dewatapartyshop.com/',
+    // baseURL: 'https://pitchwind.balifunncheer.com/',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

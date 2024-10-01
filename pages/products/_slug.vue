@@ -41,10 +41,10 @@
                         <th class="pl-0 w-25" scope="row"><strong>BERAT</strong></th>
                         <td><strong>{{ product.weight }}</strong> gram</td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <th class="pl-0 w-25" scope="row"><strong>STOK</strong></th>
                         <td><strong>{{ product.stock }}</strong></td>
-                      </tr>
+                      </tr> -->
                       </client-only>
                     </tbody>
                   </table>
